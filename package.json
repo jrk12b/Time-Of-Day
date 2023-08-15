@@ -1,0 +1,19 @@
+{
+  "name": "website_qa_automation",
+  "version": "1.0.0",
+  "description": "QA automation repo for online portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrk12b/website_qa_automation.git"
+  },
+  "author": "Justin Kurdila",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrk12b/website_qa_automation/issues"
+  },
+  "homepage": "https://github.com/jrk12b/website_qa_automation#readme"
+}
