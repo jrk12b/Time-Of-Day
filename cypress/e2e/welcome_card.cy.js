@@ -4,7 +4,7 @@ import data from '../support/data.js';
 import { waitForPageLoad } from '../support/helpers';
 
 
-describe('Validing welcome card and navigation elements', () => {
+describe('Validating welcome card and navigation elements', () => {
   beforeEach(() => {
     cy.visit('https://www.justinkurdila.com/');
     waitForPageLoad();

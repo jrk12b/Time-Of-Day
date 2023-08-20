@@ -11,4 +11,7 @@ export default {
     link_element: '[data-testid="linkElement"]',
     big_container: '[data-testid="container-bg"]',
     site_header: '#SITE_HEADER',
+    contact_form: '.wixui-form',
+    pro_gallery: '.pro-gallery-parent-container',
+    pro_gallery: '.pro-gallery',
 };
