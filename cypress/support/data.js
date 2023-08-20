@@ -1,0 +1,8 @@
+export default {
+	header_content: '9+ years’ experience in high-quality technology and service businesses with 4.5 years in software quality assurance. Exceptional level of teamwork and collaboration skills, automated/manual testing, technical support, and troubleshooting. Proven expertise in assuring software performance and reliability by executing manual and automated testing, including test case development and execution, implementation of test plans, and bug tracking.',
+	revel_systems_experience: '​Contributing to the QA team by building various manual and automated test suites. Execute and review unit, integration, function, and performance testing in Gitlab CI/CD pipeline.',
+	saasoptics_experience: 'Monitoring, scheduling, managing, and debugging a variety of automated test suites comprised of over 190 automated tests',
+	application_specialist_experience: 'As an Application Specialist, I monitor and support the SaaSOptics platform while communicating and assisting clients on a daily basis. This includes working directly in a variety of systems including SalesForce, QuickBooks Online/Desktop, Zendesk, JIRA, FullStory, Stripe, Recurly, and more.',
+	sharpspring_experience: 'Served and excelled in multiple roles in an inventive Customer Relationship Management software company. In leading the HTML support team, I supported various areas of the application including the landing page builder, email designer, and form builder.',
+	florida_state_experinece: 'Functioned with a team managing departmental computers, network, domain, and technology maintenance. Responsibilities and tasks included:',
+};

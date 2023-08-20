@@ -4,7 +4,7 @@ import selectors from '../support/selectors.js';
 describe('Validing header and navigation elements', () => {
   beforeEach(() => {
     cy.visit('https://www.justinkurdila.com/')
-  })
+  });
 
   it('validate header text equals Justin Kurdila', () => {
     cy.get('h3').contains('Justin Kurdila').should('be.visible');

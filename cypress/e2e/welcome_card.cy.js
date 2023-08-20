@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 import selectors from '../support/selectors.js';
+import data from '../support/data.js';
 import { waitForPageLoad } from '../support/helpers';
 
 
@@ -44,7 +45,12 @@ describe('Validing welcome card and navigation elements', () => {
     cy.get('img[alt="LinkedIn"]').parents('a[data-testid="linkElement"]').should('have.attr', 'href', 'https://www.linkedin.com/in/justin-kurdila-69bb42113/');
   });
 
-  it.only('validate resume pdf download button', () => {
+  it('validate resume pdf download button', () => {
     cy.get('a[aria-label="Resume PDF"]').should('be.visible').and('have.attr', 'href', 'https://www.justinkurdila.com/_files/ugd/8fbca8_f6513d9fa731412992d61bb2ae7c34c0.pdf');
+  });
+
+  it('validate header in welcome card', () => {
+    cy.get('h2').contains("Hello! I'm Justin").should('be.visible');
+    cy.get('p').contains(data.header_content).should('be.visible');
   });
 });
