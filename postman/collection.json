@@ -27,14 +27,8 @@
 				"url": {
 					"raw": "https://www.justinkurdila.com/",
 					"protocol": "https",
-					"host": [
-						"www",
-						"justinkurdila",
-						"com"
-					],
-					"path": [
-						""
-					]
+					"host": ["www", "justinkurdila", "com"],
+					"path": [""]
 				}
 			},
 			"response": []
