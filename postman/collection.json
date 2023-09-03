@@ -18,7 +18,7 @@
 							"});",
 							"",
 							"pm.test(\"Expect response headers are present\", function () {",
-							"    var headers = ['Content-Type', 'Link', 'Content-Language', 'Strict-Transport-Security', 'Age', 'X-Wix-Request-Id', 'Cache-Control', 'X-Content-Type-Options', 'Content-Encoding', 'Server', 'Accept-Ranges', 'Date', 'X-Served-By', 'X-Cache', 'Vary', 'Server-Timing', 'Set-Cookie', 'X-Seen-By', 'Transfer-Encoding', 'Via', 'alt-Svc'];",
+							"    var headers = ['Content-Type', 'Link', 'Content-Language', 'Strict-Transport-Security', 'Age', 'X-Wix-Request-Id', 'Cache-Control', 'X-Content-Type-Options', 'Content-Encoding', 'Accept-Ranges', 'Date', 'X-Served-By', 'X-Cache', 'Vary', 'Server-Timing', 'Set-Cookie', 'X-Seen-By', 'Transfer-Encoding', 'Via', 'alt-Svc'];",
 							"    headers.forEach(function (item) {",
 							"        pm.response.to.have.header(item);",
 							"    });",
@@ -38,8 +38,14 @@
 				"url": {
 					"raw": "https://www.justinkurdila.com/",
 					"protocol": "https",
-					"host": ["www", "justinkurdila", "com"],
-					"path": [""]
+					"host": [
+						"www",
+						"justinkurdila",
+						"com"
+					],
+					"path": [
+						""
+					]
 				}
 			},
 			"response": []
@@ -56,7 +62,7 @@
 							"});",
 							"",
 							"pm.test(\"Expect response headers are present\", function () {",
-							"    var headers = ['Content-Type', 'Link', 'Content-Language', 'Strict-Transport-Security', 'Age', 'X-Wix-Request-Id', 'Cache-Control', 'X-Content-Type-Options', 'Content-Encoding', 'Server', 'Accept-Ranges', 'Date', 'X-Served-By', 'X-Cache', 'Vary', 'Server-Timing', 'Set-Cookie', 'X-Seen-By', 'Transfer-Encoding', 'Via', 'alt-Svc'];",
+							"    var headers = ['Content-Type', 'Link', 'Content-Language', 'Strict-Transport-Security', 'Age', 'X-Wix-Request-Id', 'Cache-Control', 'X-Content-Type-Options', 'Content-Encoding', 'Accept-Ranges', 'Date', 'X-Served-By', 'X-Cache', 'Vary', 'Server-Timing', 'Set-Cookie', 'X-Seen-By', 'Transfer-Encoding', 'Via', 'alt-Svc'];",
 							"    headers.forEach(function (item) {",
 							"        pm.response.to.have.header(item);",
 							"    });",
@@ -76,8 +82,14 @@
 				"url": {
 					"raw": "https://www.justinkurdila.com/pictures",
 					"protocol": "https",
-					"host": ["www", "justinkurdila", "com"],
-					"path": ["pictures"]
+					"host": [
+						"www",
+						"justinkurdila",
+						"com"
+					],
+					"path": [
+						"pictures"
+					]
 				}
 			},
 			"response": []
@@ -146,8 +158,15 @@
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/posts/1",
 					"protocol": "https",
-					"host": ["jsonplaceholder", "typicode", "com"],
-					"path": ["posts", "1"]
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -213,8 +232,14 @@
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/posts",
 					"protocol": "https",
-					"host": ["jsonplaceholder", "typicode", "com"],
-					"path": ["posts"]
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
 				}
 			},
 			"response": []
@@ -293,8 +318,14 @@
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/posts",
 					"protocol": "https",
-					"host": ["jsonplaceholder", "typicode", "com"],
-					"path": ["posts"]
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
 				}
 			},
 			"response": []
@@ -369,8 +400,15 @@
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/posts/1",
 					"protocol": "https",
-					"host": ["jsonplaceholder", "typicode", "com"],
-					"path": ["posts", "1"]
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -445,8 +483,15 @@
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/posts/1",
 					"protocol": "https",
-					"host": ["jsonplaceholder", "typicode", "com"],
-					"path": ["posts", "1"]
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -506,8 +551,15 @@
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/posts/1",
 					"protocol": "https",
-					"host": ["jsonplaceholder", "typicode", "com"],
-					"path": ["posts", "1"]
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
 				}
 			},
 			"response": []
