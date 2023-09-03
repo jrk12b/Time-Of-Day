@@ -6,7 +6,7 @@
   "scripts": {
     "jest": "npx jest",
     "postman": "newman run postman/collection.json",
-    "k6": "k6 run k6/load-test.js",
+    "k6": "k6 run ./k6/load-test.js",
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run"
   },
