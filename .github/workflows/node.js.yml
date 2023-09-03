@@ -50,7 +50,7 @@ jobs:
     - name: Run k6 tests
       uses: grafana/k6-action@v0.2.0
       with:
-        filename: .k6/load-test.js
+        filename: k6/load-test.js
   postman-run:
     runs-on: ubuntu-latest
     strategy:
