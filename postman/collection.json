@@ -93,6 +93,476 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "recource [mocked]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"pm.test(\"Expect response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Expect response headers are present\", function () {",
+							"    var headers = ['Content-Type', 'Age', 'Cache-Control', 'X-Content-Type-Options', 'Content-Encoding', 'Server', 'Date', 'Vary', 'Transfer-Encoding', 'Via', 'alt-Svc'];",
+							"    headers.forEach(function (item) {",
+							"        pm.response.to.have.header(item);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Expect response time is under 2 second\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Response has required fields - userId, id, title, and body\", function () {",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.property('userId');",
+							"    pm.expect(responseData).to.have.property('id');",
+							"    pm.expect(responseData).to.have.property('title');",
+							"    pm.expect(responseData).to.have.property('body');",
+							"});",
+							"",
+							"",
+							"pm.test(\"userId is a non-negative integer\", function () {",
+							"    pm.expect(responseData.userId).to.be.a('number');",
+							"    pm.expect(responseData.userId).to.be.at.least(0);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Id is a non-negative integer\", function () {",
+							"    pm.expect(responseData.id).to.be.a('number').and.to.be.at.least(0, \"Id should be a non-negative integer\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Title is a non-empty string\", function () {",
+							"    pm.expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Body is a non-empty string\", function () {",
+							"    pm.expect(responseData.body).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resources [mocked]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"pm.test(\"Expect response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Expect response headers are present\", function () {",
+							"    var headers = ['Content-Type', 'Age', 'Cache-Control', 'X-Content-Type-Options', 'Content-Encoding', 'Server', 'Date', 'Vary', 'Transfer-Encoding', 'Via', 'alt-Svc'];",
+							"    headers.forEach(function (item) {",
+							"        pm.response.to.have.header(item);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Expect response time is under 2 second\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Response contains at least one post\", function () {",
+							"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+							"    pm.expect(responseData).to.have.lengthOf.at.least(1, \"Response should contain at least one post\");",
+							"});",
+							"",
+							"pm.test(\"userId is a non-negative integer\", function () {",
+							"    responseData.forEach(function (post) {",
+							"        pm.expect(post.userId).to.be.a('number').and.satisfy(function (userId) {",
+							"            return userId >= 0;",
+							"        }, \"userId should be a non-negative integer\");",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Id is a non-negative integer\", function () {",
+							"    responseData.forEach(function (post) {",
+							"        pm.expect(post.id).to.be.a('number');",
+							"        pm.expect(post.id).to.be.at.least(0);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Title is a non-empty string\", function () {",
+							"    responseData.forEach(function (post) {",
+							"        pm.expect(post.title).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"    });",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resource [mocked]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"pm.test(\"Expect response status code is 201\", function () {",
+							"    pm.expect(pm.response.code).to.equal(201);",
+							"});",
+							"",
+							"pm.test(\"Expect response headers are present\", function () {",
+							"    var headers = ['Content-Type', 'Cache-Control', 'X-Content-Type-Options', 'Server', 'Date', 'Vary', 'Via', 'alt-Svc'];",
+							"    headers.forEach(function (item) {",
+							"        pm.response.to.have.header(item);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Expect response time is under 2 second\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Response has required fields\", function () {",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.title).to.exist.and.to.be.a('string');",
+							"    pm.expect(responseData.body).to.exist.and.to.be.a('string');",
+							"    pm.expect(responseData.userId).to.exist.and.to.be.a('number');",
+							"    pm.expect(responseData.id).to.exist.and.to.be.a('number');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Title is a non-empty string\", function () {",
+							"    pm.expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Body is a non-empty string\", function () {",
+							"    pm.expect(responseData.body).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"userId is a positive integer\", function () {",
+							"    pm.expect(responseData.userId).to.be.a('number');",
+							"    pm.expect(responseData.userId).to.be.above(0);",
+							"});",
+							"",
+							"",
+							"pm.test(\"id is a positive integer\", function () {",
+							"    pm.expect(responseData.id).to.exist.and.to.be.a('number');",
+							"    pm.expect(responseData.id).to.be.above(0, \"Value should be a positive integer\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"created_title\",\n    \"body\": \"created_body\",\n    \"userId\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resource [mocked]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"pm.test(\"Expect response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Expect response headers are present\", function () {",
+							"    var headers = ['Content-Type', 'Cache-Control', 'X-Content-Type-Options', 'Server', 'Date', 'Vary', 'Via', 'alt-Svc'];",
+							"    headers.forEach(function (item) {",
+							"        pm.response.to.have.header(item);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Expect response time is under 2 second\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Response has required fields\", function () {",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.title).to.exist.and.to.be.a('string');",
+							"    pm.expect(responseData.body).to.exist.and.to.be.a('string');",
+							"    pm.expect(responseData.userId).to.exist.and.to.be.a('number');",
+							"    pm.expect(responseData.id).to.exist.and.to.be.a('number');",
+							"});",
+							"",
+							"pm.test(\"Title is a non-empty string\", function () {",
+							"    pm.expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+							"});",
+							"",
+							"pm.test(\"Body is a non-empty string\", function () {",
+							"    pm.expect(responseData.body).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"pm.test(\"userId is a positive integer\", function () {",
+							"    pm.expect(responseData.userId).to.be.a('number');",
+							"    pm.expect(responseData.userId).to.be.above(0);",
+							"});",
+							"",
+							"pm.test(\"id is a positive integer\", function () {",
+							"    pm.expect(responseData.id).to.exist.and.to.be.a('number');",
+							"    pm.expect(responseData.id).to.be.above(0, \"Value should be a positive integer\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"updated_title\",\n    \"body\": \"updated_body\",\n    \"userId\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resource [mocked]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"pm.test(\"Expect response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Expect response headers are present\", function () {",
+							"    var headers = ['Content-Type', 'Cache-Control', 'X-Content-Type-Options', 'Server', 'Date', 'Vary', 'Via', 'alt-Svc'];",
+							"    headers.forEach(function (item) {",
+							"        pm.response.to.have.header(item);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Expect response time is under 2 second\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Response has required fields\", function () {",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.title).to.exist.and.to.be.a('string');",
+							"    pm.expect(responseData.body).to.exist.and.to.be.a('string');",
+							"    pm.expect(responseData.userId).to.exist.and.to.be.a('number');",
+							"    pm.expect(responseData.id).to.exist.and.to.be.a('number');",
+							"});",
+							"",
+							"pm.test(\"Title is a non-empty string\", function () {",
+							"    pm.expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+							"});",
+							"",
+							"pm.test(\"Body is a non-empty string\", function () {",
+							"    pm.expect(responseData.body).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"pm.test(\"userId is a positive integer\", function () {",
+							"    pm.expect(responseData.userId).to.be.a('number');",
+							"    pm.expect(responseData.userId).to.be.above(0);",
+							"});",
+							"",
+							"pm.test(\"id is a positive integer\", function () {",
+							"    pm.expect(responseData.id).to.exist.and.to.be.a('number');",
+							"    pm.expect(responseData.id).to.be.above(0, \"Value should be a positive integer\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"patched_title\",\n    \"body\": \"patched_body\",\n    \"userId\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resource [mocked]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"pm.test(\"Expect response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Expect response headers are present\", function () {",
+							"    var headers = ['Content-Type', 'Cache-Control', 'X-Content-Type-Options', 'Server', 'Date', 'Vary', 'Via', 'alt-Svc'];",
+							"    headers.forEach(function (item) {",
+							"        pm.response.to.have.header(item);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Expect response time is under 2 second\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Response is an empty object\", function () {",
+							"    pm.expect(responseData).to.be.an('object').and.to.be.empty;",
+							"});",
+							"",
+							"pm.test(\"Response headers are present\", function () {",
+							"    pm.expect(pm.response.headers).to.exist;",
+							"});",
+							"",
+							"pm.test(\"Verify that the post with id 1 has been deleted\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"{}\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
