@@ -4,49 +4,49 @@
 name: Test Automation
 on:
   push:
-    branches: [ "develop", "main" ]
+    branches: ['develop', 'main']
   pull_request:
-    branches: [ "develop", "main" ]
+    branches: ['develop', 'main']
 
 jobs:
   jest-run:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Run jest tests
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run jest
+      - uses: actions/checkout@v3
+      - name: Run jest tests
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run jest
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Run cypress tests
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run cy:run
+      - uses: actions/checkout@v3
+      - name: Run cypress tests
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run cy:run
   k6-run:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Run k6 tests
-      uses: grafana/k6-action@v0.2.0
-      with:
-        filename: k6/load-test.js
+      - uses: actions/checkout@v3
+      - name: Run k6 tests
+        uses: grafana/k6-action@v0.2.0
+        with:
+          filename: k6/load-test.js
   postman-run:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Run postman tests
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run postman
+      - uses: actions/checkout@v3
+      - name: Run postman tests
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run postman
