@@ -9,6 +9,17 @@ on:
     branches: ['develop', 'main']
 
 jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - run: npm ci
+      - run: npm run format
   jest-run:
     runs-on: ubuntu-latest
     steps:
@@ -20,6 +31,17 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run jest
+  postman-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run postman tests
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run postman
   cypress-run:
     runs-on: ubuntu-latest
     steps:
@@ -39,14 +61,3 @@ jobs:
         uses: grafana/k6-action@v0.2.0
         with:
           filename: k6/load-test.js
-  postman-run:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run postman tests
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run postman
