@@ -13,8 +13,19 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Validate response status code is 200\", function () {",
+							"pm.test(\"Expect response status code is 200\", function () {",
 							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Expect response headers are present\", function () {",
+							"    var headers = ['Content-Type', 'Link', 'Content-Language', 'Strict-Transport-Security', 'Age', 'X-Wix-Request-Id', 'Cache-Control', 'X-Content-Type-Options', 'Content-Encoding', 'Server', 'Accept-Ranges', 'Date', 'X-Served-By', 'X-Cache', 'Vary', 'Server-Timing', 'Set-Cookie', 'X-Seen-By', 'Transfer-Encoding', 'Via', 'alt-Svc'];",
+							"    headers.forEach(function (item) {",
+							"        pm.response.to.have.header(item);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Expect response time is under 2 second\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -27,8 +38,58 @@
 				"url": {
 					"raw": "https://www.justinkurdila.com/",
 					"protocol": "https",
-					"host": ["www", "justinkurdila", "com"],
-					"path": [""]
+					"host": [
+						"www",
+						"justinkurdila",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pictures",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Expect response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Expect response headers are present\", function () {",
+							"    var headers = ['Content-Type', 'Link', 'Content-Language', 'Strict-Transport-Security', 'Age', 'X-Wix-Request-Id', 'Cache-Control', 'X-Content-Type-Options', 'Content-Encoding', 'Server', 'Accept-Ranges', 'Date', 'X-Served-By', 'X-Cache', 'Vary', 'Server-Timing', 'Set-Cookie', 'X-Seen-By', 'Transfer-Encoding', 'Via', 'alt-Svc'];",
+							"    headers.forEach(function (item) {",
+							"        pm.response.to.have.header(item);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Expect response time is under 2 second\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.justinkurdila.com/pictures",
+					"protocol": "https",
+					"host": [
+						"www",
+						"justinkurdila",
+						"com"
+					],
+					"path": [
+						"pictures"
+					]
 				}
 			},
 			"response": []
