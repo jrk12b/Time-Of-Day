@@ -56,8 +56,6 @@ jobs:
       - name: Run cypress tests in CHROME
         uses: cypress-io/github-action@v6
         with: 
-          build: npm run build
-          start: npm start
           browser: chrome
       - name: Run cypress tests in FIREFOX
         uses: cypress-io/github-action@v6
