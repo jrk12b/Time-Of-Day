@@ -53,19 +53,22 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-        run: npm ci
       - name: Run cypress tests in CHROME
         uses: cypress-io/github-action@v6
-        run: npm run cy:run-chrome
+        with: 
+          start: npm run cy:run-chrome
       - name: Run cypress tests in FIREFOX
         uses: cypress-io/github-action@v6
-        run: npm run cy:run-firefox
+        with: 
+          start: npm run cy:run-firefox
       - name: Run cypress tests in EDGE
         uses: cypress-io/github-action@v6
-        run: npm run cy:run-edge
+        with:
+          start: npm run cy:run-edge
       - name: Run cypress tests in ELECTRON
         uses: cypress-io/github-action@v6
-        run: npm run cy:run-electron
+        with: 
+          start: npm run cy:run-electron
   k6-run:
     runs-on: ubuntu-latest
     steps:
