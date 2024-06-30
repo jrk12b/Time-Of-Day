@@ -55,22 +55,19 @@ jobs:
           cache: 'npm'
       - name: Run cypress tests in CHROME
         uses: cypress-io/github-action@v6
-        with: 
+        with:
           browser: chrome
       - name: Run cypress tests in FIREFOX
         uses: cypress-io/github-action@v6
-        with: 
-          start: npm run start
+        with:
           browser: firefox
       - name: Run cypress tests in EDGE
         uses: cypress-io/github-action@v6
         with:
-          start: npm run start
           browser: edge
       - name: Run cypress tests in ELECTRON
         uses: cypress-io/github-action@v6
-        with: 
-          start: npm run start
+        with:
           browser: electron
   k6-run:
     runs-on: ubuntu-latest
