@@ -63,6 +63,12 @@ jobs:
           sudo apt-get install -y microsoft-edge-stable
       - name: Run cypress tests in CHROME
         run: npm run cy:run-chrome
+      - name: Run cypress tests in FIREFOX
+        run: npm run cy:run-firefox
+      - name: Run cypress tests in EDGE
+        run: npm run cy:run-edge
+      - name: Run cypress tests in ELECTRON
+        run: npm run cy:run-electron
   k6-run:
     runs-on: ubuntu-latest
     steps:
