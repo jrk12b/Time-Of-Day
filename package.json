@@ -9,6 +9,7 @@
 		"k6": "k6 run k6/load-test.js",
 		"cy:open": "npx cypress open",
 		"cy:run": "npx cypress run",
+		"cy:run-chrome": "npx cypress run --browser chrome",
 		"format": "npx prettier --check ."
 	},
 	"repository": {
