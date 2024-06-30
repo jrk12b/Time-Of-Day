@@ -53,21 +53,18 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - name: Install browsers
-        run: |
-          npm ci
-          sudo apt-get update
-          sudo apt-get install -y libgbm-dev
-          sudo apt-get install -y google-chrome-stable
-          sudo apt-get install -y firefox
-          sudo apt-get install -y microsoft-edge-stable
+        run: npm ci
       - name: Run cypress tests in CHROME
+        uses: cypress-io/github-action@v6
         run: npm run cy:run-chrome
       - name: Run cypress tests in FIREFOX
+        uses: cypress-io/github-action@v6
         run: npm run cy:run-firefox
       - name: Run cypress tests in EDGE
+        uses: cypress-io/github-action@v6
         run: npm run cy:run-edge
       - name: Run cypress tests in ELECTRON
+        uses: cypress-io/github-action@v6
         run: npm run cy:run-electron
   k6-run:
     runs-on: ubuntu-latest
