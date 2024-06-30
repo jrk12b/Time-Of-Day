@@ -55,13 +55,13 @@ jobs:
           cache: 'npm'
       - name: Install browsers
         run: |
+          npm ci
           sudo apt-get update
           sudo apt-get install -y libgbm-dev
           sudo apt-get install -y google-chrome-stable
           sudo apt-get install -y firefox
           sudo apt-get install -y microsoft-edge-stable
       - name: Run cypress tests in CHROME
-        run: npm ci
         run: npm run cy:run-chrome
   k6-run:
     runs-on: ubuntu-latest
