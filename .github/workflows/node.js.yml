@@ -56,19 +56,23 @@ jobs:
       - name: Run cypress tests in CHROME
         uses: cypress-io/github-action@v6
         with: 
-          start: npm run cy:run-chrome
+          start: npm run cy:run
+          browser: chrome
       - name: Run cypress tests in FIREFOX
         uses: cypress-io/github-action@v6
         with: 
-          start: npm run cy:run-firefox
+          start: npm run cy:run
+          browser: firefox
       - name: Run cypress tests in EDGE
         uses: cypress-io/github-action@v6
         with:
-          start: npm run cy:run-edge
+          start: npm run cy:run
+          browser: edge
       - name: Run cypress tests in ELECTRON
         uses: cypress-io/github-action@v6
         with: 
-          start: npm run cy:run-electron
+          start: npm run cy:run
+          browser: electron
   k6-run:
     runs-on: ubuntu-latest
     steps:
