@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  format:
+  format and setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,6 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
       - run: npm ci
       - run: npm run format
   jest-run:
@@ -27,10 +28,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run jest tests
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
       - run: npm ci
       - run: npm run jest
   postman-run:
@@ -39,10 +36,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run postman tests
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
       - run: npm ci
       - run: npm run postman
   k6-run:
