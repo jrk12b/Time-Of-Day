@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  format and setup:
+  format-and-setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
