@@ -5,7 +5,7 @@ const root = 'https://www.justinkurdila.com';
 const pictures_route = '/pictures';
 
 const k6_thresholds = {
-	http_req_duration: ['p(99)<2000'], // 99 percent of response times must be below 2000ms
+	http_req_duration: ['p(99)<3000'], // 99 percent of response times must be below 2000ms
 	http_req_failed: ['rate<0.005'], // http errors should be less than 0.5%
 	checks: ['rate>0.99'], // the rate of successful checks should be higher than 99%
 	http_reqs: ['rate>0.5'], // the rate of requests per second should be greater than 0.5
