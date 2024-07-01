@@ -46,6 +46,8 @@ jobs:
   cypress-run-chrome:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
       - name: Run cypress tests in CHROME
         uses: cypress-io/github-action@v6
         with:
@@ -53,6 +55,8 @@ jobs:
   cypress-run-firefox:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
       - name: Run cypress tests in FIREFOX
         uses: cypress-io/github-action@v6
         with:
@@ -60,6 +64,8 @@ jobs:
   cypress-run-edge:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
       - name: Run cypress tests in EDGE
         uses: cypress-io/github-action@v6
         with:
@@ -67,6 +73,8 @@ jobs:
   cypress-run-electron:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
       - name: Run cypress tests in ELECTRON
         uses: cypress-io/github-action@v6
         with:
