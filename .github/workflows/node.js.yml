@@ -52,6 +52,7 @@ jobs:
         with:
           filename: k6/tests/baseline-test.js
   cypress-run:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
