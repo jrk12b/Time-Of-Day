@@ -19,9 +19,8 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-        run: npm ci
       - name: Run Format
-        run: npm run format
+        run: npm ci && npm run format
   jest-run:
     runs-on: ubuntu-latest
     needs: [format-and-setup]
