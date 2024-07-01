@@ -26,7 +26,7 @@ jobs:
     needs: [format-and-setup]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4    
+        uses: actions/checkout@v4
       - name: Run jest tests
         run: npm run jest
   postman-run:
@@ -34,7 +34,7 @@ jobs:
     needs: [format-and-setup]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4   
+        uses: actions/checkout@v4
       - name: Run postman tests
         run: npm run postman
   k6-run:
@@ -42,7 +42,7 @@ jobs:
     needs: [format-and-setup]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4   
+        uses: actions/checkout@v4
       - name: Run k6 tests
         uses: grafana/k6-action@v0.2.0
         with:
@@ -52,7 +52,7 @@ jobs:
     needs: [format-and-setup]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4   
+        uses: actions/checkout@v4
       - name: Run cypress tests in CHROME
         uses: cypress-io/github-action@v6
         with:
@@ -62,7 +62,7 @@ jobs:
     needs: [format-and-setup]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4   
+        uses: actions/checkout@v4
       - name: Run cypress tests in EDGE
         uses: cypress-io/github-action@v6
         with:
@@ -72,7 +72,7 @@ jobs:
     needs: [format-and-setup]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4   
+        uses: actions/checkout@v4
       - name: Run cypress tests in ELECTRON
         uses: cypress-io/github-action@v6
         with:
