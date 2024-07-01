@@ -53,6 +53,9 @@ jobs:
           filename: k6/tests/baseline-test.js
   cypress-run:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container: [1, 2, 3]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -60,11 +63,17 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
+          parallel: true
+          group: 'cypress'
       - name: Run cypress tests in EDGE
         uses: cypress-io/github-action@v6
         with:
           browser: edge
+          parallel: true
+          group: 'cypress'
       - name: Run cypress tests in ELECTRON
         uses: cypress-io/github-action@v6
         with:
           browser: electron
+          parallel: true
+          group: 'cypress'
