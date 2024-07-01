@@ -43,42 +43,6 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run postman
-  cypress-run-chrome:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      - name: Run cypress tests in CHROME
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-  cypress-run-firefox:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      - name: Run cypress tests in FIREFOX
-        uses: cypress-io/github-action@v6
-        with:
-          browser: firefox
-  cypress-run-edge:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      - name: Run cypress tests in EDGE
-        uses: cypress-io/github-action@v6
-        with:
-          browser: edge
-  cypress-run-electron:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      - name: Run cypress tests in ELECTRON
-        uses: cypress-io/github-action@v6
-        with:
-          browser: electron
   k6-run:
     runs-on: ubuntu-latest
     steps:
@@ -87,3 +51,19 @@ jobs:
         uses: grafana/k6-action@v0.2.0
         with:
           filename: k6/tests/baseline-test.js
+  cypress-run:
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Run cypress tests in CHROME
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+      - name: Run cypress tests in EDGE
+        uses: cypress-io/github-action@v6
+        with:
+          browser: edge
+      - name: Run cypress tests in ELECTRON
+        uses: cypress-io/github-action@v6
+        with:
+          browser: electron
