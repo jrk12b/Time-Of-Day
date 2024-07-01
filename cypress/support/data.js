@@ -1,6 +1,6 @@
 export default {
 	header_content:
-		'9+ years’ experience in high-quality technology and service businesses with 4.5 years in software quality assurance. Exceptional level of teamwork and collaboration skills, automated/manual testing, technical support, and troubleshooting. Proven expertise in assuring software performance and reliability by executing manual and automated testing, including test case development and execution, implementation of test plans, and bug tracking.',
+		'10+ years’ experience in high-quality technology and service businesses with 5+ years in software quality assurance. Exceptional level of teamwork and collaboration skills, automated/manual testing, technical support, and troubleshooting. Proven expertise in assuring software performance and reliability by executing manual and automated testing, including test case development and execution, implementation of test plans, and bug tracking.',
 	experience_revel_systems:
 		'​Contributing to the QA team by building various manual and automated test suites. Execute and review unit, integration, function, and performance testing in Gitlab CI/CD pipeline.',
 	experience_saasoptics:
