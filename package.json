@@ -1,39 +1,25 @@
 {
-	"name": "website_qa_automation",
+	"name": "time_of_day",
 	"version": "1.0.0",
-	"description": "QA automation repo for online portfolio",
+	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"jest": "npx jest",
-		"postman": "newman run postman/collection.json",
-		"k6": "k6 run k6/load-test.js",
-		"cy:open": "npx cypress open",
-		"cy:run": "npx cypress run",
-		"cy:run-chrome": "npx cypress run --browser chrome",
-		"cy:run-firefox": "npx cypress run --browser firefox",
-		"cy:run-edge": "npx cypress run --browser edge",
-		"cy:run-electron": "npx cypress run --browser electron",
 		"format-check": "npx prettier --check .",
 		"format-write": "npx prettier --write ."
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jrk12b/website_qa_automation.git"
+		"url": "https://github.com/jrk12b/Time-Of-Day.git"
 	},
 	"author": "Justin Kurdila",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/jrk12b/website_qa_automation/issues"
+		"url": "https://github.com/jrk12b/Time-Of-Day/issues"
 	},
-	"homepage": "https://github.com/jrk12b/website_qa_automation#readme",
+	"homepage": "https://github.com/jrk12b/Time-Of-Dayn#readme",
 	"devDependencies": {
-		"@cypress-audit/lighthouse": "^1.4.2",
-		"cypress": "^12.17.4",
-		"cypress-audit": "^1.1.0",
-		"cypress-time-marks": "^1.6.0",
 		"jest": "^29.6.2",
-		"newman": "^5.3.2",
-		"postman": "^0.2.0",
 		"prettier": "3.0.3"
 	},
 	"dependencies": {
