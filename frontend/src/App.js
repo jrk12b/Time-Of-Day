@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import ItemForm from './components/itemForm';
-import ItemList from './components/itemList';
+import ItemForm from './components/items/itemForm';
+import ItemList from './components/items/itemForm';
+import './App.css';
+import { AppProvider } from './context/AppContext';
+import TimeBudget from './components/timeOfDay/TimeBudget';
+import Graph from './components/timeOfDay/Graph';
+import ActivityTotal from './components/timeOfDay/ActivityTotal';
+import ActivityList from './components/timeOfDay/ActivityList';
+import AddActivityForm from './components/timeOfDay/AddActivityForm';
+import RemainingHours from './components/timeOfDay/RemainingHours';
+import Header from './components/timeOfDay/Header';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -56,7 +66,39 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Items</h1>
+      <AppProvider>
+			<div className="container">
+				<Header />
+				<div className="row mt-3">
+					<div className="col-sm">
+						<TimeBudget />
+					</div>
+					<div className="col-sm">
+						<RemainingHours />
+					</div>
+					<div className="col-sm">
+						<ActivityTotal />
+					</div>
+				</div>
+				<div className="Center">
+					<Graph />
+				</div>
+				<h3 className="mt-3">Activities</h3>
+				<div className="row mt-3">
+					<div className="col-sm">
+						<ActivityList />
+					</div>
+				</div>
+				<h3 className="mt-3">Add Activity</h3>
+				<div className="row mt-3">
+					<div className="col-sm">
+						<AddActivityForm />
+					</div>
+				</div>
+			</div>
+		</AppProvider>
+    <hr></hr>
+    <h1>Items</h1>
       <ItemForm
         name={name}
         setName={setName}
