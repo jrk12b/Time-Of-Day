@@ -13,7 +13,8 @@
 		"cy:run-firefox": "npx cypress run --browser firefox",
 		"cy:run-edge": "npx cypress run --browser edge",
 		"cy:run-electron": "npx cypress run --browser electron",
-		"format": "npx prettier --check ."
+		"format-check": "npx prettier --check .",
+		"format-write": "npx prettier --write ."
 	},
 	"repository": {
 		"type": "git",
