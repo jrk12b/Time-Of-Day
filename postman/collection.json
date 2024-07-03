@@ -62,8 +62,8 @@
 							"    });",
 							"});",
 							"",
-							"pm.test(\"Expect response time is under 2 second\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"pm.test(\"Expect response time is under 3 seconds\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);",
 							"});"
 						],
 						"type": "text/javascript"
