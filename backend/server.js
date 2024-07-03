@@ -16,22 +16,14 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-	console.log('Connected to MongoDB');
+  console.log('Connected to MongoDB');
 });
 
-// Define a schema and model
-const itemSchema = new mongoose.Schema({
-	name: String,
-	description: String,
-});
+// Import routes
+const itemRoutes = require('./routes/itemRoutes');
 
-const Item = mongoose.model('item', itemSchema);
-
-// API endpoint to get data
-app.get('/api/items', async (req, res) => {
-	const items = await Item.find();
-	res.json(items);
-});
+// Use routes
+app.use('/api', itemRoutes);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
