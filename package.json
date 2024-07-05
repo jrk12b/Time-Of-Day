@@ -7,7 +7,7 @@
 		"format-check": "npx prettier --check .",
 		"format-write": "npx prettier --write .",
 		"test": "cd frontend && npm run test",
-		"install-ci": "npm ci && npm run format-write && cd frontend && npm ci"
+		"install-ci": "npm i && npm run format-write && cd frontend && npm i"
 	},
 	"repository": {
 		"type": "git",
