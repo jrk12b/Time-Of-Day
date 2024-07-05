@@ -30,6 +30,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Frontend Dependencies
-        run: cd frontend && pwd && ls && npm ci
+        run: cd frontend && npm ci
       - name: Run jest tests
-        run: pwd && ls && npm run test
+        run: npm run test
