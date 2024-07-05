@@ -20,7 +20,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - name: Run Format
-        run: install-ci
+        run: npm run install-ci
   jest-run:
     runs-on: ubuntu-latest
     needs: [format-and-setup]
