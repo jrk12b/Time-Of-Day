@@ -28,4 +28,4 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Run jest tests
-        run: npm run jest
+        run: npm run test

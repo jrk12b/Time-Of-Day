@@ -4,9 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"jest": "npx jest",
 		"format-check": "npx prettier --check .",
-		"format-write": "npx prettier --write ."
+		"format-write": "npx prettier --write .",
+		"test": "cd frontend && npm run test"
 	},
 	"repository": {
 		"type": "git",
@@ -18,15 +18,11 @@
 		"url": "https://github.com/jrk12b/Time-Of-Day/issues"
 	},
 	"homepage": "https://github.com/jrk12b/Time-Of-Dayn#readme",
-	"devDependencies": {
-		"jest": "^29.6.2",
-		"prettier": "3.0.3"
-	},
 	"dependencies": {
 		"body-parser": "^1.20.2",
 		"cors": "^2.8.5",
-		"dotenv": "^16.4.5",
 		"express": "^4.19.2",
-		"mongoose": "^8.4.4"
+		"mongoose": "^8.4.4",
+		"prettier": "3.0.3"
 	}
 }

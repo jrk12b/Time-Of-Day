@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config();
+const { PORT, MONGO_URI } = require('../frontend/src/config');
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(MONGO_URI);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -25,5 +25,5 @@ const itemRoutes = require('./routes/itemRoutes');
 // Use routes
 app.use('/api', itemRoutes);
 
-const port = process.env.PORT || 5000;
+const port = PORT || PORT;
 app.listen(port, () => console.log(`Server running on port ${port}`));

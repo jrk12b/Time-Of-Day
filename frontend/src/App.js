@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import ItemForm from './components/items/itemForm';
-import ItemList from './components/items/itemForm';
+import ItemList from './components/items/itemList';
 import './App.css';
 import { AppProvider } from './context/AppContext';
 import TimeBudget from './components/timeOfDay/TimeBudget';
@@ -12,6 +12,7 @@ import ActivityList from './components/timeOfDay/ActivityList';
 import AddActivityForm from './components/timeOfDay/AddActivityForm';
 import RemainingHours from './components/timeOfDay/RemainingHours';
 import Header from './components/timeOfDay/Header';
+const { PORT } = require('./config');
 
 function App() {
   const [items, setItems] = useState([]);
@@ -25,7 +26,7 @@ function App() {
 
   const fetchItems = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/items');
+      const response = await axios.get(`http://localhost:${PORT}/api/items`);
       setItems(response.data);
     } catch (error) {
       console.error('Error fetching items', error);
@@ -35,11 +36,11 @@ function App() {
   const handleAddOrUpdate = async () => {
     try {
       if (editId) {
-        const response = await axios.put(`http://localhost:5000/api/items/${editId}`, { name, description });
+        const response = await axios.put(`http://localhost:${PORT}/api/items/${editId}`, { name, description });
         setItems(items.map(item => (item._id === editId ? response.data : item)));
         setEditId(null);
       } else {
-        const response = await axios.post('http://localhost:5000/api/items', { name, description });
+        const response = await axios.post(`http://localhost:${PORT}/api/items`, { name, description });
         setItems([...items, response.data]);
       }
       setName('');
@@ -57,7 +58,7 @@ function App() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/items/${id}`);
+      await axios.delete(`http://localhost:${PORT}/api/items/${id}`);
       setItems(items.filter(item => item._id !== id));
     } catch (error) {
       console.error('Error deleting item', error);
