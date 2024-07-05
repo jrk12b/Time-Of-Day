@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import ActivityItem from './ActivityItem';
-import { AppContext } from '../../context/AppContext';
+import { AppContext } from '../../context/appContextActivities';
 
 const ActivityList = () => {
 	const { activities } = useContext(AppContext);

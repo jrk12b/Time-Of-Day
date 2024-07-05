@@ -6,6 +6,6 @@ test('renders learn react link', () => {
 	render(<App />);
 
 	// Look for an element with specific text content
-	const headingElement = screen.getByText(/Activities/i);
+	const headingElement = screen.getByText(/HomePage/i);
 	expect(headingElement).toBeInTheDocument();
 });
