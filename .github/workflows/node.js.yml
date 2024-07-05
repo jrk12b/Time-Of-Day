@@ -20,7 +20,11 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - name: Run Format
-        run: npm run install-ci
+        run: npm run format-write
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install Frontend Dependencies
+        run: cd frontend && pwd && ls && npm ci
   jest-run:
     runs-on: ubuntu-latest
     needs: [format-and-setup]
