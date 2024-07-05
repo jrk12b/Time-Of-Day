@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
 import ItemForm from './components/items/itemForm';
 import ItemList from './components/items/itemList';
-import './App.css';
-import { AppProvider } from './context/AppContext';
 import TimeBudget from './components/timeOfDay/TimeBudget';
 import Graph from './components/timeOfDay/Graph';
 import ActivityTotal from './components/timeOfDay/ActivityTotal';
 import ActivityList from './components/timeOfDay/ActivityList';
 import AddActivityForm from './components/timeOfDay/AddActivityForm';
 import RemainingHours from './components/timeOfDay/RemainingHours';
-import Header from './components/timeOfDay/Header';
+import Header from './components/timeOfDay/Header'
+
+import { AppProvider } from './context/AppContext';
+;
 const { PORT } = require('./config');
 
 function App() {

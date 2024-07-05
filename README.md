@@ -1,4 +1,4 @@
-# website_qa_automation
+# website_qa_automation 
 
 QA automation Repo for online portfolio
 
@@ -7,7 +7,7 @@ QA automation Repo for online portfolio
 - Nodejs - JavaScript runtime environment and JavaScript engine
 - React - JavaScript front-end library
 - Express - Backend web application framework for building RESTful APIs
-- MongoDB - No-SQL Database
+- MongoDB/Mongoose - No-SQL Database
 
 # Testing Tools:
 
