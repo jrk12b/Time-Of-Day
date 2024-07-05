@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App'; 
+import App from './App';
 
 test('renders learn react link', () => {
-    render(<App />);
-  
-    // Look for an element with specific text content
-    const headingElement = screen.getByText(/Activities/i);
-    expect(headingElement).toBeInTheDocument();
-  });  
+	render(<App />);
+
+	// Look for an element with specific text content
+	const headingElement = screen.getByText(/Activities/i);
+	expect(headingElement).toBeInTheDocument();
+});
