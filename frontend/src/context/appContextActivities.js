@@ -21,10 +21,7 @@ const AppReducer = (state, action) => {
 const initialState = {
 	hours: 24,
 	activites: [
-		{ id: uuidv4(), name: 'Reading', hour: 1 },
-		{ id: uuidv4(), name: 'Work', hour: 8 },
-		{ id: uuidv4(), name: 'Running', hour: 2 },
-		{ id: uuidv4(), name: 'Sleep', hour: 9 },
+		{ id: uuidv4(), name: 'Reading', hour: 1 }
 	],
 };
 

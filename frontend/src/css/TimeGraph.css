@@ -683,3 +683,7 @@ textarea.form-control-lg {
 	width: 50%;
 	position: absolute;
 }
+
+.itemForm {
+	padding: 50px;
+}

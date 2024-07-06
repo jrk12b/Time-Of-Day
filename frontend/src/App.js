@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ItemsPage from './pages/ItemsPage';
 import TimeGraphPage from './pages/TimeGraphPage';
 import HomePage from './pages/HomePage';
 import HeaderNav from '../src/components/HeaderNav/HeaderNav';
@@ -16,7 +15,6 @@ function App() {
 				<main className="main-content">
 					<Routes>
 						<Route path="/" element={<HomePage />} />
-						<Route path="/ItemsPage" element={<ItemsPage />} />
 						<Route path="/TimeGraphPage" element={<TimeGraphPage />} />
 					</Routes>
 				</main>

@@ -30,11 +30,6 @@ const HeaderNav = () => {
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/ItemsPage" className={linkClassName} onClick={closeMobileMenu}>
-						ItemsPage
-					</NavLink>
-				</li>
-				<li>
 					<NavLink to="/TimeGraphPage" className={linkClassName} onClick={closeMobileMenu}>
 						TimeGraphPage
 					</NavLink>

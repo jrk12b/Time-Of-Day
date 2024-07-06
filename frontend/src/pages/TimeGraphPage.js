@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchItems, handleAddOrUpdate } from '../context/itemContext';
 import { AppProvider } from '../context/appContextActivities';
 import TimeBudget from '../components/timeOfDay/TimeBudget';
 import RemainingHours from '../components/timeOfDay/RemainingHours';
@@ -6,9 +7,29 @@ import ActivityTotal from '../components/timeOfDay/ActivityTotal';
 import Graph from '../components/timeOfDay/Graph';
 import ActivityList from '../components/timeOfDay/ActivityList';
 import AddActivityForm from '../components/timeOfDay/AddActivityForm';
+import ItemForm from '../components/items/itemForm';
 import '../css/TimeGraph.css';
 
 const TimePage = () => {
+	const [items, setItems] = useState([]);
+	const [name, setName] = useState('');
+	const [description, setDescription] = useState('');
+	const [editId, setEditId] = useState(null);
+
+	useEffect(() => {
+		const getItems = async () => {
+			const fetchedItems = await fetchItems();
+			setItems(fetchedItems);
+		};
+		getItems();
+	}, []);
+
+	const addOrUpdate = async () => {
+		await handleAddOrUpdate(editId, name, description, items, setItems);
+		setEditId(null);
+		setName('');
+		setDescription('');
+	};
 	return (
 		<div>
 			<hr></hr>
@@ -43,6 +64,16 @@ const TimePage = () => {
 								<AddActivityForm />
 							</div>
 						</div>
+					</div>
+					<div className='itemForm'>
+					<ItemForm
+						name={name}
+						setName={setName}
+						description={description}
+						setDescription={setDescription}
+						handleAddOrUpdate={addOrUpdate}
+						editId={editId}
+					/>
 					</div>
 				</div>
 			</AppProvider>

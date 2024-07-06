@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../../context/appContextActivities';
 
 const ItemForm = ({ name, setName, description, setDescription, handleAddOrUpdate, editId }) => {
+	const { activities } = useContext(AppContext);
+	const [shouldSubmit, setShouldSubmit] = useState(false);
+
+	const handleButtonClick = () => {
+		if (activities.length > 0) {
+			setName(activities[0].name);
+			setDescription(activities[0].hour);
+			setShouldSubmit(true);
+		}
+	};
+
+	useEffect(() => {
+		if (shouldSubmit) {
+			handleAddOrUpdate();
+			setShouldSubmit(false);
+		}
+	}, [name, description, shouldSubmit, handleAddOrUpdate]);
+
 	return (
 		<div>
-			<input
-				type="text"
-				placeholder="Name"
-				value={name}
-				onChange={(e) => setName(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Description"
-				value={description}
-				onChange={(e) => setDescription(e.target.value)}
-			/>
-			<button onClick={handleAddOrUpdate}>{editId ? 'Update' : 'Add'} Item</button>
+			<button onClick={handleButtonClick}>{editId ? 'Update' : 'Add'} Item</button>
 		</div>
 	);
 };
