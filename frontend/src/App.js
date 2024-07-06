@@ -3,21 +3,24 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ItemsPage from './pages/ItemsPage';
 import TimeGraphPage from './pages/TimeGraphPage';
 import HomePage from './pages/HomePage';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import HeaderNav from '../src/components/HeaderNav';
+// eslint-disable-next-line no-unused-vars
+import HeaderNavHook from "../src/components/HeaderNavHook";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <div>
+        <HeaderNav />
+        {/* <HeaderNavHook /> */}
+        <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/ItemsPage" element={<ItemsPage />} />
             <Route path="/TimeGraphPage" element={<TimeGraphPage />} />
           </Routes>
-        </div>
+        </main>
       </Router>
     </div>
   );

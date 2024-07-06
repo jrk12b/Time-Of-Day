@@ -1,12 +1,12 @@
 import React from 'react';
 import { AppProvider } from '../context/appContextActivities';
-import Header from '../components/timeOfDay/Header';
 import TimeBudget from '../components/timeOfDay/TimeBudget';
 import RemainingHours from '../components/timeOfDay/RemainingHours';
 import ActivityTotal from '../components/timeOfDay/ActivityTotal';
 import Graph from '../components/timeOfDay/Graph';
 import ActivityList from '../components/timeOfDay/ActivityList';
 import AddActivityForm from '../components/timeOfDay/AddActivityForm';
+import "./TimeGraph.css";
 
 const TimePage = () => {
   return (
@@ -14,7 +14,6 @@ const TimePage = () => {
       <hr></hr>
       <AppProvider>
         <div className="container">
-          <Header />
           <div className="row mt-3">
             <div className="col-sm">
               <TimeBudget />
