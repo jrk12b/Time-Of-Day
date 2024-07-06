@@ -6,7 +6,7 @@ import ActivityTotal from '../components/timeOfDay/ActivityTotal';
 import Graph from '../components/timeOfDay/Graph';
 import ActivityList from '../components/timeOfDay/ActivityList';
 import AddActivityForm from '../components/timeOfDay/AddActivityForm';
-import './TimeGraph.css';
+import '../css/TimeGraph.css';
 
 const TimePage = () => {
 	return (
@@ -25,19 +25,23 @@ const TimePage = () => {
 							<ActivityTotal />
 						</div>
 					</div>
-					<div className="Center">
+					<div className="graph">
 						<Graph />
 					</div>
-					<h3 className="mt-3">Activities</h3>
-					<div className="row mt-3">
-						<div className="col-sm">
-							<ActivityList />
-						</div>
+					<div className='activityList'>
+						<h3 className="mt-3">Activities</h3>
+						<div className="row mt-3">
+							<div className="col-sm">
+								<ActivityList />
+							</div>
 					</div>
-					<h3 className="mt-3">Add Activity</h3>
-					<div className="row mt-3">
-						<div className="col-sm">
-							<AddActivityForm />
+					</div>
+					<div className='activityForm'>
+						<h3 className="mt-3">Add Activity</h3>
+						<div className="row mt-3">
+							<div className="col-sm">
+								<AddActivityForm />
+							</div>
 						</div>
 					</div>
 				</div>

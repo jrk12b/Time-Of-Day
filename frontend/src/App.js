@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ItemsPage from './pages/ItemsPage';
 import TimeGraphPage from './pages/TimeGraphPage';
 import HomePage from './pages/HomePage';
-import HeaderNav from '../src/components/HeaderNav';
+import HeaderNav from '../src/components/HeaderNav/HeaderNav';
 // eslint-disable-next-line no-unused-vars
-import HeaderNavHook from '../src/components/HeaderNavHook';
-import './App.css';
+import HeaderNavHook from '../src/components/HeaderNav/HeaderNavHook';
 
 function App() {
 	return (

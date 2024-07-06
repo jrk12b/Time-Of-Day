@@ -5,6 +5,7 @@
 	left: 0;
 	background-color: transparent;
 	z-index: var(--z-fixed);
+	padding-right: 2rem;
 }
 
 .nav {
