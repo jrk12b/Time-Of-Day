@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import '../css/TimeGraph.css';
+import '../css/TodaysTime.css';
 
 import { fetchActivities, AppProvider } from '../context/contextActivities';
 

@@ -1,0 +1,17 @@
+.yourTime {
+	padding: 1em;
+	border: 1px solid;
+	margin: 1em;
+	text-align: center;
+}
+
+.yourTimeList {
+	padding: 1em;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+h1 {
+	text-align: center;
+}

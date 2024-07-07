@@ -3,17 +3,25 @@ import { fetchActivities } from './contextActivities';
 
 const useFetchActivities = () => {
     const [activities, setActivities] = useState([]);
-    console.log('fetchActivities' + JSON.stringify(activities));
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const getActivities = async () => {
-            const fetchedActivities = await fetchActivities();
-            setActivities(fetchedActivities);
+            try {
+                const fetchedActivities = await fetchActivities();
+                setActivities(fetchedActivities);
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
+            }
         };
+
         getActivities();
     }, []);
 
-    return activities;
+    return { activities, loading, error };
 };
 
 export default useFetchActivities;

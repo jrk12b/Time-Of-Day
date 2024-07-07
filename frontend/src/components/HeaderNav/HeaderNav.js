@@ -26,12 +26,17 @@ const HeaderNav = () => {
 			<ul className={listClassName}>
 				<li>
 					<NavLink to="/" className={linkClassName} onClick={closeMobileMenu}>
-						HomePage
+						Home
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/TimeGraphPage" className={linkClassName} onClick={closeMobileMenu}>
-						TimeGraphPage
+					<NavLink to="/TodaysTime" className={linkClassName} onClick={closeMobileMenu}>
+						Today's Time
+					</NavLink>
+				</li>
+				<li>
+					<NavLink to="/YourTime" className={linkClassName} onClick={closeMobileMenu}>
+						Your Time
 					</NavLink>
 				</li>
 			</ul>
