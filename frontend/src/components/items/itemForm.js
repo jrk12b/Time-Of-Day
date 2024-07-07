@@ -1,26 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../../context/appContextActivities';
 
-const ItemForm = ({ handleAddOrUpdate, editId }) => {
+const ItemForm = ({ handleSubmitActivities }) => {
     const { activities } = useContext(AppContext);
-    const [shouldSubmit, setShouldSubmit] = useState(false);
 
     const handleButtonClick = () => {
-        setShouldSubmit(true);
-    };
-
-    useEffect(() => {
-        if (shouldSubmit) {
-            activities.forEach(activity => {
-                handleAddOrUpdate(editId, activity.name, activity.hour);
-            });
-            setShouldSubmit(false);
+        if (activities.length > 0) {
+            handleSubmitActivities(activities);
         }
-    }, [shouldSubmit, activities, handleAddOrUpdate, editId]);
+    };
 
     return (
         <div>
-            <button onClick={handleButtonClick}>{editId ? 'Update' : 'Add'} Items</button>
+            <button onClick={handleButtonClick}>Submit All Activities</button>
         </div>
     );
 };

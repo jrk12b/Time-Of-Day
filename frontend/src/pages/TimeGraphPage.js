@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchItems, handleAddOrUpdate } from '../context/itemContext';
+import { fetchItems } from '../context/itemContext';
 import { AppProvider } from '../context/appContextActivities';
 import TimeBudget from '../components/timeOfDay/TimeBudget';
 import RemainingHours from '../components/timeOfDay/RemainingHours';
@@ -8,11 +8,12 @@ import Graph from '../components/timeOfDay/Graph';
 import ActivityList from '../components/timeOfDay/ActivityList';
 import AddActivityForm from '../components/timeOfDay/AddActivityForm';
 import ItemForm from '../components/items/itemForm';
+import axios from 'axios';
 import '../css/TimeGraph.css';
 
 const TimePage = () => {
     const [items, setItems] = useState([]);
-    const [editId, setEditId] = useState(null);
+    const { PORT } = require('../config');
 
     useEffect(() => {
         const getItems = async () => {
@@ -22,9 +23,13 @@ const TimePage = () => {
         getItems();
     }, []);
 
-    const addOrUpdate = async (id, name, description) => {
-        await handleAddOrUpdate(id, name, description, items, setItems);
-        setEditId(null);
+    const handleSubmitActivities = async (activities) => {
+        try {
+            const response = await axios.post(`http://localhost:${PORT}/api/activities`, { activities });
+            console.log('Activities submitted:', response.data);
+        } catch (error) {
+            console.error('Error submitting activities', error);
+        }
     };
 
     return (
@@ -63,10 +68,7 @@ const TimePage = () => {
                         </div>
                     </div>
                     <div className="itemForm">
-                        <ItemForm
-                            handleAddOrUpdate={addOrUpdate}
-                            editId={editId}
-                        />
+                        <ItemForm handleSubmitActivities={handleSubmitActivities} />
                     </div>
                 </div>
             </AppProvider>

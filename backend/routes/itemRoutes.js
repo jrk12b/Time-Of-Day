@@ -1,5 +1,6 @@
 const express = require('express');
 const Item = require('../models/itemModel');
+const Activity = require('../models/activityModel');
 
 const router = express.Router();
 
@@ -64,6 +65,19 @@ router.delete('/items/:id', async (req, res) => {
 	} catch (err) {
 		res.status(500).json({ message: err.message });
 	}
+});
+
+// Endpoint to handle adding multiple activities
+router.post('/activities', async (req, res) => {
+    const { activities } = req.body;
+
+    try {
+        const newDocument = new Activity({ activities });
+        await newDocument.save();
+        res.status(201).json(newDocument);
+    } catch (error) {
+        res.status(500).json({ error: 'Error saving activities' });
+    }
 });
 
 module.exports = router;

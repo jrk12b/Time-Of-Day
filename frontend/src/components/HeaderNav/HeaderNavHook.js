@@ -19,7 +19,7 @@ const HeaderNavHook = () => {
 		<header className="header">
 			<nav className="nav container">
 				<NavLink to="/" className="nav__logo">
-					Navigation Bar
+					Time Of Day
 				</NavLink>
 
 				<div className={`nav__menu ${showMenu ? 'show-menu' : ''}`} id="nav-menu">
