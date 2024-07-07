@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+import '../css/TimeGraph.css';
+
 import { fetchActivities, AppProvider } from '../context/contextActivities';
+
 import TimeBudget from '../components/Graph/GraphTimeBudget';
 import RemainingHours from '../components/Graph/GraphRemainingHours';
-import ActivityTotal from '../components/Activity/ActivityTotal';
 import Graph from '../components/Graph/Graph';
+
+import ActivityTotal from '../components/Activity/ActivityTotal';
 import ActivityList from '../components/Activity/ActivityList';
 import AddActivityForm from '../components/Activity/ActivityAddForm';
 import ActivitySubmit from '../components/Activity/ActivitySubmit';
-import axios from 'axios';
-import '../css/TimeGraph.css';
 
 const TimePage = () => {
     // eslint-disable-next-line no-unused-vars
