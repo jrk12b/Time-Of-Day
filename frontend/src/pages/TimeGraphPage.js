@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { fetchActivities } from '../context/activityContext';
-import { AppProvider } from '../context/appContextActivities';
-import TimeBudget from '../components/timeOfDay/TimeBudget';
-import RemainingHours from '../components/timeOfDay/RemainingHours';
-import ActivityTotal from '../components/timeOfDay/ActivityTotal';
-import Graph from '../components/timeOfDay/Graph';
-import ActivityList from '../components/timeOfDay/ActivityList';
-import AddActivityForm from '../components/timeOfDay/AddActivityForm';
-import ActivityForm from '../components/activity/activityForm';
+import { fetchActivities, AppProvider } from '../context/contextActivities';
+import TimeBudget from '../components/Graph/GraphTimeBudget';
+import RemainingHours from '../components/Graph/GraphRemainingHours';
+import ActivityTotal from '../components/Activity/ActivityTotal';
+import Graph from '../components/Graph/Graph';
+import ActivityList from '../components/Activity/ActivityList';
+import AddActivityForm from '../components/Activity/ActivityAddForm';
+import ActivitySubmit from '../components/Activity/ActivitySubmit';
 import axios from 'axios';
 import '../css/TimeGraph.css';
 
@@ -69,8 +68,8 @@ const TimePage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="submitActivityForm">
-                        <ActivityForm handleSubmitActivities={handleSubmitActivities} />
+                    <div className="ActivitySubmit">
+                        <ActivitySubmit handleSubmitActivities={handleSubmitActivities} />
                     </div>
                 </div>
             </AppProvider>

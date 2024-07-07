@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { TiDelete } from 'react-icons/ti';
-import { AppContext } from '../../context/appContextActivities';
+import { AppContext } from '../../context/contextActivities';
 
 const ActivityItem = (props) => {
 	const { dispatch } = useContext(AppContext);

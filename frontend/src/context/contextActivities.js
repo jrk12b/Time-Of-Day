@@ -1,5 +1,18 @@
 import React, { createContext, useReducer } from 'react';
+import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+const { PORT } = require('../config');
+
+
+export const fetchActivities = async () => {
+	try {
+		const response = await axios.get(`http://localhost:${PORT}/api/activities`);
+		return response.data;
+	} catch (error) {
+		console.error('Error fetching activities', error);
+		throw error;
+	}
+};
 
 const AppReducer = (state, action) => {
 	switch (action.type) {

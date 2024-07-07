@@ -1,11 +1,19 @@
-import React from 'react';
-import Activity from './activity';
+import React, { useContext } from 'react';
+import ActivityItem from './ActivityItem';
+import { AppContext } from '../../context/contextActivities';
 
-const ActivityList = ({ activities, handleEdit, handleDelete }) => {
+const ActivityList = () => {
+	const { activities } = useContext(AppContext);
+
 	return (
-		<ul>
+		<ul className="list-group">
 			{activities.map((activity) => (
-				<Activity key={activity._id} activity={activity} handleEdit={handleEdit} handleDelete={handleDelete} />
+				<ActivityItem
+					key={activity.id}
+					id={activity.id}
+					name={activity.name}
+					hour={activity.hour}
+				/>
 			))}
 		</ul>
 	);

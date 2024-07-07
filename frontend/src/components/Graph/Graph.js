@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
-import { AppContext } from '../../context/appContextActivities';
+import { AppContext } from '../../context/contextActivities';
 
 const COLORS = ['#808080', '#00C49F', '#FFBB28', '#FF8042', '0088FE'];
 

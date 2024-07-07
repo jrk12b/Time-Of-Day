@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../context/appContextActivities';
+import { AppContext } from '../../context/contextActivities';
 
 const ActivityTotal = () => {
 	const { activities } = useContext(AppContext);

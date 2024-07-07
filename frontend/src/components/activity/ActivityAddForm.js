@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { AppContext } from '../../context/appContextActivities';
+import { AppContext } from '../../context/contextActivities';
 import { v4 as uuidv4 } from 'uuid';
 
 const AddActivityForm = () => {

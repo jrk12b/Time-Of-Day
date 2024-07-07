@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../context/appContextActivities';
+import { AppContext } from '../../context/contextActivities';
 
-const ActivityForm = ({ handleSubmitActivities }) => {
+const ActivitySubmit = ({ handleSubmitActivities }) => {
     const { activities } = useContext(AppContext);
 
     const handleButtonClick = () => {
@@ -17,4 +17,4 @@ const ActivityForm = ({ handleSubmitActivities }) => {
     );
 };
 
-export default ActivityForm;
+export default ActivitySubmit;
