@@ -11,74 +11,67 @@ import ItemForm from '../components/items/itemForm';
 import '../css/TimeGraph.css';
 
 const TimePage = () => {
-	const [items, setItems] = useState([]);
-	const [name, setName] = useState('');
-	const [description, setDescription] = useState('');
-	const [editId, setEditId] = useState(null);
+    const [items, setItems] = useState([]);
+    const [editId, setEditId] = useState(null);
 
-	useEffect(() => {
-		const getItems = async () => {
-			const fetchedItems = await fetchItems();
-			setItems(fetchedItems);
-		};
-		getItems();
-	}, []);
+    useEffect(() => {
+        const getItems = async () => {
+            const fetchedItems = await fetchItems();
+            setItems(fetchedItems);
+        };
+        getItems();
+    }, []);
 
-	const addOrUpdate = async () => {
-		await handleAddOrUpdate(editId, name, description, items, setItems);
-		setEditId(null);
-		setName('');
-		setDescription('');
-	};
-	return (
-		<div>
-			<hr></hr>
-			<AppProvider>
-				<div className="container">
-					<div className="row mt-3">
-						<div className="col-sm">
-							<TimeBudget />
-						</div>
-						<div className="col-sm">
-							<RemainingHours />
-						</div>
-						<div className="col-sm">
-							<ActivityTotal />
-						</div>
-					</div>
-					<div className="graph">
-						<Graph />
-					</div>
-					<div className='activityList'>
-						<h3 className="mt-3">Activities</h3>
-						<div className="row mt-3">
-							<div className="col-sm">
-								<ActivityList />
-							</div>
-					</div>
-					</div>
-					<div className='activityForm'>
-						<h3 className="mt-3">Add Activity</h3>
-						<div className="row mt-3">
-							<div className="col-sm">
-								<AddActivityForm />
-							</div>
-						</div>
-					</div>
-					<div className='itemForm'>
-					<ItemForm
-						name={name}
-						setName={setName}
-						description={description}
-						setDescription={setDescription}
-						handleAddOrUpdate={addOrUpdate}
-						editId={editId}
-					/>
-					</div>
-				</div>
-			</AppProvider>
-		</div>
-	);
+    const addOrUpdate = async (id, name, description) => {
+        await handleAddOrUpdate(id, name, description, items, setItems);
+        setEditId(null);
+    };
+
+    return (
+        <div>
+            <hr />
+            <AppProvider>
+                <div className="container">
+                    <div className="row mt-3">
+                        <div className="col-sm">
+                            <TimeBudget />
+                        </div>
+                        <div className="col-sm">
+                            <RemainingHours />
+                        </div>
+                        <div className="col-sm">
+                            <ActivityTotal />
+                        </div>
+                    </div>
+                    <div className="graph">
+                        <Graph />
+                    </div>
+                    <div className="activityList">
+                        <h3 className="mt-3">Activities</h3>
+                        <div className="row mt-3">
+                            <div className="col-sm">
+                                <ActivityList />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="activityForm">
+                        <h3 className="mt-3">Add Activity</h3>
+                        <div className="row mt-3">
+                            <div className="col-sm">
+                                <AddActivityForm />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="itemForm">
+                        <ItemForm
+                            handleAddOrUpdate={addOrUpdate}
+                            editId={editId}
+                        />
+                    </div>
+                </div>
+            </AppProvider>
+        </div>
+    );
 };
 
 export default TimePage;

@@ -1,30 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/appContextActivities';
 
-const ItemForm = ({ name, setName, description, setDescription, handleAddOrUpdate, editId }) => {
-	const { activities } = useContext(AppContext);
-	const [shouldSubmit, setShouldSubmit] = useState(false);
+const ItemForm = ({ handleAddOrUpdate, editId }) => {
+    const { activities } = useContext(AppContext);
+    const [shouldSubmit, setShouldSubmit] = useState(false);
 
-	const handleButtonClick = () => {
-		if (activities.length > 0) {
-			setName(activities[0].name);
-			setDescription(activities[0].hour);
-			setShouldSubmit(true);
-		}
-	};
+    const handleButtonClick = () => {
+        setShouldSubmit(true);
+    };
 
-	useEffect(() => {
-		if (shouldSubmit) {
-			handleAddOrUpdate();
-			setShouldSubmit(false);
-		}
-	}, [name, description, shouldSubmit, handleAddOrUpdate]);
+    useEffect(() => {
+        if (shouldSubmit) {
+            activities.forEach(activity => {
+                handleAddOrUpdate(editId, activity.name, activity.hour);
+            });
+            setShouldSubmit(false);
+        }
+    }, [shouldSubmit, activities, handleAddOrUpdate, editId]);
 
-	return (
-		<div>
-			<button onClick={handleButtonClick}>{editId ? 'Update' : 'Add'} Item</button>
-		</div>
-	);
+    return (
+        <div>
+            <button onClick={handleButtonClick}>{editId ? 'Update' : 'Add'} Items</button>
+        </div>
+    );
 };
 
 export default ItemForm;
