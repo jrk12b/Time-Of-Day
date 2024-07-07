@@ -4,7 +4,6 @@ import { AppContext } from '../../context/contextActivities';
 
 const ActivityList = () => {
 	const { activities } = useContext(AppContext);
-
 	return (
 		<ul className="list-group">
 			{activities.map((activity) => (
