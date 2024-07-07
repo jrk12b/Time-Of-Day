@@ -7,6 +7,7 @@ const activitySchema = new Schema({
 });
 
 const activityDocumentSchema = new Schema({
+    timestamp: { type: Date, default: Date.now },
     activities: [activitySchema],
 });
 

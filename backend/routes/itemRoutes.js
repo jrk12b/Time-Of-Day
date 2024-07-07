@@ -69,10 +69,10 @@ router.delete('/items/:id', async (req, res) => {
 
 // Endpoint to handle adding multiple activities
 router.post('/activities', async (req, res) => {
-    const { activities } = req.body;
+    const { activities, timestamp } = req.body;
 
     try {
-        const newDocument = new Activity({ activities });
+        const newDocument = new Activity({ activities, timestamp });
         await newDocument.save();
         res.status(201).json(newDocument);
     } catch (error) {

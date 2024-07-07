@@ -12,6 +12,7 @@ import axios from 'axios';
 import '../css/TimeGraph.css';
 
 const TimePage = () => {
+    // eslint-disable-next-line no-unused-vars
     const [items, setItems] = useState([]);
     const { PORT } = require('../config');
 
@@ -25,7 +26,8 @@ const TimePage = () => {
 
     const handleSubmitActivities = async (activities) => {
         try {
-            const response = await axios.post(`http://localhost:${PORT}/api/activities`, { activities });
+            const timestamp = new Date();
+            const response = await axios.post(`http://localhost:${PORT}/api/activities`, { activities, timestamp });
             console.log('Activities submitted:', response.data);
         } catch (error) {
             console.error('Error submitting activities', error);
