@@ -20,10 +20,10 @@ db.once('open', () => {
 });
 
 // Import routes
-const itemRoutes = require('./routes/itemRoutes');
+const activityRoutes = require('./routes/activityRoutes');
 
 // Use routes
-app.use('/api', itemRoutes);
+app.use('/api', activityRoutes);
 
 const port = PORT || PORT;
 app.listen(port, () => console.log(`Server running on port ${port}`));

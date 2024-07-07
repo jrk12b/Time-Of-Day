@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const activitySchema = new Schema({
     name: String,
-    hour: Number,
+    hours: Number,
 });
 
 const activityDocumentSchema = new Schema({
@@ -11,4 +11,4 @@ const activityDocumentSchema = new Schema({
     activities: [activitySchema],
 });
 
-module.exports = mongoose.model('ActivityDocument', activityDocumentSchema);
+module.exports = mongoose.model('Activities', activityDocumentSchema);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchItems } from '../context/itemContext';
+import { fetchActivities } from '../context/activityContext';
 import { AppProvider } from '../context/appContextActivities';
 import TimeBudget from '../components/timeOfDay/TimeBudget';
 import RemainingHours from '../components/timeOfDay/RemainingHours';
@@ -7,21 +7,21 @@ import ActivityTotal from '../components/timeOfDay/ActivityTotal';
 import Graph from '../components/timeOfDay/Graph';
 import ActivityList from '../components/timeOfDay/ActivityList';
 import AddActivityForm from '../components/timeOfDay/AddActivityForm';
-import ItemForm from '../components/items/itemForm';
+import ActivityForm from '../components/activity/activityForm';
 import axios from 'axios';
 import '../css/TimeGraph.css';
 
 const TimePage = () => {
     // eslint-disable-next-line no-unused-vars
-    const [items, setItems] = useState([]);
+    const [activities, setActivities] = useState([]);
     const { PORT } = require('../config');
 
     useEffect(() => {
-        const getItems = async () => {
-            const fetchedItems = await fetchItems();
-            setItems(fetchedItems);
+        const getActivities = async () => {
+            const fetchedActivities = await fetchActivities();
+            setActivities(fetchedActivities);
         };
-        getItems();
+        getActivities();
     }, []);
 
     const handleSubmitActivities = async (activities) => {
@@ -69,8 +69,8 @@ const TimePage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="itemForm">
-                        <ItemForm handleSubmitActivities={handleSubmitActivities} />
+                    <div className="submitActivityForm">
+                        <ActivityForm handleSubmitActivities={handleSubmitActivities} />
                     </div>
                 </div>
             </AppProvider>
