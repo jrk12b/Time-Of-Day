@@ -12,7 +12,7 @@ const ActivitySubmit = ({ handleSubmitActivities }) => {
 
     return (
         <div>
-            <button onClick={handleButtonClick}>Submit All Activities</button>
+            <button className="btn btn-primary mt-3" onClick={handleButtonClick}>Submit All Activities</button>
         </div>
     );
 };

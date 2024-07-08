@@ -56,24 +56,24 @@ const TimePage = () => {
                     <div className="graph">
                         <Graph />
                     </div>
-                    <div className="activityList">
-                        <h3 className="mt-3">Activities</h3>
-                        <div className="row mt-3">
-                            <div className="col-sm">
-                                <ActivityList />
-                            </div>
-                        </div>
-                    </div>
                     <div className="activityForm">
-                        <h3 className="mt-3">Add Activity</h3>
-                        <div className="row mt-3">
-                            <div className="col-sm">
-                                <AddActivityForm />
-                            </div>
+                        <h3>Add Activity</h3>
+                        <div>
+                            <AddActivityForm />
                         </div>
                     </div>
-                    <div className="ActivitySubmit">
-                        <ActivitySubmit handleSubmitActivities={handleSubmitActivities} />
+                    <div className='activityContainer'>
+                        <div className="activityList">
+                            <h3 className="mt-3">Activities</h3>
+                            <div className="row mt-3">
+                                <div className="col-sm">
+                                    <ActivityList />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="ActivitySubmit">
+                            <ActivitySubmit handleSubmitActivities={handleSubmitActivities} />
+                        </div>
                     </div>
                 </div>
             </AppProvider>

@@ -15,3 +15,19 @@
 h1 {
 	text-align: center;
 }
+
+.dateText {
+	padding-bottom: 8px;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

@@ -674,16 +674,21 @@ textarea.form-control-lg {
 }
 
 .activityList {
-	display: inline-block;
-	padding-right: 3rem;
+	padding-right: 3em;
 }
 
 .activityForm {
-	display: inline-block;
-	width: 50%;
-	position: absolute;
+	padding: 1em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
-.ActivitySubmit {
-	padding: 50px;
+.ActivitySubmit { 
+	padding: 1em;
+	align-self: center;
+	
+}
+
+.activityContainer {
+	display: flex;
 }
