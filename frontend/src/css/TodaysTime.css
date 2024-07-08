@@ -683,12 +683,17 @@ textarea.form-control-lg {
 	margin-bottom: 1em;
 }
 
-.ActivitySubmit { 
+.ActivitySubmit {
 	padding: 1em;
 	align-self: center;
-	
 }
 
 .activityContainer {
 	display: flex;
+}
+
+.success-message {
+	color: green;
+	font-weight: bold;
+	margin-bottom: 10px;
 }

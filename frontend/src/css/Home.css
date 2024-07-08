@@ -1,0 +1,44 @@
+.home {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-div {
+    padding: 1em;
+}
+
+.introduction {
+    text-align: center;
+    width: 70%;
+    align-self: center;
+}
+
+.instructions-header {
+    text-align: center;
+}
+
+.instructions {
+    text-align: left;
+    width: 70%;
+    padding-left: 3em;
+    width: 70%;
+    align-self: center;
+}
+
+li {
+    padding: 0.3em;
+}
+
+.motivation-header {
+    text-align: center;
+}
+
+.motivation {
+    text-align: center;
+}
+
+.updates {
+    text-align: center;
+    width: 70%;
+    align-self: center;
+}

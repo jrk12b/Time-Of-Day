@@ -3,7 +3,6 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 const { PORT } = require('../config');
 
-
 export const fetchActivities = async () => {
 	try {
 		const response = await axios.get(`http://localhost:${PORT}/api/activities`);
@@ -33,9 +32,7 @@ const AppReducer = (state, action) => {
 
 const initialState = {
 	hours: 24,
-	activites: [
-		{ id: uuidv4(), name: 'Reading', hour: 1 }
-	],
+	activites: [{ id: uuidv4(), name: 'Reading', hour: 1 }],
 };
 
 export const AppContext = createContext();
