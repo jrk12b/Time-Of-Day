@@ -1,29 +1,45 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
+import useFetchActivities from '../../context/contextFetchActivities';
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
+const YourTimeGraph = () => {
+  const { activities } = useFetchActivities();
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  // Aggregate hours for each activity name
+  const data = useMemo(() => {
+    const aggregated = {};
 
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, index }) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    activities.forEach(activitySet => {
+      activitySet.activities.forEach(activity => {
+        if (aggregated[activity.name]) {
+          aggregated[activity.name] += activity.hour;
+        } else {
+          aggregated[activity.name] = activity.hour;
+        }
+      });
+    });
 
-  return (
-    <text x={x} y={y} fill="white" textAnchor="middle" dominantBaseline="central">
-      {data[index].name}
-    </text>
-  );
-};
+    return Object.keys(aggregated).map(name => ({
+      name,
+      value: aggregated[name],
+    }));
+  }, [activities]);
 
-export default function YourTimeGraph() {
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text x={x} y={y} fill="white" textAnchor="middle" dominantBaseline="central">
+        {data[index].name}
+      </text>
+    );
+  };
+
   return (
     <PieChart width={400} height={400}>
       <Pie
@@ -43,3 +59,5 @@ export default function YourTimeGraph() {
     </PieChart>
   );
 }
+
+export default YourTimeGraph;
