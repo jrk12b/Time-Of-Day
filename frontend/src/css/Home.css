@@ -22,8 +22,27 @@ body, html {
     overflow: hidden;
 }
 
+.home-header {
+    z-index: 1;
+    text-align: center;
+	transition: color 0.4s;
+	font-size: 100px;
+	font-family: var(--second-font);
+    animation: fadeIn 8s;
+}
+
+.motivation {
+    font-size: 30px;
+    animation: fadeIn 15s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
 video {
-    filter: brightness(70%);
+    filter: brightness(60%);
  }
 
 .video-background {
@@ -47,14 +66,19 @@ video {
     transform: translate(-50%, -50%);
 }
 
-.home-header {
-    z-index: 1;
+.details {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-	transition: color 0.4s;
-	font-size: 100px;
-	font-family: var(--second-font);
+    justify-content: center;
+    animation: fadeIn 20s;
+    font-family: Chalkduster, fantasy;
+    font-size: 18px;
 }
 
-.more-content {
-    padding: 20px;
+.instructions {
+    padding: 2em;
 }
+  
