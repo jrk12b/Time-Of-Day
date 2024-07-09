@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import useFetchActivities from '../context/contextFetchActivities';
 import axios from 'axios';
+
+import useFetchActivities from '../context/contextFetchActivities';
+
+import YourTimeGraph from '../components/Graph/YourTimeGraph';
 
 import '../css/YourTime.css';
 
@@ -145,6 +148,10 @@ const YourTimePage = () => {
 					</div>
 				))}
 			</ul>
+			<hr></hr>
+			<div className="graph">
+				<YourTimeGraph />
+			</div>
 		</div>
 	);
 };

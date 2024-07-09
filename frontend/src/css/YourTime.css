@@ -31,3 +31,9 @@ h1 {
 	font-weight: bold;
 	margin-bottom: 10px;
 }
+
+.graph {
+	display: flex;
+	justify-content: center;
+	padding: 2em;
+}
