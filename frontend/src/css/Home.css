@@ -1,44 +1,60 @@
+/* Home.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 .home {
+    font-family: Arial, sans-serif;
+}
+
+.welcome-banner {
+    position: relative;
+    height: 100vh; /* Full viewport height */
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden;
 }
 
-.home-div {
-    padding: 1em;
+video {
+    filter: brightness(70%);
+ }
+
+.video-background {
+    position: fixed; /* Changed from absolute to fixed */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    z-index: -1;
+    overflow: hidden;
 }
 
-.introduction {
+#bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+}
+
+.home-header {
+    z-index: 1;
     text-align: center;
-    width: 70%;
-    align-self: center;
+	transition: color 0.4s;
+	font-size: 100px;
+	font-family: var(--second-font);
 }
 
-.instructions-header {
-    text-align: center;
-}
-
-.instructions {
-    text-align: left;
-    width: 70%;
-    padding-left: 3em;
-    width: 70%;
-    align-self: center;
-}
-
-li {
-    padding: 0.3em;
-}
-
-.motivation-header {
-    text-align: center;
-}
-
-.motivation {
-    text-align: center;
-}
-
-.updates {
-    text-align: center;
-    width: 70%;
-    align-self: center;
+.more-content {
+    padding: 20px;
 }
