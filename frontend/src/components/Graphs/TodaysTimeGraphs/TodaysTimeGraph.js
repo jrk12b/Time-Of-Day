@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
-import { AppContext } from '../../context/contextActivities';
+import { AppContext } from '../../../context/contextActivities';
 
 const COLORS = ['#808080', '#00C49F', '#FFBB28', '#FF8042', '0088FE'];
 
@@ -17,7 +17,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 	);
 };
 
-export default function Graph() {
+export default function TodaysTimeGraph() {
 	// Getting the data
 	const { activities, hours } = useContext(AppContext);
 	// Get Remaining hours

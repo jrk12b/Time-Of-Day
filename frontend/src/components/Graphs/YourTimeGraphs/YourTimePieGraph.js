@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
-import useFetchActivities from '../../context/contextFetchActivities';
+import useFetchActivities from '../../../context/contextFetchActivities';
 
 const YourTimePieGraph = () => {
   const { activities } = useFetchActivities();

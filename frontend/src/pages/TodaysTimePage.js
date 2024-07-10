@@ -5,9 +5,9 @@ import '../css/TodaysTime.css';
 
 import { fetchActivities, AppProvider } from '../context/contextActivities';
 
-import TimeBudget from '../components/Graph/GraphTimeBudget';
-import RemainingHours from '../components/Graph/GraphRemainingHours';
-import Graph from '../components/Graph/Graph';
+import TimeBudget from '../components/Graphs/TodaysTimeGraphs/GraphTimeBudget';
+import RemainingHours from '../components/Graphs/TodaysTimeGraphs/GraphRemainingHours';
+import TodaysTimeGraph from '../components/Graphs/TodaysTimeGraphs/TodaysTimeGraph';
 
 import ActivityTotal from '../components/Activity/ActivityTotal';
 import ActivityList from '../components/Activity/ActivityList';
@@ -66,7 +66,7 @@ const TimePage = () => {
 						</div>
 					</div>
 					<div className="graph">
-						<Graph />
+						<TodaysTimeGraph />
 					</div>
 					<div className="activityForm">
 						<h3>Add Activity</h3>

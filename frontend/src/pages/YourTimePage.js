@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import useFetchActivities from '../context/contextFetchActivities';
 
-import YourTimePieGraph from '../components/Graph/YourTimePieGraph';
-import YourTimeBarGraph from '../components/Graph/YourTimeBarGraph';
+import YourTimePieGraph from '../components/Graphs/YourTimeGraphs/YourTimePieGraph';
+import YourTimeBarGraph from '../components/Graphs/YourTimeGraphs/YourTimeBarGraph';
 
 import '../css/YourTime.css';
 

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../context/contextActivities';
+import { AppContext } from '../../../context/contextActivities';
 
 const RemainingHours = () => {
 	const { activities, hours } = useContext(AppContext);
