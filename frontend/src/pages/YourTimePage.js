@@ -5,6 +5,8 @@ import useFetchActivities from '../context/contextFetchActivities';
 
 import YourTimePieGraph from '../components/Graphs/YourTimeGraphs/YourTimePieGraph';
 import YourTimeBarGraph from '../components/Graphs/YourTimeGraphs/YourTimeBarGraph';
+import YourTimeLineGraph from '../components/Graphs/YourTimeGraphs/YourTimeLineGraph';
+import YourTimeComposedGraph from '../components/Graphs/YourTimeGraphs/YourTimeComposedGraph';
 
 import '../css/YourTime.css';
 
@@ -156,6 +158,14 @@ const YourTimePage = () => {
 			<hr></hr>
 			<div className="graph">
 				<YourTimeBarGraph />
+			</div>
+			<hr></hr>
+			<div className="graph">
+				<YourTimeComposedGraph />
+			</div>
+			<hr></hr>
+			<div className="graph">
+				<YourTimeLineGraph />
 			</div>
 		</div>
 	);
