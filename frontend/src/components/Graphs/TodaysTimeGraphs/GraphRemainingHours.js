@@ -4,8 +4,8 @@ import { AppContext } from '../../../context/contextActivities';
 const RemainingHours = () => {
 	const { activities, hours } = useContext(AppContext);
 
-	const totalActivities = activities.reduce((total, item) => {
-		return (total = total + item.hour);
+	const totalActivities = activities.reduce((total, activity) => {
+		return (total = total + activity.hour);
 	}, 0);
 
 	const alertType = totalActivities > hours ? 'alert-danger' : 'alert alert-secondary';

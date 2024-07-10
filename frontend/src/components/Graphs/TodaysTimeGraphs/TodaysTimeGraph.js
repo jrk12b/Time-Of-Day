@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 import { AppContext } from '../../../context/contextActivities';
-
-const COLORS = ['#808080', '#00C49F', '#FFBB28', '#FF8042', '0088FE'];
+import GraphColors from '../GraphColors';
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -21,8 +20,8 @@ export default function TodaysTimeGraph() {
 	// Getting the data
 	const { activities, hours } = useContext(AppContext);
 	// Get Remaining hours
-	const totalActivities = activities.reduce((total, item) => {
-		return (total = total + item.hour);
+	const totalActivities = activities.reduce((total, activity) => {
+		return (total = total + activity.hour);
 	}, 0);
 
 	// Create data array to be populate
@@ -34,8 +33,8 @@ export default function TodaysTimeGraph() {
 	data.push({ name: 'Hours Remaining', value: hours - totalActivities });
 
 	// Loop through activities array and populate data array
-	activities.forEach((element) => {
-		data.push({ name: element.name, value: element.hour });
+	activities.forEach((activity) => {
+		data.push({ name: activity.name, value: activity.hour });
 	});
 
 	return (
@@ -52,7 +51,7 @@ export default function TodaysTimeGraph() {
 				dataKey="value"
 			>
 				{data.map((entry, index) => (
-					<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+					<Cell key={`cell-${index}`} fill={GraphColors[index % GraphColors.length]} />
 				))}
 			</Pie>
 		</PieChart>

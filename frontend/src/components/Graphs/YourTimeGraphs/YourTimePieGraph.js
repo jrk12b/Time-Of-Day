@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 import useFetchActivities from '../../../context/contextFetchActivities';
+import GraphColors from '../GraphColors';
+
 
 const YourTimePieGraph = () => {
   const { activities } = useFetchActivities();
@@ -24,8 +26,6 @@ const YourTimePieGraph = () => {
       value: aggregated[name],
     }));
   }, [activities]);
-
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -60,7 +60,7 @@ const YourTimePieGraph = () => {
         dataKey="value"
       >
         {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          <Cell key={`cell-${index}`} fill={GraphColors[index % GraphColors.length]} />
         ))}
       </Pie>
     </PieChart>

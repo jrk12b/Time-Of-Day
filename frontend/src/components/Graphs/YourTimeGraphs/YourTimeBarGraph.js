@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import useFetchActivities from '../../../context/contextFetchActivities';
 import moment from 'moment';
+import GraphColors from '../GraphColors';
 
 const YourTimeBarGraph = () => {
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   const { activities } = useFetchActivities();
 
   // Transform data to aggregate hours by date and activity
@@ -55,7 +55,7 @@ const YourTimeBarGraph = () => {
       <Tooltip />
       <Legend />
       {Object.keys(data[0] || {}).filter(key => key !== 'date').map((key, index) => (
-        <Bar key={key} dataKey={key} fill={COLORS[index % COLORS.length]} />
+        <Bar key={key} dataKey={key} fill={GraphColors[index % GraphColors.length]} />
       ))}
     </BarChart>
   );
