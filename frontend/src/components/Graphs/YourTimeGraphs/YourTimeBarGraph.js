@@ -11,7 +11,7 @@ const YourTimeBarGraph = () => {
   const data = useMemo(() => transformAndAggregateData(activities), [activities]);
 
   return (
-    <BarChart width={600} height={600} data={data}>
+    <BarChart width={1000} height={400} data={data}>
       <CartesianGrid stroke="#ccc" />
       <XAxis dataKey="date" />
       <YAxis />

@@ -37,13 +37,14 @@ const SameDataComposedChart = () => {
           />
         ))}
 
-        {/* Add a Line component for lines */}
+        {/* Add a Line component for lines, hiding them from the legend */}
         {activityNames.map((name, index) => (
           <Line
             key={`line-${name}`}
             type="monotone"
             dataKey={name}
             stroke={GraphColors[index % GraphColors.length]}
+            legendType="none"
           />
         ))}
     </ComposedChart>
