@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, Legend } from 'recharts';
 import { AppContext } from '../../context/contextActivities';
 
 const COLORS = ['#808080', '#00C49F', '#FFBB28', '#FF8042', '0088FE'];
@@ -39,14 +39,15 @@ export default function Graph() {
 	});
 
 	return (
-		<PieChart width={400} height={400}>
+		<PieChart width={570} height={570}>
+			<Legend verticalAlign="bottom" height={36}/>
 			<Pie
 				data={data}
 				cx="50%"
 				cy="50%"
 				labelLine={false}
 				label={renderCustomizedLabel}
-				outerRadius={200}
+				outerRadius={250}
 				fill="#8884d8"
 				dataKey="value"
 			>
