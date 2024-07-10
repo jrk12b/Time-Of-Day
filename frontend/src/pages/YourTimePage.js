@@ -3,7 +3,8 @@ import axios from 'axios';
 
 import useFetchActivities from '../context/contextFetchActivities';
 
-import YourTimeGraph from '../components/Graph/YourTimeGraph';
+import YourTimePieGraph from '../components/Graph/YourTimePieGraph';
+import YourTimeBarGraph from '../components/Graph/YourTimeBarGraph';
 
 import '../css/YourTime.css';
 
@@ -150,7 +151,11 @@ const YourTimePage = () => {
 			</ul>
 			<hr></hr>
 			<div className="graph">
-				<YourTimeGraph />
+				<YourTimePieGraph />
+			</div>
+			<hr></hr>
+			<div className="graph">
+				<YourTimeBarGraph />
 			</div>
 		</div>
 	);

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 import useFetchActivities from '../../context/contextFetchActivities';
 
-const YourTimeGraph = () => {
+const YourTimePieGraph = () => {
   const { activities } = useFetchActivities();
 
   // Aggregate hours for each activity name
@@ -67,4 +67,4 @@ const YourTimeGraph = () => {
   );
 }
 
-export default YourTimeGraph;
+export default YourTimePieGraph;
