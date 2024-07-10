@@ -1,31 +1,14 @@
 import React, { useMemo } from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 import useFetchActivities from '../../../context/contextFetchActivities';
-import GraphColors from '../GraphColors';
-
+import GraphColors from './GraphColors';
+import { aggregateHoursForActivities } from './DataTransform';
 
 const YourTimePieGraph = () => {
   const { activities } = useFetchActivities();
 
-  // Aggregate hours for each activity name
-  const data = useMemo(() => {
-    const aggregated = {};
-
-    activities.forEach(activitySet => {
-      activitySet.activities.forEach(activity => {
-        if (aggregated[activity.name]) {
-          aggregated[activity.name] += activity.hour;
-        } else {
-          aggregated[activity.name] = activity.hour;
-        }
-      });
-    });
-
-    return Object.keys(aggregated).map(name => ({
-      name,
-      value: aggregated[name],
-    }));
-  }, [activities]);
+  // Use the imported aggregation function
+  const data = useMemo(() => aggregateHoursForActivities(activities), [activities]);
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -34,21 +17,21 @@ const YourTimePieGraph = () => {
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
     return (
-    <text
-          x={x}
-          y={y}
-          fill="white"
-          textAnchor={x > cx ? "start" : "end"}
-          dominantBaseline="central"
-        >
-          {`${(percent * 100).toFixed(0)}%`}
-        </text>
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? 'start' : 'end'}
+        dominantBaseline="central"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
     );
   };
 
   return (
     <PieChart width={400} height={400}>
-      <Legend verticalAlign="top" height={36}/>
+      <Legend verticalAlign="top" height={36} />
       <Pie
         data={data}
         cx="50%"
@@ -65,6 +48,6 @@ const YourTimePieGraph = () => {
       </Pie>
     </PieChart>
   );
-}
+};
 
 export default YourTimePieGraph;
