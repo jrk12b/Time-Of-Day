@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoClose, IoMenu } from 'react-icons/io5';
-import '../../css/HeaderNavHook.css';
+import '../../css/HeaderNav.css';
 
 const HeaderNavHook = () => {
 	const [showMenu, setShowMenu] = useState(false);

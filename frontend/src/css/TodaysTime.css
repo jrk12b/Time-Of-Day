@@ -58,6 +58,7 @@
 	--bs-alert-bg: #e1f3eb;
 	--bs-alert-border-color: #d1ede1;
 }
+
 .alert-success .alert-link {
 	color: #325d4b;
 }
@@ -67,6 +68,7 @@
 	--bs-alert-bg: #ece0e1;
 	--bs-alert-border-color: #e3d1d2;
 }
+
 .alert-danger .alert-link {
 	color: #4e3032;
 }
@@ -76,6 +78,7 @@
 	--bs-alert-bg: #e3e0ec;
 	--bs-alert-border-color: #d5d1e3;
 }
+
 .alert-secondary .alert-link {
 	color: #38304e;
 }

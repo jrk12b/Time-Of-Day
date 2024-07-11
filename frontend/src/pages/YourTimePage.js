@@ -1,4 +1,3 @@
-// YourTimePage.js
 import React from 'react';
 import useFetchActivities from '../hooks/useFetchActivities';
 import useActivityActions from '../hooks/useActivityActions';

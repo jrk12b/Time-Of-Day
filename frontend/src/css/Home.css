@@ -9,10 +9,6 @@ html {
 	overflow-x: hidden;
 }
 
-.home {
-	font-family: Arial, sans-serif;
-}
-
 .welcome-banner {
 	position: relative;
 	height: 100vh; /* Full viewport height */
@@ -46,10 +42,6 @@ html {
 	}
 }
 
-video {
-	filter: brightness(60%);
-}
-
 .video-background {
 	position: fixed; /* Changed from absolute to fixed */
 	top: 0;
@@ -69,6 +61,7 @@ video {
 	width: auto;
 	height: auto;
 	transform: translate(-50%, -50%);
+	filter: brightness(60%);
 }
 
 .details {

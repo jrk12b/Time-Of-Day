@@ -3,7 +3,7 @@ import '../css/Home.css';
 
 const HomePage = () => {
 	return (
-		<div className="home">
+		<div>
 			<div className="video-background">
 				<video autoPlay muted loop id="bg-video">
 					<source src={`${process.env.PUBLIC_URL}/clock.mp4`} type="video/mp4" />
