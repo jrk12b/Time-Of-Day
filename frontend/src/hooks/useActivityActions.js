@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useActivityActions = (PORT) => {
+const useActivityActions = (port) => {
   const [editActivity, setEditActivity] = useState(null);
   const [editName, setEditName] = useState('');
   const [editHour, setEditHour] = useState('');
@@ -32,7 +32,7 @@ const useActivityActions = (PORT) => {
   const handleUpdate = async (activityId, activityDocId) => {
     try {
       const response = await axios.put(
-        `http://localhost:${PORT}/api/activities/${activityDocId}/activity/${activityId}`,
+        `http://localhost:${port}/api/activities/${activityDocId}/activity/${activityId}`,
         {
           name: editName,
           hour: editHour,
@@ -54,7 +54,7 @@ const useActivityActions = (PORT) => {
   const handleDelete = async (activityId, activityDocId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:${PORT}/api/activities/${activityDocId}/activity/${activityId}`
+        `http://localhost:${port}/api/activities/${activityDocId}/activity/${activityId}`
       );
       console.log('Activity deleted:', response.data);
       localStorage.setItem('successMessage', 'Activity deleted successfully!');
@@ -69,13 +69,13 @@ const useActivityActions = (PORT) => {
   const handleDeleteDocument = async (activityDocId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:${PORT}/api/activities/${activityDocId}`
+        `http://localhost:${port}/api/activities/${activityDocId}`
       );
       console.log('Document deleted:', response.data);
-      localStorage.setItem('successMessage', 'Activity deleted successfully!');
+      localStorage.setItem('successMessage', 'Document deleted successfully!');
     } catch (error) {
       console.error('Error deleting document', error);
-      localStorage.setItem('errorMessage', 'Activity delete failed');
+      localStorage.setItem('errorMessage', 'Document delete failed');
     } finally {
       window.location.reload();
     }
@@ -91,6 +91,9 @@ const useActivityActions = (PORT) => {
     handleUpdate,
     handleDelete,
     handleDeleteDocument,
+    setEditActivity,
+    setEditName,
+    setEditHour,
   };
 };
 

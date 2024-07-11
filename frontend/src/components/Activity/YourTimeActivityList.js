@@ -18,7 +18,7 @@ const YourTimeActivityList = ({
     <ul className="yourTimeList">
       {activities.map((activityDoc) => (
         <div key={activityDoc._id} className="yourTime">
-          <button onClick={() => handleDeleteDocument(activityDoc._id)}>Delete Entire Document</button>
+          <button className='delete-document-button' onClick={() => handleDeleteDocument(activityDoc._id)}>Delete Entire Document</button>
           <p className="dateText">Date: {new Date(activityDoc.timestamp).toLocaleDateString()}</p>
           <ul>
             {activityDoc.activities.map((activity) => (
@@ -37,14 +37,14 @@ const YourTimeActivityList = ({
                       onChange={(e) => setEditHour(e.target.value)}
                       placeholder="Hours"
                     />
-                    <button onClick={() => handleUpdate(activity._id, activityDoc._id)}>Save</button>
-                    <button onClick={() => setEditActivity(null)}>Cancel</button>
+                    <button className='activity-button' onClick={() => handleUpdate(activity._id, activityDoc._id)}>Save</button>
+                    <button className='activity-button' onClick={() => setEditActivity(null)}>Cancel</button>
                   </div>
                 ) : (
                   <div>
                     {activity.name}: {activity.hour} hours
-                    <button onClick={() => handleEditClick(activity)}>Edit</button>
-                    <button onClick={() => handleDelete(activity._id, activityDoc._id)}>Delete</button>
+                    <button className='activity-button' onClick={() => handleEditClick(activity)}>Edit</button>
+                    <button className='activity-button' onClick={() => handleDelete(activity._id, activityDoc._id)}>Delete</button>
                   </div>
                 )}
               </li>

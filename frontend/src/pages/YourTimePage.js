@@ -56,12 +56,13 @@ const YourTimePage = () => {
       />
       <hr />
       <div className="graph">
-        <YourTimePieGraph />
+        <YourTimeBarGraph />
       </div>
       <hr />
       <div className="graph">
-        <YourTimeBarGraph />
+        <YourTimePieGraph />
       </div>
+      <hr />
       <hr />
       <div className="graph">
         <YourTimeComposedGraph />

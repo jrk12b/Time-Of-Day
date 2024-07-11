@@ -37,3 +37,19 @@ h1 {
 	justify-content: center;
 	padding: 2em;
 }
+
+.delete-document-button {
+	background-color: #64a19d;
+	padding: .5em;
+	color: white;
+	border-radius: 25px;
+}
+
+.activity-button {
+	background-color: #64a19d;
+	padding: .5em;
+	color: white;
+	border-radius: 25px;
+	margin: .2em;
+	margin-left: .5em;
+}
