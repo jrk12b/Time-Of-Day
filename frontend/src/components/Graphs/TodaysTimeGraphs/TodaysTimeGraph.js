@@ -39,7 +39,7 @@ export default function TodaysTimeGraph() {
 
 	return (
 		<PieChart width={570} height={570}>
-			<Legend verticalAlign="bottom" height={36}/>
+			<Legend verticalAlign="bottom" height={36} />
 			<Pie
 				data={data}
 				cx="50%"

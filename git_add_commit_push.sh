@@ -2,6 +2,8 @@
 # navigate to root of git repo
 cd "$(git rev-parse --show-toplevel)"
 
+npm run format-write
+
 git status
 
 read -p "Enter your commit message: " commitMessage
