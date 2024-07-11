@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchActivities } from './contextActivities';
+import { fetchActivities } from '../context/contextActivities';
 
 const useFetchActivities = () => {
 	const [activities, setActivities] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import useFetchActivities from '../../../context/contextFetchActivities';
+import useFetchActivities from '../../../hooks/useFetchActivities';
 import GraphColors from './GraphColors';
 import { transformAndAggregateData } from './DataTransform';
 
