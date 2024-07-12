@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../../context/contextActivities';
+import { AppContext } from '../../context/contextActivities';
 
+// This component displays how many hours remaining you have in your day
 const RemainingHours = () => {
 	const { activities, hours } = useContext(AppContext);
 

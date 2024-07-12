@@ -1,3 +1,4 @@
+// Setting the colors used in graphing TodaysTimeGraph
 const GraphColors = [
 	'#B3B3B3', // Light Gray
 	'#FFB399', // Light Cinnabar

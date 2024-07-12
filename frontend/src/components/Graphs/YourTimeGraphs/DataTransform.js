@@ -1,5 +1,10 @@
 import moment from 'moment';
 
+/**
+ * This component transforms and aggregates activity data by date and activity name, then formats it for use with Recharts.
+ * @param {Array} activities - Array of activity sets, each containing a timestamp and activities.
+ * @returns {Array} - Transformed and aggregated data in the format expected by Recharts.
+ */
 export const transformAndAggregateData = (activities) => {
 	const aggregated = {};
 
@@ -39,6 +44,12 @@ export const transformAndAggregateData = (activities) => {
 	});
 };
 
+/**
+ * This component aggregates total hours for each activity name across all activity sets.
+ *
+ * @param {Array} activities - Array of activity sets, each containing activities.
+ * @returns {Array} - Aggregated total hours for each activity name.
+ */
 export const aggregateHoursForActivities = (activities) => {
 	const aggregated = {};
 

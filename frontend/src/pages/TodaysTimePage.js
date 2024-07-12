@@ -5,8 +5,8 @@ import '../css/TodaysTime.css';
 
 import { fetchActivities, AppProvider } from '../context/contextActivities';
 
-import TimeBudget from '../components/Graphs/TodaysTimeGraphs/GraphTimeBudget';
-import RemainingHours from '../components/Graphs/TodaysTimeGraphs/GraphRemainingHours';
+import TimeBudget from '../components/Activity/ActivityTimeBudget';
+import RemainingHours from '../components/Activity/ActivityRemainingHours';
 import TodaysTimeGraph from '../components/Graphs/TodaysTimeGraphs/TodaysTimeGraph';
 
 import ActivityTotal from '../components/Activity/ActivityTotal';

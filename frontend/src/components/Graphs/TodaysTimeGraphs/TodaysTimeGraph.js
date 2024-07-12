@@ -16,6 +16,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 	);
 };
 
+// This component fetches activity data, calculates remaining hours, and displays a pie chart of today's time distribution using Recharts.
 export default function TodaysTimeGraph() {
 	// Getting the data
 	const { activities, hours } = useContext(AppContext);
@@ -26,7 +27,7 @@ export default function TodaysTimeGraph() {
 
 	// Create data array to be populate
 	const data = [
-		// { name: 'Group A', value: '10' }
+		//Example:  { activity.name: 'activity.hour' }
 	];
 
 	// Populate data array with remaining hours

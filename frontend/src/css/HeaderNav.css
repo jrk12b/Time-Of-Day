@@ -103,10 +103,14 @@
 .show-menu {
 	right: 0;
 }
-.nav__listt {
+
+.nav__list__web {
 	display: flex;
 	flex-direction: row;
 	column-gap: 2.5rem;
+	align-items: center;
+	list-style-type: none;
+	padding: 0;
 }
 
 .nav__menu_mobile {

@@ -4,6 +4,7 @@ import useFetchActivities from '../../../hooks/useFetchActivities';
 import GraphColors from './GraphColors';
 import { transformAndAggregateData } from './DataTransform';
 
+// This component that fetches activity data, transforms it, and displays it in a Composed bar chart using Recharts.
 const SameDataComposedChart = () => {
 	const { activities } = useFetchActivities();
 

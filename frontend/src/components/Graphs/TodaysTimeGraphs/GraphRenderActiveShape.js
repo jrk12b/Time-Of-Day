@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sector } from 'recharts';
 
+// This component is a shape renderer for a pie chart sector, displaying the sector's name, value, and percentage outside the sector with connecting lines.
 const GraphRenderActiveShape = (props) => {
 	const RADIAN = Math.PI / 180;
 	const {

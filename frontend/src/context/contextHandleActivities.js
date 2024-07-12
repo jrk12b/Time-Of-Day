@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Handles adding or updating multiple activities in the application.
 const handleSubmitActivities = async (activities, port) => {
 	try {
 		const timestamp = new Date();

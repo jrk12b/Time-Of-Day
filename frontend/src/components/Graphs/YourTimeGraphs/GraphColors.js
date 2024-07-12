@@ -1,3 +1,4 @@
+// Setting the colors used in graphing YourTimeGraphs
 const GraphColors = [
 	'#FFB399', // Light Cinnabar
 	'#99FFB3', // Light Emerald

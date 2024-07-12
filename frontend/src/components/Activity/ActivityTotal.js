@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/contextActivities';
 
+// This component displays how many hours have been inputted into current activities
 const ActivityTotal = () => {
 	const { activities } = useContext(AppContext);
 

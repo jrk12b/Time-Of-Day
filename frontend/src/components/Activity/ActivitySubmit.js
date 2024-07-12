@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/contextActivities';
 
+// This component displays a Submit All Activities button which submits all current acitivites to the database
 const ActivitySubmit = ({ handleSubmitActivities }) => {
 	const { activities } = useContext(AppContext);
 

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { IoClose, IoMenu } from 'react-icons/io5';
 import '../../css/HeaderNav.css';
 
+// This component renders a header component with a logo, navigation links, and a mobile menu toggle
 const HeaderNavHook = () => {
 	const [showMenu, setShowMenu] = useState(false);
 

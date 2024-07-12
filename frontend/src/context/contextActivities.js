@@ -3,6 +3,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 const { PORT } = require('../config');
 
+// Fetches activity data from the backend API
 export const fetchActivities = async () => {
 	try {
 		const response = await axios.get(`http://localhost:${PORT}/api/activities`);

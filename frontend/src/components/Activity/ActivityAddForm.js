@@ -2,12 +2,15 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../../context/contextActivities';
 import { v4 as uuidv4 } from 'uuid';
 
+// This component displays a functioning add activity form that adds an activity to today's activities
 const AddActivityForm = () => {
 	const { dispatch } = useContext(AppContext);
 
+	// Initialize state variables for activity name and hours with empty string values
 	const [name, setName] = useState('');
 	const [hour, setHour] = useState('');
 
+	// Create onSubmit function which handles form submission: prevent default behavior, create new activity, and dispatch action to add activity to state
 	const onSubmit = (event) => {
 		event.preventDefault();
 

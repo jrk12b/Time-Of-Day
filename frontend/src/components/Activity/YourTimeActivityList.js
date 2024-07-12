@@ -1,6 +1,7 @@
 // components/ActivityList.js
 import React from 'react';
 
+// This component displays all current DB documents and activities data. Allows for deleting an entire document button, edit activities, and delete activities
 const YourTimeActivityList = ({
 	activities,
 	editActivity,

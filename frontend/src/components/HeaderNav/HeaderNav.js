@@ -4,6 +4,7 @@ import { IoClose, IoMenu } from 'react-icons/io5';
 import { useMediaQuery } from 'react-responsive';
 import '../../css/HeaderNav.css';
 
+// This component renders a header component with a logo, navigation links, and a mobile menu toggle
 const HeaderNav = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const isMobile = useMediaQuery({ maxWidth: '1150px' });

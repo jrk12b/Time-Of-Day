@@ -12,18 +12,16 @@ app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URI);
-
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
 	console.log('Connected to MongoDB');
 });
 
-// Import routes
+// Import the activity routes and use them
 const activityRoutes = require('./routes/activityRoutes');
-
-// Use routes
 app.use('/api', activityRoutes);
 
+// Set the port
 const port = PORT || PORT;
 app.listen(port, () => console.log(`Server running on port ${port}`));
