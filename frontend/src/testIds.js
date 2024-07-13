@@ -8,4 +8,14 @@ export const testIds = {
 		yourTimeNavLink: 'yourtime-nav-link',
 		timeOfDayNavLink: 'timeofday-nav-link',
 	},
+	app: {
+		appDiv: 'app-div',
+	},
+	home: {
+		homeDiv: 'home-div',
+		welcomeBanner: 'welcome-banner',
+		homeHeader: 'home-header',
+		details: 'details',
+		instructions: 'instructions',
+	},
 };

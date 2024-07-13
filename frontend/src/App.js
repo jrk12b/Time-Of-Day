@@ -6,10 +6,11 @@ import YourTime from './pages/YourTimePage';
 import HeaderNav from '../src/components/HeaderNav/HeaderNav';
 // eslint-disable-next-line no-unused-vars
 import HeaderNavHook from '../src/components/HeaderNav/HeaderNavHook';
+import { testIds } from './testIds';
 
 function App() {
 	return (
-		<div className="App">
+		<div data-testid={testIds.app.appDiv} className="App">
 			<Router>
 				<HeaderNav />
 				{/* <HeaderNavHook /> */}

@@ -14,15 +14,15 @@ describe('HeaderNav', () => {
 		jest.clearAllMocks();
 	});
 
-	render(
-		<MemoryRouter>
-			<HeaderNav />
-		</MemoryRouter>
-	);
-
 	it('Validate header-nav renders', () => {
+		render(
+			<MemoryRouter>
+				<HeaderNav />
+			</MemoryRouter>
+		);
 		const headerNavHome = screen.getByTestId(testIds.headerNav.headerNav);
 		expect(headerNavHome).toBeInTheDocument();
+		expect(headerNavHome).toBeVisible();
 	});
 
 	it('Validate Home link renders', () => {
@@ -31,9 +31,10 @@ describe('HeaderNav', () => {
 				<HeaderNav />
 			</MemoryRouter>
 		);
-		const headerNavHome = screen.getByTestId(testIds.headerNav.homeNavLink);
-		expect(headerNavHome).toBeInTheDocument();
-		expect(headerNavHome).toHaveAttribute('href', '/');
+		const headerNavHomeLink = screen.getByTestId(testIds.headerNav.homeNavLink);
+		expect(headerNavHomeLink).toBeInTheDocument();
+		expect(headerNavHomeLink).toHaveAttribute('href', '/');
+		expect(headerNavHomeLink).toBeVisible();
 	});
 
 	it('Validate Todays Time link renders', () => {
@@ -45,6 +46,7 @@ describe('HeaderNav', () => {
 		const headerNavTodaysTimeLink = screen.getByTestId(testIds.headerNav.todaysTimeNavLink);
 		expect(headerNavTodaysTimeLink).toBeInTheDocument();
 		expect(headerNavTodaysTimeLink).toHaveAttribute('href', '/TodaysTime');
+		expect(headerNavTodaysTimeLink).toBeVisible();
 	});
 
 	it('Validate Your Time link renders', () => {
@@ -56,6 +58,7 @@ describe('HeaderNav', () => {
 		const headerNavYourTime = screen.getByTestId(testIds.headerNav.yourTimeNavLink);
 		expect(headerNavYourTime).toBeInTheDocument();
 		expect(headerNavYourTime).toHaveAttribute('href', '/YourTime');
+		expect(headerNavYourTime).toBeVisible();
 	});
 
 	it('Validate Time of Day link renders', () => {
@@ -67,6 +70,7 @@ describe('HeaderNav', () => {
 		const headerNavHomeLink = screen.getByTestId(testIds.headerNav.timeOfDayNavLink);
 		expect(headerNavHomeLink).toBeInTheDocument();
 		expect(headerNavHomeLink).toHaveAttribute('href', '/');
+		expect(headerNavHomeLink).toBeVisible();
 	});
 
 	it('Validate mobile toggle renders', () => {
@@ -80,6 +84,7 @@ describe('HeaderNav', () => {
 		);
 		const headerNavMobileToggle = screen.getByTestId(testIds.headerNav.mobileToggle);
 		expect(headerNavMobileToggle).toBeInTheDocument();
+		expect(headerNavMobileToggle).toBeVisible();
 	});
 
 	it('Validate mobile toggle does not render', () => {
