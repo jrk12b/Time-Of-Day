@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../../context/contextActivities';
 import { v4 as uuidv4 } from 'uuid';
+import { testIds } from '../../testIds';
 
 // This component displays a functioning add activity form that adds an activity to today's activities
 const AddActivityForm = () => {
@@ -27,11 +28,12 @@ const AddActivityForm = () => {
 	};
 
 	return (
-		<form onSubmit={onSubmit}>
+		<form data-testid={testIds.addActivityForm.addActivityForm} onSubmit={onSubmit}>
 			<div className="row">
 				<div className="col-sm">
 					<label htmlFor="name">Name</label>
 					<input
+						data-testid={testIds.addActivityForm.addActivityFormName}
 						required="required"
 						type="text"
 						className="form-control"
@@ -43,6 +45,7 @@ const AddActivityForm = () => {
 				<div className="col-sm">
 					<label htmlFor="hour">Hours</label>
 					<input
+						data-testid={testIds.addActivityForm.addActivityFormHours}
 						required="required"
 						type="text"
 						className="form-control"

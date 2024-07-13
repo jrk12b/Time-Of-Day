@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/contextActivities';
+import { testIds } from '../../testIds';
 
 // This component displays how many hours have been inputted into current activities
-const ActivityTotal = () => {
+const TotalHours = () => {
 	const { activities } = useContext(AppContext);
 
 	const totalActivities = activities.reduce((total, item) => {
@@ -10,10 +11,10 @@ const ActivityTotal = () => {
 	}, 0);
 
 	return (
-		<div className="alert alert-primary">
+		<div data-testid={testIds.totalHours.totalHoursDiv} className="alert alert-primary">
 			<span>Hours Spent So Far: {totalActivities}</span>
 		</div>
 	);
 };
 
-export default ActivityTotal;
+export default TotalHours;

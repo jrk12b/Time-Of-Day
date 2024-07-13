@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 import { AppContext } from '../../../context/contextActivities';
 import GraphColors from './GraphColors';
+import { testIds } from '../../../testIds';
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -39,22 +40,24 @@ export default function TodaysTimeGraph() {
 	});
 
 	return (
-		<PieChart width={570} height={570}>
-			<Legend verticalAlign="bottom" height={36} />
-			<Pie
-				data={data}
-				cx="50%"
-				cy="50%"
-				labelLine={false}
-				label={renderCustomizedLabel}
-				outerRadius={250}
-				fill="#8884d8"
-				dataKey="value"
-			>
-				{data.map((entry, index) => (
-					<Cell key={`cell-${index}`} fill={GraphColors[index % GraphColors.length]} />
-				))}
-			</Pie>
-		</PieChart>
+		<div data-testid={testIds.todaysTimeGraph.todaysTimeGraph}>
+			<PieChart width={570} height={570}>
+				<Legend verticalAlign="bottom" height={36} />
+				<Pie
+					data={data}
+					cx="50%"
+					cy="50%"
+					labelLine={false}
+					label={renderCustomizedLabel}
+					outerRadius={250}
+					fill="#8884d8"
+					dataKey="value"
+				>
+					{data.map((entry, index) => (
+						<Cell key={`cell-${index}`} fill={GraphColors[index % GraphColors.length]} />
+					))}
+				</Pie>
+			</PieChart>
+		</div>
 	);
 }

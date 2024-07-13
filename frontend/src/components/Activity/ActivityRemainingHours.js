@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/contextActivities';
+import { testIds } from '../../testIds';
 
 // This component displays how many hours remaining you have in your day
 const RemainingHours = () => {
@@ -12,7 +13,7 @@ const RemainingHours = () => {
 	const alertType = totalActivities > hours ? 'alert-danger' : 'alert alert-secondary';
 
 	return (
-		<div className={`alert ${alertType}`}>
+		<div data-testid={testIds.remainingHours.remainingHoursDiv} className={`alert ${alertType}`}>
 			<span>Hours Remaining: {hours - totalActivities}</span>
 		</div>
 	);

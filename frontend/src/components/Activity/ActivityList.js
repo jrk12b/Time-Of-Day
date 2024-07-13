@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import ActivityItem from './ActivityItem';
 import { AppContext } from '../../context/contextActivities';
+import { testIds } from '../../testIds';
 
 // This component displays the current activity list by displaying all ActivityItems
 const ActivityList = () => {
 	const { activities } = useContext(AppContext);
 	return (
-		<ul className="list-group">
+		<ul data-testid={testIds.activityList.activityList} className="list-group">
 			{activities.map((activity) => (
 				<ActivityItem
 					key={activity.id}

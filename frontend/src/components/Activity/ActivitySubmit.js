@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/contextActivities';
+import { testIds } from '../../testIds';
 
 // This component displays a Submit All Activities button which submits all current acitivites to the database
 const ActivitySubmit = ({ handleSubmitActivities }) => {
@@ -12,7 +13,7 @@ const ActivitySubmit = ({ handleSubmitActivities }) => {
 	};
 
 	return (
-		<div>
+		<div data-testid={testIds.activitySubmit.activitySubmit}>
 			<button className="btn btn-primary mt-3" onClick={handleButtonClick}>
 				Submit All Activities
 			</button>

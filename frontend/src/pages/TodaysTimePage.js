@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { testIds } from '../testIds';
 
 import '../css/TodaysTime.css';
 
@@ -9,9 +10,9 @@ import TimeBudget from '../components/Activity/ActivityTimeBudget';
 import RemainingHours from '../components/Activity/ActivityRemainingHours';
 import TodaysTimeGraph from '../components/Graphs/TodaysTimeGraphs/TodaysTimeGraph';
 
-import ActivityTotal from '../components/Activity/ActivityTotal';
+import TotalHours from '../components/Activity/ActivityTotalHours';
 import ActivityList from '../components/Activity/ActivityList';
-import AddActivityForm from '../components/Activity/ActivityAddForm';
+import ActivityAddForm from '../components/Activity/ActivityAddForm';
 import ActivitySubmit from '../components/Activity/ActivitySubmit';
 
 const TimePage = () => {
@@ -50,7 +51,7 @@ const TimePage = () => {
 	};
 
 	return (
-		<div>
+		<div data-testid={testIds.todaysTime.todayDiv}>
 			<hr />
 			<AppProvider>
 				<div className="container">
@@ -62,7 +63,7 @@ const TimePage = () => {
 							<RemainingHours />
 						</div>
 						<div className="col-sm">
-							<ActivityTotal />
+							<TotalHours />
 						</div>
 					</div>
 					<div className="graph">
@@ -71,7 +72,7 @@ const TimePage = () => {
 					<div className="activityForm">
 						<h3>Add Activity</h3>
 						<div>
-							<AddActivityForm />
+							<ActivityAddForm />
 						</div>
 					</div>
 					<div className="activityContainer">

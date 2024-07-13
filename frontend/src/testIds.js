@@ -18,4 +18,33 @@ export const testIds = {
 		details: 'details',
 		instructions: 'instructions',
 	},
+	todaysTime: {
+		todayDiv: 'today-div',
+	},
+	timeBudget: {
+		timeBudgetDiv: 'time-budget-div',
+	},
+	remainingHours: {
+		remainingHoursDiv: 'remaining-hours-div',
+	},
+	totalHours: {
+		totalHoursDiv: 'total-hours-div',
+	},
+	todaysTimeGraph: {
+		todaysTimeGraph: 'todays-time-graph',
+	},
+	addActivityForm: {
+		addActivityForm: 'add-activity-form',
+		addActivityFormName: 'add-activity-form-name',
+		addActivityFormHours: 'add-activity-form-hours',
+	},
+	activityList: {
+		activityList: 'activity-list',
+	},
+	activitySubmit: {
+		activitySubmit: 'activity-submit',
+	},
+	activityItem: {
+		activityItem: 'activity-item',
+	},
 };
