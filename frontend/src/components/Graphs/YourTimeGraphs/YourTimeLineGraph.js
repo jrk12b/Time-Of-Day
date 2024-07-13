@@ -3,6 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import useFetchActivities from '../../../hooks/useFetchActivities';
 import GraphColors from './GraphColors';
 import { transformAndAggregateData } from './DataTransform';
+import { testIds } from '../../../testIds';
 
 // This component that fetches activity data, transforms it, and displays it in a Line chart using Recharts.
 const YourTimeLineGraph = () => {
@@ -20,26 +21,28 @@ const YourTimeLineGraph = () => {
 	}, [data]);
 
 	return (
-		<LineChart
-			width={730}
-			height={250}
-			data={data}
-			margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-		>
-			<CartesianGrid strokeDasharray="3 3" />
-			<XAxis dataKey="date" />
-			<YAxis />
-			<Tooltip />
-			<Legend />
-			{activityNames.map((name, index) => (
-				<Line
-					key={name}
-					type="monotone"
-					dataKey={name}
-					stroke={GraphColors[index % GraphColors.length]}
-				/>
-			))}
-		</LineChart>
+		<div data-testid={testIds.yourTimeLineGraph}>
+			<LineChart
+				width={730}
+				height={250}
+				data={data}
+				margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+			>
+				<CartesianGrid strokeDasharray="3 3" />
+				<XAxis dataKey="date" />
+				<YAxis />
+				<Tooltip />
+				<Legend />
+				{activityNames.map((name, index) => (
+					<Line
+						key={name}
+						type="monotone"
+						dataKey={name}
+						stroke={GraphColors[index % GraphColors.length]}
+					/>
+				))}
+			</LineChart>
+		</div>
 	);
 };
 

@@ -3,8 +3,6 @@ import { fetchActivities } from '../context/contextActivities';
 
 const useFetchActivities = () => {
 	const [activities, setActivities] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		const getActivities = async () => {
@@ -12,16 +10,14 @@ const useFetchActivities = () => {
 				const fetchedActivities = await fetchActivities();
 				setActivities(fetchedActivities);
 			} catch (err) {
-				setError(err);
-			} finally {
-				setLoading(false);
+				console.error('Caught an error:', err.message);
 			}
 		};
 
 		getActivities();
 	}, []);
 
-	return { activities, loading, error };
+	return { activities };
 };
 
 export default useFetchActivities;

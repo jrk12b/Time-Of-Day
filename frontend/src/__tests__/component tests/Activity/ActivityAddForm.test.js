@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../testIds';
-import { AppContext } from '../../context/contextActivities';
-import AddActivityForm from '../../components/Activity/ActivityAddForm';
+import { testIds } from '../../../testIds';
+import { AppContext } from '../../../context/contextActivities';
+import AddActivityForm from '../../../components/Activity/ActivityAddForm';
 
-describe('TimeBudget', () => {
-	it('Validate TimeBudget div renders', () => {
+describe('AddActivityForm', () => {
+	it('Validate AddActivityForm div renders', () => {
 		const mockContextValue = {};
 
 		render(

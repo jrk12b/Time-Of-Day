@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from '../../App';
-import { testIds } from '../../testIds';
+import App from '../../../App';
+import { testIds } from '../../../testIds';
 
 describe('App', () => {
-	it('Validate App div renders', () => {
+	it('Validate App renders', () => {
 		render(<App />);
-		const app = screen.getByTestId(testIds.app.appDiv);
+		const app = screen.getByTestId(testIds.app);
 		expect(app).toBeInTheDocument();
 		expect(app).toBeVisible();
 	});
@@ -39,29 +39,29 @@ describe('App', () => {
 
 	it('Validate Welcome Banner renders', () => {
 		render(<App />);
-		const homeDiv = screen.getByTestId(testIds.home.welcomeBanner);
-		expect(homeDiv).toBeInTheDocument();
-		expect(homeDiv).toBeVisible();
+		const welcomeBanner = screen.getByTestId(testIds.home.welcomeBanner);
+		expect(welcomeBanner).toBeInTheDocument();
+		expect(welcomeBanner).toBeVisible();
 	});
 
 	it('Validate Home Header renders', () => {
 		render(<App />);
-		const homeDiv = screen.getByTestId(testIds.home.homeHeader);
-		expect(homeDiv).toBeInTheDocument();
-		expect(homeDiv).toBeVisible();
+		const homeHeader = screen.getByTestId(testIds.home.homeHeader);
+		expect(homeHeader).toBeInTheDocument();
+		expect(homeHeader).toBeVisible();
 	});
 
 	it('Validate details renders', () => {
 		render(<App />);
-		const homeDiv = screen.getByTestId(testIds.home.details);
-		expect(homeDiv).toBeInTheDocument();
-		expect(homeDiv).toBeVisible();
+		const details = screen.getByTestId(testIds.home.details);
+		expect(details).toBeInTheDocument();
+		expect(details).toBeVisible();
 	});
 
 	it('Validate instructions renders', () => {
 		render(<App />);
-		const homeDiv = screen.getByTestId(testIds.home.instructions);
-		expect(homeDiv).toBeInTheDocument();
-		expect(homeDiv).toBeVisible();
+		const instructions = screen.getByTestId(testIds.home.instructions);
+		expect(instructions).toBeInTheDocument();
+		expect(instructions).toBeVisible();
 	});
 });

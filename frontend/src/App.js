@@ -10,7 +10,7 @@ import { testIds } from './testIds';
 
 function App() {
 	return (
-		<div data-testid={testIds.app.appDiv} className="App">
+		<div data-testid={testIds.app} className="App">
 			<Router>
 				<HeaderNav />
 				{/* <HeaderNavHook /> */}

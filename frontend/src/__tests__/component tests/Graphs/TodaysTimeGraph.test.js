@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../testIds';
-import { AppContext } from '../../context/contextActivities';
-import TodaysTimeGraph from '../../components/Graphs/TodaysTimeGraphs/TodaysTimeGraph';
+import { testIds } from '../../../testIds';
+import { AppContext } from '../../../context/contextActivities';
+import TodaysTimeGraph from '../../../components/Graphs/TodaysTimeGraphs/TodaysTimeGraph';
 
-describe('TimeBudget', () => {
-	it('Validate TimeBudget div renders', () => {
+describe('TodaysTimeGraph', () => {
+	it('Validate TodaysTimeGraph renders', () => {
 		const mockContextValue = {
 			hours: 24,
 			activities: [
@@ -20,7 +20,7 @@ describe('TimeBudget', () => {
 			</AppContext.Provider>
 		);
 
-		const todaysTimeGraph = screen.getByTestId(testIds.todaysTimeGraph.todaysTimeGraph);
+		const todaysTimeGraph = screen.getByTestId(testIds.todaysTimeGraph);
 		expect(todaysTimeGraph).toBeInTheDocument();
 		expect(todaysTimeGraph).toBeVisible();
 	});

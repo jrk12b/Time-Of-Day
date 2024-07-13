@@ -13,7 +13,7 @@ const RemainingHours = () => {
 	const alertType = totalActivities > hours ? 'alert-danger' : 'alert alert-secondary';
 
 	return (
-		<div data-testid={testIds.remainingHours.remainingHoursDiv} className={`alert ${alertType}`}>
+		<div data-testid={testIds.remainingHours} className={`alert ${alertType}`}>
 			<span>Hours Remaining: {hours - totalActivities}</span>
 		</div>
 	);

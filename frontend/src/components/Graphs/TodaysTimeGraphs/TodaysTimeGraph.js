@@ -40,7 +40,7 @@ export default function TodaysTimeGraph() {
 	});
 
 	return (
-		<div data-testid={testIds.todaysTimeGraph.todaysTimeGraph}>
+		<div data-testid={testIds.todaysTimeGraph}>
 			<PieChart width={570} height={570}>
 				<Legend verticalAlign="bottom" height={36} />
 				<Pie

@@ -3,6 +3,7 @@ import { PieChart, Pie, Cell, Legend } from 'recharts';
 import useFetchActivities from '../../../hooks/useFetchActivities';
 import GraphColors from './GraphColors';
 import { aggregateHoursForActivities } from './DataTransform';
+import { testIds } from '../../../testIds';
 
 // This component that fetches activity data, transforms it, and displays it in a Pie chart using Recharts.
 const YourTimePieGraph = () => {
@@ -39,23 +40,25 @@ const YourTimePieGraph = () => {
 	};
 
 	return (
-		<PieChart width={400} height={400}>
-			<Legend verticalAlign="top" height={36} />
-			<Pie
-				data={data}
-				cx="50%"
-				cy="50%"
-				labelLine={false}
-				label={renderCustomizedLabel}
-				outerRadius={150}
-				fill="#8884d8"
-				dataKey="value"
-			>
-				{data.map((entry, index) => (
-					<Cell key={`cell-${index}`} fill={GraphColors[index % GraphColors.length]} />
-				))}
-			</Pie>
-		</PieChart>
+		<div data-testid={testIds.yourTimePieGraph}>
+			<PieChart width={400} height={400}>
+				<Legend verticalAlign="top" height={36} />
+				<Pie
+					data={data}
+					cx="50%"
+					cy="50%"
+					labelLine={false}
+					label={renderCustomizedLabel}
+					outerRadius={150}
+					fill="#8884d8"
+					dataKey="value"
+				>
+					{data.map((entry, index) => (
+						<Cell key={`cell-${index}`} fill={GraphColors[index % GraphColors.length]} />
+					))}
+				</Pie>
+			</PieChart>
+		</div>
 	);
 };
 

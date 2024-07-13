@@ -8,10 +8,11 @@ import YourTimeComposedGraph from '../components/Graphs/YourTimeGraphs/YourTimeC
 import { SuccessMessage, ErrorMessage } from './Messages';
 import YourTimeActivityList from '../components/Activity/YourTimeActivityList';
 import '../css/YourTime.css';
+import { testIds } from '../testIds';
 const { PORT } = require('../config');
 
 const YourTimePage = () => {
-	const { activities, loading, error } = useFetchActivities();
+	const { activities } = useFetchActivities();
 	const {
 		editActivity,
 		editName,
@@ -27,16 +28,8 @@ const YourTimePage = () => {
 		setEditHour,
 	} = useActivityActions(PORT);
 
-	if (loading) {
-		return <p>Loading...</p>;
-	}
-
-	if (error) {
-		return <p>Error loading activities: {error.message}</p>;
-	}
-
 	return (
-		<div>
+		<div data-testid={testIds.yourTime}>
 			<h1>Your Time</h1>
 			<SuccessMessage message={successMessage} />
 			<ErrorMessage message={errorMessage} />

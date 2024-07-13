@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../testIds';
-import { AppContext } from '../../context/contextActivities';
-import ActivityList from '../../components/Activity/ActivityList';
+import { testIds } from '../../../testIds';
+import { AppContext } from '../../../context/contextActivities';
+import ActivityList from '../../../components/Activity/ActivityList';
 
-describe('TimeBudget', () => {
-	it('Validate TimeBudget div renders', () => {
+describe('ActivityList', () => {
+	it('Validate ActivityList div renders', () => {
 		const mockContextValue = {
 			activities: [
 				{ key: '12345', id: '12345', name: 'mock_test1', hour: 1 },
@@ -19,7 +19,7 @@ describe('TimeBudget', () => {
 			</AppContext.Provider>
 		);
 
-		const activityList = screen.getByTestId(testIds.activityList.activityList);
+		const activityList = screen.getByTestId(testIds.activityList);
 		expect(activityList).toBeInTheDocument();
 		expect(activityList).toBeVisible();
 		expect(activityList).toHaveTextContent('mock_test1');

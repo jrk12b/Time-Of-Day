@@ -1,22 +1,23 @@
 // components/ActivityList.js
 import React from 'react';
+import { testIds } from '../../testIds';
 
 // This component displays all current DB documents and activities data. Allows for deleting an entire document button, edit activities, and delete activities
 const YourTimeActivityList = ({
-	activities,
-	editActivity,
-	editName,
-	editHour,
-	handleEditClick,
-	handleUpdate,
-	handleDelete,
-	handleDeleteDocument,
-	setEditActivity,
-	setEditName,
-	setEditHour,
+	activities = [],
+	editActivity = null,
+	editName = '',
+	editHour = 0,
+	handleEditClick = () => {},
+	handleUpdate = () => {},
+	handleDelete = () => {},
+	handleDeleteDocument = () => {},
+	setEditActivity = () => {},
+	setEditName = () => {},
+	setEditHour = () => {},
 }) => {
 	return (
-		<ul className="yourTimeList">
+		<ul data-testid={testIds.yourTimeActivityList} className="yourTimeList">
 			{activities.map((activityDoc) => (
 				<div key={activityDoc._id} className="yourTime">
 					<button

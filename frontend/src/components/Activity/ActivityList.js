@@ -7,7 +7,7 @@ import { testIds } from '../../testIds';
 const ActivityList = () => {
 	const { activities } = useContext(AppContext);
 	return (
-		<ul data-testid={testIds.activityList.activityList} className="list-group">
+		<ul data-testid={testIds.activityList} className="list-group">
 			{activities.map((activity) => (
 				<ActivityItem
 					key={activity.id}

@@ -13,7 +13,7 @@ const ActivitySubmit = ({ handleSubmitActivities }) => {
 	};
 
 	return (
-		<div data-testid={testIds.activitySubmit.activitySubmit}>
+		<div data-testid={testIds.activitySubmit}>
 			<button className="btn btn-primary mt-3" onClick={handleButtonClick}>
 				Submit All Activities
 			</button>

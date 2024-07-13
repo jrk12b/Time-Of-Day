@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../testIds';
-import Home from '../../pages/HomePage';
+import { testIds } from '../../../testIds';
+import Home from '../../../pages/HomePage';
 
 describe('App', () => {
 	it('Validate App div renders', () => {

@@ -51,7 +51,7 @@ const TimePage = () => {
 	};
 
 	return (
-		<div data-testid={testIds.todaysTime.todayDiv}>
+		<div data-testid={testIds.todaysTime}>
 			<hr />
 			<AppProvider>
 				<div className="container">

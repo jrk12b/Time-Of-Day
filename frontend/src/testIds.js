@@ -8,9 +8,6 @@ export const testIds = {
 		yourTimeNavLink: 'yourtime-nav-link',
 		timeOfDayNavLink: 'timeofday-nav-link',
 	},
-	app: {
-		appDiv: 'app-div',
-	},
 	home: {
 		homeDiv: 'home-div',
 		welcomeBanner: 'welcome-banner',
@@ -18,33 +15,24 @@ export const testIds = {
 		details: 'details',
 		instructions: 'instructions',
 	},
-	todaysTime: {
-		todayDiv: 'today-div',
-	},
-	timeBudget: {
-		timeBudgetDiv: 'time-budget-div',
-	},
-	remainingHours: {
-		remainingHoursDiv: 'remaining-hours-div',
-	},
-	totalHours: {
-		totalHoursDiv: 'total-hours-div',
-	},
-	todaysTimeGraph: {
-		todaysTimeGraph: 'todays-time-graph',
-	},
+	app: 'app',
+	todaysTime: 'todays-time',
+	yourTime: 'your-time',
+	timeBudget: 'time-budget',
+	remainingHours: 'remaining-hours',
+	totalHours: 'total-hours',
+	todaysTimeGraph: 'todays-time-graph',
 	addActivityForm: {
 		addActivityForm: 'add-activity-form',
 		addActivityFormName: 'add-activity-form-name',
 		addActivityFormHours: 'add-activity-form-hours',
 	},
-	activityList: {
-		activityList: 'activity-list',
-	},
-	activitySubmit: {
-		activitySubmit: 'activity-submit',
-	},
-	activityItem: {
-		activityItem: 'activity-item',
-	},
+	activityList: 'activity-list',
+	activitySubmit: 'activity-submit',
+	activityItem: 'activity-item',
+	yourTimeActivityList: 'your-time-activity-list',
+	yourTimeBarGraph: 'your-time-bar-graph',
+	yourTimeComposedGraph: 'your-time-composed-graph',
+	yourTimeLineGraph: 'your-time-line-graph',
+	yourTimePieGraph: 'your-time-pie-graph',
 };
