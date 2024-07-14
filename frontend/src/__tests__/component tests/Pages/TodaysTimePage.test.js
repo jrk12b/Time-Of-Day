@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
 import TodaysTime from '../../../pages/TodaysTimePage';
 
 describe('TodaysTime', () => {
 	it('Validate TodaysTime Renders', () => {
 		render(<TodaysTime />);
-		const homeDiv = screen.getByTestId(testIds.todaysTime);
-		expect(homeDiv).toBeInTheDocument();
-		expect(homeDiv).toBeVisible();
+		const todaysTimeDiv = screen.getByTestId(testIds.todaysTime);
+		expect(todaysTimeDiv).toBeInTheDocument();
+		expect(todaysTimeDiv).toBeVisible();
 	});
 
 	it('Validate TimeBudget Renders', () => {
@@ -50,9 +50,11 @@ describe('TodaysTime', () => {
 		expect(addActivityForm).toHaveTextContent('Name');
 		expect(addActivityForm).toHaveTextContent('Hours');
 		expect(addActivityForm).toHaveTextContent('Save');
+
 		const addActivityFormName = screen.getByTestId(testIds.addActivityForm.addActivityFormName);
 		expect(addActivityFormName).toBeInTheDocument();
 		expect(addActivityFormName).toBeVisible();
+
 		const addActivityFormHours = screen.getByTestId(testIds.addActivityForm.addActivityFormHours);
 		expect(addActivityFormHours).toBeInTheDocument();
 		expect(addActivityFormHours).toBeVisible();

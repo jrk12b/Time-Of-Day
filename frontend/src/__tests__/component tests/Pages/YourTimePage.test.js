@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
 import YourTime from '../../../pages/YourTimePage';
 
 describe('YourTime', () => {

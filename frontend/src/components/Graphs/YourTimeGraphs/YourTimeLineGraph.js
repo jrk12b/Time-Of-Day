@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import useFetchActivities from '../../../hooks/useFetchActivities';
 import GraphColors from './GraphColors';
 import { transformAndAggregateData } from './DataTransform';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
 
 // This component that fetches activity data, transforms it, and displays it in a Line chart using Recharts.
 const YourTimeLineGraph = () => {

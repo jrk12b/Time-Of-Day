@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/Home.css';
-import { testIds } from '../testIds';
+import { testIds } from '../testData/testIds';
 
 const HomePage = () => {
 	return (

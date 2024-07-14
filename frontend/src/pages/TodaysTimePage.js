@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { testIds } from '../testIds';
+import { testIds } from '../testData/testIds';
 
 import '../css/TodaysTime.css';
 
-import { fetchActivities, AppProvider } from '../context/contextActivities';
+import { fetchActivities, handleSubmitActivities, AppProvider } from '../context/contextActivities';
 
 import TimeBudget from '../components/Activity/ActivityTimeBudget';
 import RemainingHours from '../components/Activity/ActivityRemainingHours';
@@ -19,7 +18,6 @@ const TimePage = () => {
 	// eslint-disable-next-line no-unused-vars
 	const [activities, setActivities] = useState([]);
 	const [successMessage, setSuccessMessage] = useState('');
-	const { PORT } = require('../config');
 
 	useEffect(() => {
 		const getActivities = async () => {
@@ -28,27 +26,6 @@ const TimePage = () => {
 		};
 		getActivities();
 	}, []);
-
-	const handleSubmitActivities = async (activities) => {
-		try {
-			const timestamp = new Date();
-			const response = await axios.post(`http://localhost:${PORT}/api/activities`, {
-				activities,
-				timestamp,
-			});
-			console.log('Activities submitted:', response.data);
-
-			// Show success message
-			setSuccessMessage('Activities submitted successfully!');
-
-			// Hide the message after 3 seconds
-			setTimeout(() => {
-				setSuccessMessage('');
-			}, 3000);
-		} catch (error) {
-			console.error('Error submitting activities', error);
-		}
-	};
 
 	return (
 		<div data-testid={testIds.todaysTime}>
@@ -85,7 +62,11 @@ const TimePage = () => {
 							</div>
 						</div>
 						<div className="ActivitySubmit">
-							<ActivitySubmit handleSubmitActivities={handleSubmitActivities} />
+							<ActivitySubmit
+								handleSubmitActivities={(activities) =>
+									handleSubmitActivities(activities, setSuccessMessage)
+								}
+							/>
 						</div>
 					</div>
 					{successMessage && <p className="success-message">{successMessage}</p>}{' '}

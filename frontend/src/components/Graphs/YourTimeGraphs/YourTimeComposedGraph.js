@@ -3,7 +3,7 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 import useFetchActivities from '../../../hooks/useFetchActivities';
 import GraphColors from './GraphColors';
 import { transformAndAggregateData } from './DataTransform';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
 
 // This component that fetches activity data, transforms it, and displays it in a Composed bar chart using Recharts.
 const SameDataComposedChart = () => {

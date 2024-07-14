@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../../context/contextActivities';
 import { v4 as uuidv4 } from 'uuid';
-import { testIds } from '../../testIds';
+import { testIds } from '../../testData/testIds';
 
 // This component displays a functioning add activity form that adds an activity to today's activities
 const AddActivityForm = () => {

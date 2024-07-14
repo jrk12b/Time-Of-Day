@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import useFetchActivities from '../../../hooks/useFetchActivities';
 import GraphColors from './GraphColors';
 import { transformAndAggregateData } from './DataTransform';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
 
 // This component that fetches activity data, transforms it, and displays it in a bar chart using Recharts.
 const YourTimeBarGraph = () => {

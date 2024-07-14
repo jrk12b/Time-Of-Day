@@ -1,24 +1,19 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
+import { mockActivity } from '../../../testData/mockData';
 import { AppContext } from '../../../context/contextActivities';
 import ActivityItem from '../../../components/Activity/ActivityItem';
 
 describe('ActivityItem', () => {
 	it('Validate ActivityItem renders correctly', () => {
-		const mockContextValue = {
+		const mockDispatch = {
 			dispatch: jest.fn(),
 		};
 
-		const activityProps = {
-			name: 'mock_test1',
-			hour: 1,
-			id: 1,
-		};
-
 		render(
-			<AppContext.Provider value={mockContextValue}>
-				<ActivityItem {...activityProps} />
+			<AppContext.Provider value={mockDispatch}>
+				<ActivityItem {...mockActivity} />
 			</AppContext.Provider>
 		);
 

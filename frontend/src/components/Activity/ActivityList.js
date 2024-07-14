@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import ActivityItem from './ActivityItem';
 import { AppContext } from '../../context/contextActivities';
-import { testIds } from '../../testIds';
+import { testIds } from '../../testData/testIds';
 
 // This component displays the current activity list by displaying all ActivityItems
 const ActivityList = () => {

@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { fetchActivities } from '../context/contextActivities';
 
+/**
+ * Custom hook to fetch and manage activity data.
+ * Fetches activity data and updates state with the fetched data.
+ * Returns the current activities state.
+ */
 const useFetchActivities = () => {
 	const [activities, setActivities] = useState([]);
 

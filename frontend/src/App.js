@@ -6,7 +6,7 @@ import YourTime from './pages/YourTimePage';
 import HeaderNav from '../src/components/HeaderNav/HeaderNav';
 // eslint-disable-next-line no-unused-vars
 import HeaderNavHook from '../src/components/HeaderNav/HeaderNavHook';
-import { testIds } from './testIds';
+import { testIds } from './testData/testIds';
 
 function App() {
 	return (

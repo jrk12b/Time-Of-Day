@@ -1,20 +1,18 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { testIds } from '../../../testIds';
-import { AppContext } from '../../../context/contextActivities';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { testIds } from '../../../testData/testIds';
+import {
+	mockActivities,
+	mockActivitiesNoKey,
+	mockActivitiesEmpty,
+} from '../../../testData/mockData';
+import { AppContext, AppProvider } from '../../../context/contextActivities';
 import ActivitySubmit from '../../../components/Activity/ActivitySubmit';
 
 describe('ActivitySubmit', () => {
-	it('Validate ActivitySubmit div renders', () => {
-		const mockContextValue = {
-			activities: [
-				{ key: '12345', id: '12345', name: 'mock_test1', hour: 1 },
-				{ key: '12346', id: '123456', name: 'mock_test2', hour: 2 },
-			],
-		};
-
+	it('ActivitySubmit renders', () => {
 		render(
-			<AppContext.Provider value={mockContextValue}>
+			<AppContext.Provider value={mockActivities}>
 				<ActivitySubmit />
 			</AppContext.Provider>
 		);
@@ -23,5 +21,37 @@ describe('ActivitySubmit', () => {
 		expect(activitySubmit).toBeInTheDocument();
 		expect(activitySubmit).toBeVisible();
 		expect(activitySubmit).toHaveTextContent('Submit All Activities');
+	});
+
+	it('handleSubmitActivities called when button is clicked', () => {
+		const handleSubmitActivities = jest.fn();
+
+		render(
+			<AppProvider>
+				<AppContext.Provider value={{ activities: mockActivitiesNoKey }}>
+					<ActivitySubmit handleSubmitActivities={handleSubmitActivities} />
+				</AppContext.Provider>
+			</AppProvider>
+		);
+
+		fireEvent.click(screen.getByTestId(testIds.activitySubmitButton));
+
+		expect(handleSubmitActivities).toHaveBeenCalledWith(mockActivitiesNoKey);
+	});
+
+	it('handleSubmitActivities not called when there are no activities', () => {
+		const handleSubmitActivities = jest.fn();
+
+		render(
+			<AppProvider>
+				<AppContext.Provider value={{ activities: mockActivitiesEmpty }}>
+					<ActivitySubmit handleSubmitActivities={handleSubmitActivities} />
+				</AppContext.Provider>
+			</AppProvider>
+		);
+
+		fireEvent.click(screen.getByTestId(testIds.activitySubmitButton));
+
+		expect(handleSubmitActivities).not.toHaveBeenCalledWith(mockActivitiesEmpty);
 	});
 });

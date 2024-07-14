@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import HeaderNav from '../../../components/HeaderNav/HeaderNav';
 import { MemoryRouter } from 'react-router-dom';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
 
 // Mock useMediaQuery to control the isMobile state
 jest.mock('react-responsive', () => ({

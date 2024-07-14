@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 import { AppContext } from '../../../context/contextActivities';
 import GraphColors from './GraphColors';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {

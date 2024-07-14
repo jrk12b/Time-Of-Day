@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// add comment
 const useActivityActions = (port) => {
 	const [editActivity, setEditActivity] = useState(null);
 	const [editName, setEditName] = useState('');
@@ -29,6 +30,7 @@ const useActivityActions = (port) => {
 		setEditHour(activity.hour);
 	};
 
+	// add comment
 	const handleUpdate = async (activityId, activityDocId) => {
 		try {
 			const response = await axios.put(
@@ -51,6 +53,7 @@ const useActivityActions = (port) => {
 		}
 	};
 
+	// add comment
 	const handleDelete = async (activityId, activityDocId) => {
 		try {
 			const response = await axios.delete(
@@ -66,6 +69,7 @@ const useActivityActions = (port) => {
 		}
 	};
 
+	// add comment
 	const handleDeleteDocument = async (activityDocId) => {
 		try {
 			const response = await axios.delete(

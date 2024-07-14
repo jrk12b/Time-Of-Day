@@ -1,17 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
+import { mockHours } from '../../../testData/mockData';
 import TimeBudget from '../../../components/Activity/ActivityTimeBudget';
 import { AppContext } from '../../../context/contextActivities';
 
 describe('TimeBudget', () => {
-	it('Validate TimeBudget div renders', () => {
-		const mockContextValue = {
-			hours: 24,
-		};
-
+	it('Validate TimeBudget renders', () => {
 		render(
-			<AppContext.Provider value={mockContextValue}>
+			<AppContext.Provider value={mockHours}>
 				<TimeBudget />
 			</AppContext.Provider>
 		);

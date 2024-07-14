@@ -1,20 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
+import { mockActivities } from '../../../testData/mockData';
 import TotalHours from '../../../components/Activity/ActivityTotalHours';
 import { AppContext } from '../../../context/contextActivities';
 
 describe('TotalHours', () => {
-	it('Validate TotalHours div renders', () => {
-		const mockContextValue = {
-			activities: [
-				{ name: 'mock_test1', hour: 2 },
-				{ name: 'mock_test2', hour: 1 },
-			],
-		};
-
+	it('Validate TotalHours renders', () => {
 		render(
-			<AppContext.Provider value={mockContextValue}>
+			<AppContext.Provider value={mockActivities}>
 				<TotalHours />
 			</AppContext.Provider>
 		);

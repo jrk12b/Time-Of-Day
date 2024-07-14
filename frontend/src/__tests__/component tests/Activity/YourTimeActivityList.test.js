@@ -1,40 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testIds } from '../../../testIds';
+import { testIds } from '../../../testData/testIds';
+import { mockActivitiesTimestamp, mockYourActivityListProps } from '../../../testData/mockData';
 import { AppContext } from '../../../context/contextActivities';
 import YourTimeActivityList from '../../../components/Activity/YourTimeActivityList';
 
 describe('YourTimeActivityList', () => {
-	it('Validate YourTimeActivityList div renders', () => {
-		const mockContextValue = {
-			activities: [
-				{
-					_id: '12345',
-					timestamp: Date.now(),
-					activities: [
-						{ _id: 'a1', name: 'mock_test1', hour: 1 },
-						{ _id: 'a2', name: 'mock_test2', hour: 2 },
-					],
-				},
-			],
-		};
-
-		const mockProps = {
-			editActivity: null,
-			editName: '',
-			editHour: '',
-			handleEditClick: jest.fn(),
-			handleUpdate: jest.fn(),
-			handleDelete: jest.fn(),
-			handleDeleteDocument: jest.fn(),
-			setEditActivity: jest.fn(),
-			setEditName: jest.fn(),
-			setEditHour: jest.fn(),
-		};
-
+	it('Validate YourTimeActivityList renders', () => {
 		render(
-			<AppContext.Provider value={mockContextValue}>
-				<YourTimeActivityList {...mockProps} activities={mockContextValue.activities} />
+			<AppContext.Provider value={mockActivitiesTimestamp}>
+				<YourTimeActivityList
+					{...mockYourActivityListProps}
+					activities={mockActivitiesTimestamp.activities}
+				/>
 			</AppContext.Provider>
 		);
 

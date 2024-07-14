@@ -1,6 +1,5 @@
 import React, { createContext, useReducer } from 'react';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
 const { PORT } = require('../config');
 
 // Fetches activity data from the backend API
@@ -14,6 +13,7 @@ export const fetchActivities = async () => {
 	}
 };
 
+// add comment
 const AppReducer = (state, action) => {
 	switch (action.type) {
 		case 'ADD_ACTIVITY':
@@ -33,11 +33,12 @@ const AppReducer = (state, action) => {
 
 const initialState = {
 	hours: 24,
-	activites: [{ id: uuidv4(), name: 'Reading', hour: 1 }],
+	activites: [],
 };
 
 export const AppContext = createContext();
 
+// add comment
 export const AppProvider = (props) => {
 	const [state, dispatch] = useReducer(AppReducer, initialState);
 
@@ -52,4 +53,26 @@ export const AppProvider = (props) => {
 			{props.children}
 		</AppContext.Provider>
 	);
+};
+
+// add comment
+export const handleSubmitActivities = async (activities, setSuccessMessage) => {
+	try {
+		const timestamp = new Date();
+		const response = await axios.post(`http://localhost:${PORT}/api/activities`, {
+			activities,
+			timestamp,
+		});
+		console.log('Activities submitted:', response.data);
+
+		// Show success message
+		setSuccessMessage('Activities submitted successfully!');
+
+		// Hide the message after 3 seconds
+		setTimeout(() => {
+			setSuccessMessage('');
+		}, 3000);
+	} catch (error) {
+		console.error('Error submitting activities', error);
+	}
 };

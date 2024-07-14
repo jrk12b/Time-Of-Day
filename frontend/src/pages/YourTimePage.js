@@ -8,7 +8,7 @@ import YourTimeComposedGraph from '../components/Graphs/YourTimeGraphs/YourTimeC
 import { SuccessMessage, ErrorMessage } from './Messages';
 import YourTimeActivityList from '../components/Activity/YourTimeActivityList';
 import '../css/YourTime.css';
-import { testIds } from '../testIds';
+import { testIds } from '../testData/testIds';
 const { PORT } = require('../config');
 
 const YourTimePage = () => {

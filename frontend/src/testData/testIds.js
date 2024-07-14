@@ -29,6 +29,7 @@ export const testIds = {
 	},
 	activityList: 'activity-list',
 	activitySubmit: 'activity-submit',
+	activitySubmitButton: 'activity-submit-button',
 	activityItem: 'activity-item',
 	yourTimeActivityList: 'your-time-activity-list',
 	yourTimeBarGraph: 'your-time-bar-graph',
