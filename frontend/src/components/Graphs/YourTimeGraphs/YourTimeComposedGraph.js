@@ -6,7 +6,7 @@ import { transformAndAggregateData } from './DataTransform';
 import { testIds } from '../../../testData/testIds';
 
 // This component that fetches activity data, transforms it, and displays it in a Composed bar chart using Recharts.
-const SameDataComposedChart = () => {
+const YourTimeComposedGraph = () => {
 	const { activities } = useFetchActivities();
 
 	// Use the imported transformation function
@@ -58,4 +58,4 @@ const SameDataComposedChart = () => {
 	);
 };
 
-export default SameDataComposedChart;
+export default YourTimeComposedGraph;
