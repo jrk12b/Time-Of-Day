@@ -1,4 +1,6 @@
 import moment from 'moment';
+import { AppContext } from '../context/contextActivities';
+import React, { useContext } from 'react';
 
 export const mockActivity = {
 	id: 1,
@@ -92,3 +94,25 @@ export const mockDataTransformOutputHours = [
 	{ name: 'Reading', value: 3 },
 	{ name: 'Exercise', value: 1 },
 ];
+
+export const TestComponent = () => {
+	const { hours, activities, dispatch } = useContext(AppContext);
+	return (
+		<div>
+			<span data-testid="hours">{hours}</span>
+			<span data-testid="activities">{activities.map((activity) => activity.name).join(', ')}</span>
+			<button
+				data-testid="dispatch-add-activity"
+				onClick={() => dispatch({ type: 'ADD_ACTIVITY', payload: { id: 1, name: 'New Activity' } })}
+			>
+				Add Activity
+			</button>
+			<button
+				data-testid="dispatch-delete-activity"
+				onClick={() => dispatch({ type: 'DELETE_ACTIVITY', payload: 1 })}
+			>
+				Delete Activity
+			</button>
+		</div>
+	);
+};

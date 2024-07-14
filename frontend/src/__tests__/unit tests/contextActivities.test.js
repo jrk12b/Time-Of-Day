@@ -1,37 +1,14 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import { mockActivitiesNoKey } from '../../testData/mockData';
+import { mockActivitiesNoKey, TestComponent } from '../../testData/mockData';
 import {
 	fetchActivities,
 	AppProvider,
-	AppContext,
 	handleSubmitActivities,
 } from '../../context/contextActivities';
 
 jest.mock('axios');
-
-const TestComponent = () => {
-	const { hours, activities, dispatch } = useContext(AppContext);
-	return (
-		<div>
-			<span data-testid="hours">{hours}</span>
-			<span data-testid="activities">{activities.map((activity) => activity.name).join(', ')}</span>
-			<button
-				data-testid="dispatch-add-activity"
-				onClick={() => dispatch({ type: 'ADD_ACTIVITY', payload: { id: 1, name: 'New Activity' } })}
-			>
-				Add Activity
-			</button>
-			<button
-				data-testid="dispatch-delete-activity"
-				onClick={() => dispatch({ type: 'DELETE_ACTIVITY', payload: 1 })}
-			>
-				Delete Activity
-			</button>
-		</div>
-	);
-};
 
 describe('test contextActivities', () => {
 	const PORT = process.env.PORT || 8000;

@@ -55,7 +55,11 @@ const AddActivityForm = () => {
 					></input>
 				</div>
 				<div className="col-sm">
-					<button type="submit" className="btn btn-primary mt-3">
+					<button
+						data-testid={testIds.addActivityForm.addActivitySaveButton}
+						type="submit"
+						className="btn btn-primary mt-3"
+					>
 						Save
 					</button>
 				</div>

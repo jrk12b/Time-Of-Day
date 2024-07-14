@@ -13,7 +13,14 @@ export const fetchActivities = async () => {
 	}
 };
 
-// add comment
+/**
+ * Reducer function to handle activity-related actions.
+ * Supports 'ADD_ACTIVITY' and 'DELETE_ACTIVITY' action types.
+ *
+ * @param {Object} state - The current state of the application.
+ * @param {Object} action - The action to be processed, containing type and payload.
+ * @returns {Object} The new state after the action is applied.
+ */
 const AppReducer = (state, action) => {
 	switch (action.type) {
 		case 'ADD_ACTIVITY':
@@ -38,7 +45,10 @@ const initialState = {
 
 export const AppContext = createContext();
 
-// add comment
+/**
+ * Provides application state management through context, including hours and activities data.
+ * Uses AppReducer for state updates.
+ */
 export const AppProvider = (props) => {
 	const [state, dispatch] = useReducer(AppReducer, initialState);
 
@@ -55,7 +65,11 @@ export const AppProvider = (props) => {
 	);
 };
 
-// add comment
+/**
+ * Handles submission of activities data to a specified API endpoint using axios.
+ * Sets a success message upon successful submission and hides it after 3 seconds.
+ * Logs activity submission details and handles errors gracefully.
+ */
 export const handleSubmitActivities = async (activities, setSuccessMessage) => {
 	try {
 		const timestamp = new Date();

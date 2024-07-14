@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// add comment
+/**
+ * Manages state and actions related to editing activities.
+ * Handles displaying success and error messages stored in localStorage.
+ */
 const useActivityActions = (port) => {
 	const [editActivity, setEditActivity] = useState(null);
 	const [editName, setEditName] = useState('');
@@ -24,13 +27,23 @@ const useActivityActions = (port) => {
 		}
 	}, []);
 
+	/**
+	 * Handles click event for editing an activity.
+	 * Sets state for editing specific activity details.
+	 * @param {Object} activity - The activity object to edit
+	 */
 	const handleEditClick = (activity) => {
 		setEditActivity(activity);
 		setEditName(activity.name);
 		setEditHour(activity.hour);
 	};
 
-	// add comment
+	/**
+	 * Handles updating an activity with new data.
+	 * Updates activity via API call and manages success and error messages.
+	 * @param {string} activityId - The ID of the activity to update
+	 * @param {string} activityDocId - The document ID containing the activity
+	 */
 	const handleUpdate = async (activityId, activityDocId) => {
 		try {
 			const response = await axios.put(
@@ -53,7 +66,12 @@ const useActivityActions = (port) => {
 		}
 	};
 
-	// add comment
+	/**
+	 * Handles deleting an activity from the server.
+	 * Deletes activity via API call and manages success and error messages.
+	 * @param {string} activityId - The ID of the activity to delete
+	 * @param {string} activityDocId - The document ID containing the activity
+	 */
 	const handleDelete = async (activityId, activityDocId) => {
 		try {
 			const response = await axios.delete(
@@ -69,7 +87,11 @@ const useActivityActions = (port) => {
 		}
 	};
 
-	// add comment
+	/**
+	 * Handles deleting an entire document of activities.
+	 * Deletes document via API call and manages success and error messages.
+	 * @param {string} activityDocId - The ID of the document to delete
+	 */
 	const handleDeleteDocument = async (activityDocId) => {
 		try {
 			const response = await axios.delete(

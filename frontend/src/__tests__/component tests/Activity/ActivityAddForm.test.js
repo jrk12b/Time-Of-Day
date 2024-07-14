@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { testIds } from '../../../testData/testIds';
 import { mockActivitiesEmpty } from '../../../testData/mockData';
 import { AppContext } from '../../../context/contextActivities';
@@ -29,5 +29,33 @@ describe('AddActivityForm', () => {
 		expect(addActivityFormHours).toBeVisible();
 	});
 
-	// TODO: add submitting form works?
+	it('Validate AddActivityForm submits', () => {
+		const mockDispatch = jest.fn();
+
+		render(
+			<AppContext.Provider value={{ dispatch: mockDispatch }}>
+				<AddActivityForm />
+			</AppContext.Provider>
+		);
+
+		// Fill in the form
+		fireEvent.change(screen.getByTestId(testIds.addActivityForm.addActivityFormName), {
+			target: { value: 'New Activity' },
+		});
+		fireEvent.change(screen.getByTestId(testIds.addActivityForm.addActivityFormHours), {
+			target: { value: '5' },
+		});
+
+		// Submit the form
+		fireEvent.click(screen.getByTestId(testIds.addActivityForm.addActivitySaveButton));
+
+		// Check if dispatch was called with correct payload
+		expect(mockDispatch).toHaveBeenCalledWith({
+			type: 'ADD_ACTIVITY',
+			payload: expect.objectContaining({
+				name: 'New Activity',
+				hour: 5,
+			}),
+		});
+	});
 });

@@ -26,6 +26,7 @@ export const testIds = {
 		addActivityForm: 'add-activity-form',
 		addActivityFormName: 'add-activity-form-name',
 		addActivityFormHours: 'add-activity-form-hours',
+		addActivitySaveButton: 'add-activity-save-button',
 	},
 	activityList: 'activity-list',
 	activitySubmit: 'activity-submit',
