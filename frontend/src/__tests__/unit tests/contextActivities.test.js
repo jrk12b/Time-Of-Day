@@ -1,25 +1,30 @@
 import axios from 'axios';
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import { mockActivitiesNoKey, TestComponent } from '../../testData/mockData';
+import {
+	mockActivitiesNoKey,
+	TestComponent,
+	mockFetchActivityNames,
+} from '../../testData/mockData';
 import {
 	fetchActivities,
 	AppProvider,
 	handleSubmitActivities,
+	fetchActivityNames,
 } from '../../context/contextActivities';
 
 jest.mock('axios');
 
 describe('test contextActivities', () => {
 	const PORT = process.env.PORT || 8000;
-	const apiUrl = `http://localhost:${PORT}/api/activities`;
+	const activitiesApi = `http://localhost:${PORT}/api/activities`;
 
 	it('fetchActivities fetches and returns activities data successfully', async () => {
 		axios.get.mockResolvedValue({ data: mockActivitiesNoKey });
 
 		const result = await fetchActivities();
 		expect(result).toEqual(mockActivitiesNoKey);
-		expect(axios.get).toHaveBeenCalledWith(apiUrl);
+		expect(axios.get).toHaveBeenCalledWith(activitiesApi);
 	});
 
 	it('fetchActivities throws an error when the fetch fails', async () => {
@@ -67,7 +72,7 @@ describe('test contextActivities', () => {
 
 		await handleSubmitActivities(mockActivitiesNoKey, setSuccessMessage);
 
-		expect(axios.post).toHaveBeenCalledWith(apiUrl, {
+		expect(axios.post).toHaveBeenCalledWith(activitiesApi, {
 			activities: mockActivitiesNoKey,
 			timestamp: expect.any(Date),
 		});
@@ -87,5 +92,14 @@ describe('test contextActivities', () => {
 		expect(consoleErrorSpy).toHaveBeenCalledWith('Error submitting activities', mockError);
 
 		consoleErrorSpy.mockRestore();
+	});
+
+	it('fetchActivityNames fetches and returns activity name data successfully', async () => {
+		const activityNamesApi = `http://localhost:${PORT}/api/activities/names`;
+		axios.get.mockResolvedValue({ data: mockFetchActivityNames });
+
+		const result = await fetchActivityNames();
+		expect(result).toEqual(mockFetchActivityNames);
+		expect(axios.get).toHaveBeenCalledWith(activityNamesApi);
 	});
 });

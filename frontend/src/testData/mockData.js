@@ -95,6 +95,8 @@ export const mockDataTransformOutputHours = [
 	{ name: 'Exercise', value: 1 },
 ];
 
+export const mockFetchActivityNames = [['mock_test1', 'mock_test2']];
+
 export const TestComponent = () => {
 	const { hours, activities, dispatch } = useContext(AppContext);
 	return (

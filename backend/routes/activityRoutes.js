@@ -3,6 +3,17 @@ const Activity = require('../models/activityModel');
 
 const router = express.Router();
 
+// API endpoint to GET all distinct activity names
+router.get('/activities/names', async (req, res) => {
+	try {
+		// Get all distinct activity names
+		const names = await Activity.distinct('activities.name');
+		res.json(names);
+	} catch (err) {
+		res.status(500).json({ message: err.message });
+	}
+});
+
 // API endpoint to GET all activities
 router.get('/activities', async (req, res) => {
 	try {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { testIds } from '../../../testData/testIds';
 import { mockActivitiesEmpty } from '../../../testData/mockData';
 import { AppContext } from '../../../context/contextActivities';

@@ -1,17 +1,38 @@
-import React, { useContext, useState } from 'react';
-import { AppContext } from '../../context/contextActivities';
+import React, { useContext, useState, useEffect } from 'react';
+import { AppContext, fetchActivityNames } from '../../context/contextActivities';
 import { v4 as uuidv4 } from 'uuid';
+import Autosuggest from 'react-autosuggest';
 import { testIds } from '../../testData/testIds';
+import useAutoSuggest from '../../hooks/useAutoSuggest';
 
 // This component displays a functioning add activity form that adds an activity to today's activities
 const AddActivityForm = () => {
 	const { dispatch } = useContext(AppContext);
 
-	// Initialize state variables for activity name and hours with empty string values
+	// Initialize state variables
 	const [name, setName] = useState('');
 	const [hour, setHour] = useState('');
+	const [allNames, setAllNames] = useState([]);
 
-	// Create onSubmit function which handles form submission: prevent default behavior, create new activity, and dispatch action to add activity to state
+	// Fetch existing activity names when the component mounts
+	useEffect(() => {
+		const getActivityNames = async () => {
+			const names = await fetchActivityNames();
+			setAllNames(names);
+		};
+		getActivityNames();
+	}, []);
+
+	// Use the custom hook for autosuggest logic
+	const {
+		suggestions,
+		onSuggestionsFetchRequested,
+		onSuggestionsClearRequested,
+		getSuggestionValue,
+		renderSuggestion,
+	} = useAutoSuggest(allNames);
+
+	// onSubmit function which handles form submission
 	const onSubmit = (event) => {
 		event.preventDefault();
 
@@ -32,15 +53,22 @@ const AddActivityForm = () => {
 			<div className="row">
 				<div className="col-sm">
 					<label htmlFor="name">Name</label>
-					<input
-						data-testid={testIds.addActivityForm.addActivityFormName}
-						required="required"
-						type="text"
-						className="form-control"
-						id="name"
-						value={name}
-						onChange={(event) => setName(event.target.value)}
-					></input>
+					<Autosuggest
+						suggestions={suggestions}
+						onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+						onSuggestionsClearRequested={onSuggestionsClearRequested}
+						getSuggestionValue={getSuggestionValue}
+						renderSuggestion={renderSuggestion}
+						inputProps={{
+							'data-testid': testIds.addActivityForm.addActivityFormName,
+							placeholder: 'Enter Activity Name',
+							value: name,
+							onChange: (event, { newValue }) => setName(newValue),
+							required: 'required',
+							className: 'form-control',
+							id: 'name',
+						}}
+					/>
 				</div>
 				<div className="col-sm">
 					<label htmlFor="hour">Hours</label>
@@ -52,6 +80,7 @@ const AddActivityForm = () => {
 						id="hour"
 						value={hour}
 						onChange={(event) => setHour(event.target.value)}
+						placeholder="Enter Hours"
 					></input>
 				</div>
 				<div className="col-sm">

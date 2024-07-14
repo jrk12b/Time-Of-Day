@@ -13,6 +13,17 @@ export const fetchActivities = async () => {
 	}
 };
 
+// Function to fetch existing activity names from the database
+export const fetchActivityNames = async () => {
+	try {
+		const response = await axios.get(`http://localhost:${PORT}/api/activities/names`);
+		return response.data;
+	} catch (error) {
+		console.error('Error fetching activity names:', error);
+		return [];
+	}
+};
+
 /**
  * Reducer function to handle activity-related actions.
  * Supports 'ADD_ACTIVITY' and 'DELETE_ACTIVITY' action types.
