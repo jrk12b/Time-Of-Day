@@ -23,8 +23,10 @@ const activityRoutes = require('./routes/activityRoutes');
 app.use('/api', activityRoutes);
 
 // Set the port
-const port = PORT || PORT;
-app.listen(port, () => console.log(`Server running on port ${port}`));
+const port = PORT || 8000;
+const server = app.listen(port, () => console.log(`Server running on port ${port}`));
+
+module.exports = { app, server };
 
 // lsof -i :8000
 // kill <PID>
