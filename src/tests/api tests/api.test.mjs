@@ -1,14 +1,10 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable jest/valid-expect */
 /* eslint-disable no-undef */
-import { app, server } from '../backend/server.js';
+import { app, server } from '../../../backend/server.js';
 import { expect } from 'chai';
 import moment from 'moment';
 const request = await import('supertest');
-
-// TODOS:
-// add negatives tests
-// run in pipeline
 
 // payload used for creating mock activities
 const testPayload = {
