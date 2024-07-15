@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { PORT, MONGO_URI } = require('../frontend/src/config');
+const { PORT, MONGO_URI } = require('../src/config');
 
 const app = express();
 
@@ -25,3 +25,6 @@ app.use('/api', activityRoutes);
 // Set the port
 const port = PORT || PORT;
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// lsof -i :8000
+// kill <PID>

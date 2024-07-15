@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import TodaysTime from './pages/TodaysTimePage';
 import Home from './pages/HomePage';
 import YourTime from './pages/YourTimePage';
-import HeaderNav from '../src/components/HeaderNav/HeaderNav';
+import HeaderNav from './components/HeaderNav/HeaderNav';
 // eslint-disable-next-line no-unused-vars
-import HeaderNavHook from '../src/components/HeaderNav/HeaderNavHook';
+import HeaderNavHook from './components/HeaderNav/HeaderNavHook';
 import { testIds } from './testData/testIds';
 
 function App() {

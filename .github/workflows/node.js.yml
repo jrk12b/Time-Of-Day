@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Install Frontend Dependencies
-        run: cd frontend && npm ci
+      - name: Install Dependencies
+        run: npm ci
       - name: Run jest tests
         run: npm run test
