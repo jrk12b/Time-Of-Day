@@ -11,7 +11,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect(MONGO_URI);
+console.log('MONGO_URI: ' + MONGO_URI);
+console.log('MONGO_URI: ' + PORT);
+mongoose.connect(MONGO_URI, {
+	ssl: true,
+});
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
