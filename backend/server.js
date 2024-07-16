@@ -11,8 +11,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connect to MongoDB
-console.log('MONGO_URI: ' + MONGO_URI);
-console.log('MONGO_URI: ' + PORT);
 mongoose.connect(MONGO_URI, {
 	ssl: true,
 });
