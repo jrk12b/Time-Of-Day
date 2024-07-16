@@ -43,6 +43,8 @@ describe('Test Activity API', function () {
 			console.error('Error in after hook:', error);
 			throw error;
 		}
+		server.close();
+		process.exit(0);
 	});
 
 	// Test POST a new activity
