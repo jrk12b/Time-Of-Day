@@ -84,11 +84,10 @@ export const AppProvider = (props) => {
 export const handleSubmitActivities = async (activities, setSuccessMessage) => {
 	try {
 		const timestamp = new Date();
-		const response = await axios.post(`http://localhost:${PORT}/api/activities`, {
+		await axios.post(`http://localhost:${PORT}/api/activities`, {
 			activities,
 			timestamp,
 		});
-		console.log('Activities submitted:', response.data);
 
 		// Show success message
 		setSuccessMessage('Activities submitted successfully!');
