@@ -16,9 +16,8 @@
 		"start-app": "npm run start-server & npm run start",
 		"cy:open": "cypress open",
 		"cy:run": "cypress run",
-		"cy:serve-and-open": "start-server-and-test start http://localhost:3000 cy:open",
-		"cy:serve-and-run": "start-server-and-test start http://localhost:3000 cy:run",
-		"cy:pipeline": "npm run start-server & npm run start & npm run cy:run"
+		"cy:serve-and-open": "npm run start-app & npm run cy:open",
+		"cy:pipeline-run": "npm run start-app & npm run cy:run"
 	},
 	"repository": {
 		"type": "git",
