@@ -1,25 +1,33 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import { testIds } from '../../src/testData/testIds';
+import { textContent } from '../../src/textContent';
+
+Cypress.Commands.add('getByTestId', (testId) => {
+	return cy.get(`[data-testid="${testId}"]`);
+});
+
+Cypress.Commands.add('validateHeaderNav', () => {
+	cy.getByTestId(testIds.headerNav.navContainer).should('be.visible');
+	cy.getByTestId(testIds.headerNav.headerNav).should('be.visible');
+
+	cy.getByTestId(testIds.headerNav.timeOfDayNavLink).should('be.visible');
+	cy.getByTestId(testIds.headerNav.timeOfDayNavLink).contains(textContent.headerNav.timeOfDay);
+	cy.getByTestId(testIds.headerNav.timeOfDayNavLink)
+		.should('have.attr', 'href')
+		.and('include', '/');
+
+	cy.getByTestId(testIds.headerNav.homeNavLink).should('be.visible');
+	cy.getByTestId(testIds.headerNav.homeNavLink).contains(textContent.headerNav.home);
+	cy.getByTestId(testIds.headerNav.homeNavLink).should('have.attr', 'href').and('include', '/');
+
+	cy.getByTestId(testIds.headerNav.todaysTimeNavLink).should('be.visible');
+	cy.getByTestId(testIds.headerNav.todaysTimeNavLink).contains(textContent.headerNav.todaysTime);
+	cy.getByTestId(testIds.headerNav.todaysTimeNavLink)
+		.should('have.attr', 'href')
+		.and('include', '/TodaysTime');
+
+	cy.getByTestId(testIds.headerNav.yourTimeNavLink).should('be.visible');
+	cy.getByTestId(testIds.headerNav.yourTimeNavLink).contains(textContent.headerNav.yourTime);
+	cy.getByTestId(testIds.headerNav.yourTimeNavLink)
+		.should('have.attr', 'href')
+		.and('include', '/YourTime');
+});

@@ -7,6 +7,7 @@ export const testIds = {
 		todaysTimeNavLink: 'todaystime-nav-link',
 		yourTimeNavLink: 'yourtime-nav-link',
 		timeOfDayNavLink: 'timeofday-nav-link',
+		navContainer: 'nav-container',
 	},
 	home: {
 		homeDiv: 'home-div',
@@ -14,6 +15,7 @@ export const testIds = {
 		homeHeader: 'home-header',
 		details: 'details',
 		instructions: 'instructions',
+		motivation: 'motivation',
 	},
 	app: 'app',
 	todaysTime: 'todays-time',

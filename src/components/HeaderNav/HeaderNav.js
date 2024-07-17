@@ -62,7 +62,7 @@ const HeaderNav = () => {
 
 	return (
 		<header className="header">
-			<nav className="nav container">
+			<nav className="nav container" data-testid={testIds.headerNav.navContainer}>
 				<NavLink data-testid={testIds.headerNav.timeOfDayNavLink} to="/" className="nav__logo">
 					Time Of Day
 				</NavLink>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoClose, IoMenu } from 'react-icons/io5';
 import '../../css/HeaderNav.css';
+import { testIds } from '../../testData/testIds';
 
 // This component renders a header component with a logo, navigation links, and a mobile menu toggle
 const HeaderNavHook = () => {
@@ -18,7 +19,7 @@ const HeaderNavHook = () => {
 	};
 	return (
 		<header className="header">
-			<nav className="nav container">
+			<nav className="nav container" data-testid={testIds.headerNav.navContainer}>
 				<NavLink to="/" className="nav__logo">
 					Time Of Day
 				</NavLink>
@@ -26,17 +27,32 @@ const HeaderNavHook = () => {
 				<div className={`nav__menu ${showMenu ? 'show-menu' : ''}`} id="nav-menu">
 					<ul className="nav__list">
 						<li className="nav__item">
-							<NavLink to="/" className="nav__link" onClick={closeMenuOnMobile}>
+							<NavLink
+								to="/"
+								className="nav__link"
+								onClick={closeMenuOnMobile}
+								data-testid={testIds.headerNav.homeNavLink}
+							>
 								Home
 							</NavLink>
 						</li>
 						<li className="nav__item">
-							<NavLink to="/TodaysTime" className="nav__link" onClick={closeMenuOnMobile}>
+							<NavLink
+								to="/TodaysTime"
+								className="nav__link"
+								onClick={closeMenuOnMobile}
+								data-testid={testIds.headerNav.todaysTimeNavLink}
+							>
 								Today's Time
 							</NavLink>
 						</li>
 						<li className="nav__item">
-							<NavLink to="/YourTime" className="nav__link" onClick={closeMenuOnMobile}>
+							<NavLink
+								to="/YourTime"
+								className="nav__link"
+								onClick={closeMenuOnMobile}
+								data-testid={testIds.headerNav.yourTimeNavLink}
+							>
 								Your Time
 							</NavLink>
 						</li>
