@@ -37,6 +37,7 @@ export const testIds = {
 		activitySubmit: 'activity-submit',
 		activitySubmitButton: 'activity-submit-button',
 		activityItem: 'activity-item',
+		activityDelete: 'activity-delete',
 	},
 	yourTime: {
 		yourTime: 'your-time',

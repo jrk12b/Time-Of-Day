@@ -31,3 +31,22 @@ Cypress.Commands.add('validateHeaderNav', () => {
 		.should('have.attr', 'href')
 		.and('include', '/YourTime');
 });
+
+Cypress.Commands.add('addActivity', (activityName, hours) => {
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormName).should('be.visible');
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormName).clear().type(activityName);
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormHours).clear().type(hours);
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivitySaveButton).click();
+
+	cy.getByTestId(testIds.todaysTime.activityItem).should('be.visible');
+	cy.getByTestId(testIds.todaysTime.activityItem).contains(`${activityName} | ${hours} Hour(s)`);
+});
+
+Cypress.Commands.add('deleteActivity', (activityName, hours) => {
+	cy.getByTestId(testIds.yourTime.yourTimeActivityEntry)
+		.contains(`${activityName}: ${hours} hours`)
+		.first()
+		.as('createdActivity');
+	cy.get('@createdActivity').parents('div.yourTime').find('button.delete-document-button').click();
+	cy.contains('Document deleted successfully').should('be.visible');
+});

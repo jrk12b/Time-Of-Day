@@ -22,7 +22,11 @@ const ActivityItem = (props) => {
 		>
 			{props.name} | {props.hour} Hour(s)
 			<div>
-				<TiDelete size="1.5em" onClick={handleDeleteActivity}></TiDelete>
+				<TiDelete
+					size="1.5em"
+					onClick={handleDeleteActivity}
+					data-testid={testIds.todaysTime.activityDelete}
+				></TiDelete>
 			</div>
 		</li>
 	);
