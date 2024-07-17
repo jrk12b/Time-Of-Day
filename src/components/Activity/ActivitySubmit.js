@@ -13,9 +13,9 @@ const ActivitySubmit = ({ handleSubmitActivities }) => {
 	};
 
 	return (
-		<div data-testid={testIds.activitySubmit}>
+		<div data-testid={testIds.todaysTime.activitySubmit}>
 			<button
-				data-testid={testIds.activitySubmitButton}
+				data-testid={testIds.todaysTime.activitySubmitButton}
 				className="btn btn-primary mt-3"
 				onClick={handleButtonClick}
 			>

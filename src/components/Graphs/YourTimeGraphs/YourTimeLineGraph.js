@@ -21,7 +21,7 @@ const YourTimeLineGraph = () => {
 	}, [data]);
 
 	return (
-		<div data-testid={testIds.yourTimeLineGraph}>
+		<div data-testid={testIds.yourTime.yourTimeLineGraph}>
 			<LineChart
 				width={730}
 				height={250}

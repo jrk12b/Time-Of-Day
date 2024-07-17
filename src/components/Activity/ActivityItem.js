@@ -17,7 +17,7 @@ const ActivityItem = (props) => {
 
 	return (
 		<li
-			data-testid={testIds.activityItem}
+			data-testid={testIds.todaysTime.activityItem}
 			className="list-group-item d-flex justify-content-between align-items-center"
 		>
 			{props.name} | {props.hour} Hour(s)

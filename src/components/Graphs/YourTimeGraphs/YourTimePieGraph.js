@@ -40,7 +40,7 @@ const YourTimePieGraph = () => {
 	};
 
 	return (
-		<div data-testid={testIds.yourTimePieGraph}>
+		<div data-testid={testIds.yourTime.yourTimePieGraph}>
 			<PieChart width={400} height={400}>
 				<Legend verticalAlign="top" height={36} />
 				<Pie

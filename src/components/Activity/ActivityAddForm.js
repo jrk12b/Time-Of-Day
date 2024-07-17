@@ -49,7 +49,7 @@ const AddActivityForm = () => {
 	};
 
 	return (
-		<form data-testid={testIds.addActivityForm.addActivityForm} onSubmit={onSubmit}>
+		<form data-testid={testIds.todaysTime.addActivityForm.addActivityForm} onSubmit={onSubmit}>
 			<div className="row">
 				<div className="col-sm">
 					<label htmlFor="name">Name</label>
@@ -60,7 +60,7 @@ const AddActivityForm = () => {
 						getSuggestionValue={getSuggestionValue}
 						renderSuggestion={renderSuggestion}
 						inputProps={{
-							'data-testid': testIds.addActivityForm.addActivityFormName,
+							'data-testid': testIds.todaysTime.addActivityForm.addActivityFormName,
 							placeholder: 'Enter Activity Name',
 							value: name,
 							onChange: (event, { newValue }) => setName(newValue),
@@ -73,7 +73,7 @@ const AddActivityForm = () => {
 				<div className="col-sm">
 					<label htmlFor="hour">Hours</label>
 					<input
-						data-testid={testIds.addActivityForm.addActivityFormHours}
+						data-testid={testIds.todaysTime.addActivityForm.addActivityFormHours}
 						required="required"
 						type="text"
 						className="form-control"
@@ -85,7 +85,7 @@ const AddActivityForm = () => {
 				</div>
 				<div className="col-sm">
 					<button
-						data-testid={testIds.addActivityForm.addActivitySaveButton}
+						data-testid={testIds.todaysTime.addActivityForm.addActivitySaveButton}
 						type="submit"
 						className="btn btn-primary mt-3"
 					>

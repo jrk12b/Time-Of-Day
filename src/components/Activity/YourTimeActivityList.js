@@ -17,7 +17,7 @@ const YourTimeActivityList = ({
 	setEditHour = () => {},
 }) => {
 	return (
-		<ul data-testid={testIds.yourTimeActivityList} className="yourTimeList">
+		<ul data-testid={testIds.yourTime.yourTimeActivityList} className="yourTimeList">
 			{activities.map((activityDoc) => (
 				<div key={activityDoc._id} className="yourTime">
 					<button
@@ -29,7 +29,7 @@ const YourTimeActivityList = ({
 					<p className="dateText">Date: {new Date(activityDoc.timestamp).toLocaleDateString()}</p>
 					<ul>
 						{activityDoc.activities.map((activity) => (
-							<li key={activity._id}>
+							<li key={activity._id} data-testid={testIds.yourTime.yourTimeActivityEntry}>
 								{editActivity && editActivity._id === activity._id ? (
 									<div>
 										<input

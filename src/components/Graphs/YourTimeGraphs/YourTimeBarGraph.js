@@ -13,7 +13,7 @@ const YourTimeBarGraph = () => {
 	const data = useMemo(() => transformAndAggregateData(activities), [activities]);
 
 	return (
-		<div data-testid={testIds.yourTimeBarGraph}>
+		<div data-testid={testIds.yourTime.yourTimeBarGraph}>
 			<BarChart width={1000} height={400} data={data}>
 				<CartesianGrid stroke="#ccc" />
 				<XAxis dataKey="date" />

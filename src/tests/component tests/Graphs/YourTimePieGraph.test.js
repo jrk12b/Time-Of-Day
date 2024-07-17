@@ -13,7 +13,7 @@ describe('YourTimePieGraph', () => {
 			</AppContext.Provider>
 		);
 
-		const yourTimePieGraph = screen.getByTestId(testIds.yourTimePieGraph);
+		const yourTimePieGraph = screen.getByTestId(testIds.yourTime.yourTimePieGraph);
 		expect(yourTimePieGraph).toBeInTheDocument();
 		expect(yourTimePieGraph).toBeVisible();
 	});

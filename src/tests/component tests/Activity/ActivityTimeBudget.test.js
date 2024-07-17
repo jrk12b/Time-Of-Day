@@ -13,7 +13,7 @@ describe('TimeBudget', () => {
 			</AppContext.Provider>
 		);
 
-		const timeBudget = screen.getByTestId(testIds.timeBudget);
+		const timeBudget = screen.getByTestId(testIds.todaysTime.timeBudget);
 		expect(timeBudget).toBeInTheDocument();
 		expect(timeBudget).toBeVisible();
 		expect(timeBudget).toHaveTextContent('24 Hours');

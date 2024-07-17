@@ -20,7 +20,7 @@ const YourTimeComposedGraph = () => {
 	}, [data]);
 
 	return (
-		<div data-testid={testIds.yourTimeComposedGraph}>
+		<div data-testid={testIds.yourTime.yourTimeComposedGraph}>
 			<ComposedChart
 				width={730}
 				height={250}

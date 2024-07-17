@@ -16,7 +16,7 @@ describe('YourTimeActivityList', () => {
 			</AppContext.Provider>
 		);
 
-		const yourTimeActivityList = screen.getByTestId(testIds.yourTimeActivityList);
+		const yourTimeActivityList = screen.getByTestId(testIds.yourTime.yourTimeActivityList);
 		expect(yourTimeActivityList).toBeInTheDocument();
 		expect(yourTimeActivityList).toBeVisible();
 		expect(yourTimeActivityList).toHaveTextContent('Delete Entire Document');

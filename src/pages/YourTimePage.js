@@ -29,7 +29,7 @@ const YourTimePage = () => {
 	} = useActivityActions(PORT);
 
 	return (
-		<div data-testid={testIds.yourTime}>
+		<div data-testid={testIds.yourTime.yourTime}>
 			<h1>Your Time</h1>
 			<SuccessMessage message={successMessage} />
 			<ErrorMessage message={errorMessage} />

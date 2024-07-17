@@ -17,7 +17,7 @@ describe('ActivitySubmit', () => {
 			</AppContext.Provider>
 		);
 
-		const activitySubmit = screen.getByTestId(testIds.activitySubmit);
+		const activitySubmit = screen.getByTestId(testIds.todaysTime.activitySubmit);
 		expect(activitySubmit).toBeInTheDocument();
 		expect(activitySubmit).toBeVisible();
 		expect(activitySubmit).toHaveTextContent('Submit All Activities');
@@ -34,7 +34,7 @@ describe('ActivitySubmit', () => {
 			</AppProvider>
 		);
 
-		fireEvent.click(screen.getByTestId(testIds.activitySubmitButton));
+		fireEvent.click(screen.getByTestId(testIds.todaysTime.activitySubmitButton));
 
 		expect(handleSubmitActivities).toHaveBeenCalledWith(mockActivitiesNoKey);
 	});
@@ -50,7 +50,7 @@ describe('ActivitySubmit', () => {
 			</AppProvider>
 		);
 
-		fireEvent.click(screen.getByTestId(testIds.activitySubmitButton));
+		fireEvent.click(screen.getByTestId(testIds.todaysTime.activitySubmitButton));
 
 		expect(handleSubmitActivities).not.toHaveBeenCalledWith(mockActivitiesEmpty);
 	});

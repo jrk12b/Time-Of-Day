@@ -13,7 +13,7 @@ describe('YourTimeComposedGraph', () => {
 			</AppContext.Provider>
 		);
 
-		const yourTimeComposedGraph = screen.getByTestId(testIds.yourTimeComposedGraph);
+		const yourTimeComposedGraph = screen.getByTestId(testIds.yourTime.yourTimeComposedGraph);
 		expect(yourTimeComposedGraph).toBeInTheDocument();
 		expect(yourTimeComposedGraph).toBeVisible();
 	});

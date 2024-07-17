@@ -11,7 +11,7 @@ const TotalHours = () => {
 	}, 0);
 
 	return (
-		<div data-testid={testIds.totalHours} className="alert alert-primary">
+		<div data-testid={testIds.todaysTime.totalHours} className="alert alert-primary">
 			<span>Hours Spent So Far: {totalActivities}</span>
 		</div>
 	);

@@ -13,7 +13,7 @@ describe('YourTimeBarGraph', () => {
 			</AppContext.Provider>
 		);
 
-		const yourTimeBarGraph = screen.getByTestId(testIds.yourTimeBarGraph);
+		const yourTimeBarGraph = screen.getByTestId(testIds.yourTime.yourTimeBarGraph);
 		expect(yourTimeBarGraph).toBeInTheDocument();
 		expect(yourTimeBarGraph).toBeVisible();
 	});

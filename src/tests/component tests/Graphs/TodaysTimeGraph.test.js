@@ -13,7 +13,7 @@ describe('TodaysTimeGraph', () => {
 			</AppContext.Provider>
 		);
 
-		const todaysTimeGraph = screen.getByTestId(testIds.todaysTimeGraph);
+		const todaysTimeGraph = screen.getByTestId(testIds.todaysTime.todaysTimeGraph);
 		expect(todaysTimeGraph).toBeInTheDocument();
 		expect(todaysTimeGraph).toBeVisible();
 	});

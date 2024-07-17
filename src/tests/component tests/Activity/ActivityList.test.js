@@ -13,7 +13,7 @@ describe('ActivityList', () => {
 			</AppContext.Provider>
 		);
 
-		const activityList = screen.getByTestId(testIds.activityList);
+		const activityList = screen.getByTestId(testIds.todaysTime.activityList);
 		expect(activityList).toBeInTheDocument();
 		expect(activityList).toBeVisible();
 		expect(activityList).toHaveTextContent('mock_test1');

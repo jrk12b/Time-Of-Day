@@ -13,7 +13,7 @@ describe('TotalHours', () => {
 			</AppContext.Provider>
 		);
 
-		const totalHours = screen.getByTestId(testIds.totalHours);
+		const totalHours = screen.getByTestId(testIds.todaysTime.totalHours);
 		expect(totalHours).toBeInTheDocument();
 		expect(totalHours).toBeVisible();
 		expect(totalHours).toHaveTextContent('Hours Spent So Far: 3');

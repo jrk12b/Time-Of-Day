@@ -1,6 +1,3 @@
-import { testIds } from '../../src/testData/testIds';
-import { textContent } from '../../src/textContent';
-
 describe('Testing HeaderNav', () => {
 	it('Validate HeaderNav elements on homePage', () => {
 		cy.visit('/');

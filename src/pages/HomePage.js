@@ -7,8 +7,12 @@ const HomePage = () => {
 	return (
 		<div data-testid={testIds.home.homeDiv}>
 			<div className="video-background">
-				<video autoPlay muted loop id="bg-video">
-					<source src={`${process.env.PUBLIC_URL}/clock.mp4`} type="video/mp4" />
+				<video autoPlay muted loop id="bg-video" data-testid={testIds.home.videoBackground}>
+					<source
+						data-testid={testIds.home.videoBackgroundSource}
+						src={`${process.env.PUBLIC_URL}/clock.mp4`}
+						type="video/mp4"
+					/>
 					{textContent.browser.videoNotSupported}
 				</video>
 			</div>

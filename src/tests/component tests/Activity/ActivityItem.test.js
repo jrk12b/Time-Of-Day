@@ -17,7 +17,7 @@ describe('ActivityItem', () => {
 			</AppContext.Provider>
 		);
 
-		const activityItem = screen.getByTestId(testIds.activityItem);
+		const activityItem = screen.getByTestId(testIds.todaysTime.activityItem);
 		expect(activityItem).toBeInTheDocument();
 		expect(activityItem).toBeVisible();
 		expect(activityItem).toHaveTextContent('mock_test1 | 1 Hour(s)');

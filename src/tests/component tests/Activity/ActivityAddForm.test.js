@@ -13,18 +13,22 @@ describe('AddActivityForm', () => {
 			</AppContext.Provider>
 		);
 
-		const addActivityForm = screen.getByTestId(testIds.addActivityForm.addActivityForm);
+		const addActivityForm = screen.getByTestId(testIds.todaysTime.addActivityForm.addActivityForm);
 		expect(addActivityForm).toBeInTheDocument();
 		expect(addActivityForm).toBeVisible();
 		expect(addActivityForm).toHaveTextContent('Name');
 		expect(addActivityForm).toHaveTextContent('Hours');
 		expect(addActivityForm).toHaveTextContent('Save');
 
-		const addActivityFormName = screen.getByTestId(testIds.addActivityForm.addActivityFormName);
+		const addActivityFormName = screen.getByTestId(
+			testIds.todaysTime.addActivityForm.addActivityFormName
+		);
 		expect(addActivityFormName).toBeInTheDocument();
 		expect(addActivityFormName).toBeVisible();
 
-		const addActivityFormHours = screen.getByTestId(testIds.addActivityForm.addActivityFormHours);
+		const addActivityFormHours = screen.getByTestId(
+			testIds.todaysTime.addActivityForm.addActivityFormHours
+		);
 		expect(addActivityFormHours).toBeInTheDocument();
 		expect(addActivityFormHours).toBeVisible();
 	});

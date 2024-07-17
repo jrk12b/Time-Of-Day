@@ -13,7 +13,7 @@ describe('YourTimeLineGraph', () => {
 			</AppContext.Provider>
 		);
 
-		const yourTimeLineGraph = screen.getByTestId(testIds.yourTimeLineGraph);
+		const yourTimeLineGraph = screen.getByTestId(testIds.yourTime.yourTimeLineGraph);
 		expect(yourTimeLineGraph).toBeInTheDocument();
 		expect(yourTimeLineGraph).toBeVisible();
 	});

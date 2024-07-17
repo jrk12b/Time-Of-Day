@@ -13,7 +13,7 @@ describe('RemainingHours', () => {
 			</AppContext.Provider>
 		);
 
-		const remainingHours = screen.getByTestId(testIds.remainingHours);
+		const remainingHours = screen.getByTestId(testIds.todaysTime.remainingHours);
 		expect(remainingHours).toBeInTheDocument();
 		expect(remainingHours).toBeVisible();
 		expect(remainingHours).toHaveTextContent('Hours Remaining: 21');

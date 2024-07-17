@@ -28,7 +28,7 @@ const TimePage = () => {
 	}, []);
 
 	return (
-		<div data-testid={testIds.todaysTime}>
+		<div data-testid={testIds.todaysTime.todaysTime}>
 			<hr />
 			<AppProvider>
 				<div className="container">
@@ -47,7 +47,9 @@ const TimePage = () => {
 						<TodaysTimeGraph />
 					</div>
 					<div className="activityForm">
-						<h3>Add Activity</h3>
+						<h3 data-testid={testIds.todaysTime.addActivityForm.addActivityFormHeader}>
+							Add Activity
+						</h3>
 						<div>
 							<ActivityAddForm />
 						</div>

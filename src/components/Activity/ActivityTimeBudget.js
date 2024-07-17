@@ -7,7 +7,7 @@ const TimeBudget = () => {
 	const { hours } = useContext(AppContext);
 
 	return (
-		<div data-testid={testIds.timeBudget} className="alert alert-success">
+		<div data-testid={testIds.todaysTime.timeBudget} className="alert alert-success">
 			<span>{hours} Hours</span>
 		</div>
 	);
