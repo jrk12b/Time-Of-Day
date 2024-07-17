@@ -11,7 +11,13 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
 		"eject": "react-scripts eject",
-		"api-test": "mocha \"src/tests/api tests/\""
+		"api-test": "mocha \"src/tests/api tests/\"",
+		"start-server": "node ./backend/server.js",
+		"start-app": "npm run start-server & npm run start",
+		"cy:open": "cypress open",
+		"cy:run": "cypress run",
+		"cy:serve-and-open": "start-server-and-test start http://localhost:3000 cy:open",
+		"cy:serve-and-run": "start-server-and-test start http://localhost:3000 cy:run"
 	},
 	"repository": {
 		"type": "git",
@@ -22,7 +28,9 @@
 	"eslintConfig": {
 		"extends": [
 			"react-app",
-			"react-app/jest"
+			"react-app/jest",
+			"eslint:recommended",
+			"plugin:cypress/recommended"
 		]
 	},
 	"browserslist": {
@@ -68,5 +76,11 @@
 		"recharts": "^2.13.0-alpha.4",
 		"supertest": "^7.0.0",
 		"web-vitals": "^4.2.1"
+	},
+	"devDependencies": {
+		"cypress": "^13.13.1",
+		"eslint": "^8.57.0",
+		"eslint-plugin-cypress": "^3.3.0",
+		"start-server-and-test": "^2.0.4"
 	}
 }

@@ -36,7 +36,7 @@ jobs:
   api-run:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [format-and-setup, jest-run]
+    needs: [format-and-setup]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -44,3 +44,13 @@ jobs:
         run: npm ci
       - name: Run api tests
         run: npm run api-test
+  cypress-run:
+    runs-on: ubuntu-latest
+    needs: [format-and-setup, jest-run, api-run]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run cypress tests
+        run: npm run cy:serve-and-run
