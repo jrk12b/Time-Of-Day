@@ -28,6 +28,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      - uses: actions/setup-node@v2
       - name: Run jest tests
         run: npm run test -- --coverage
       - name: Upload Coverage to Codecov
