@@ -55,7 +55,7 @@ jobs:
         run: npm ci
       - name: Run Cypress Tests against Chrome
         run: npm run cy:pipeline-run-chrome
-  cypress-run-firefox:
+  cypress-run-webkit-safari:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: [format-and-setup, jest-run, api-run]
@@ -64,6 +64,23 @@ jobs:
         uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
           time: '2m'
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install webkit Dependencies
+        run: npx playwright install-deps webkit
+      - name: Run Cypress Tests against Webkit(Safari)
+        run: npm run cy:pipeline-run-webkit
+  cypress-run-firefox:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [format-and-setup, jest-run, api-run]
+    steps:
+      - name: Quick Sleep/Delay
+        uses: GuillaumeFalourd/wait-sleep-action@v1
+        with:
+          time: '5m'
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Dependencies
@@ -78,7 +95,7 @@ jobs:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
-          time: '4m'
+          time: '7m'
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Dependencies
@@ -93,27 +110,10 @@ jobs:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
-          time: '6m'
+          time: '9m'
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: npm ci
       - name: Run Cypress Tests against Electron
         run: npm run cy:pipeline-run-electron
-  cypress-run-webkit-safari:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    needs: [format-and-setup, jest-run, api-run]
-    steps:
-      - name: Quick Sleep/Delay
-        uses: GuillaumeFalourd/wait-sleep-action@v1
-        with:
-          time: '8m'
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      - name: Install Dependencies
-        run: npm ci
-      - name: Install webkit Dependencies
-        run: npx playwright install-deps webkit
-      - name: Run Cypress Tests against Webkit(Safari)
-        run: npm run cy:pipeline-run-webkit
