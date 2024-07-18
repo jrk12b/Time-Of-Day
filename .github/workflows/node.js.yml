@@ -46,7 +46,7 @@ jobs:
         run: npm run api-test
   cypress-run-chrome:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     needs: [format-and-setup, jest-run, api-run]
     steps:
       - name: Checkout Code
@@ -55,3 +55,36 @@ jobs:
         run: npm ci
       - name: Run Cypress Tests against Chrome
         run: npm run cy:pipeline-run-chrome
+  cypress-run-firefox:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [format-and-setup, jest-run, api-run]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Cypress Tests against Firefox
+        run: npm run cy:pipeline-run-firefox
+  cypress-run-edge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [format-and-setup, jest-run, api-run]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Cypress Tests against Edge
+        run: npm run cy:pipeline-run-edge
+  cypress-run-electron:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [format-and-setup, jest-run, api-run]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Cypress Tests against Electron
+        run: npm run cy:pipeline-run-electron

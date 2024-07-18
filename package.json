@@ -21,7 +21,10 @@
 		"cy:run-firefox": "cypress run --browser firefox",
 		"cy:run-edge": "cypress run --browser edge",
 		"cy:run-electron": "cypress run --browser electron",
-		"cy:pipeline-run-chrome": "npm run start-app & npm run cy:run-chrome"
+		"cy:pipeline-run-chrome": "npm run start-app & npm run cy:run-chrome",
+		"cy:pipeline-run-firefox": "npm run start-app & npm run cy:run-firefox",
+		"cy:pipeline-run-edge": "npm run start-app & npm run cy:run-edge",
+		"cy:pipeline-run-electron": "npm run start-app & npm run cy:run-electron"
 	},
 	"repository": {
 		"type": "git",
