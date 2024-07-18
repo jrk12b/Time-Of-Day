@@ -55,8 +55,7 @@ jobs:
         run: npm ci
       - name: Start App
         run: |
-          npm run start-server &
-          npm run start &
+          nohup npm run start-server & nohup npm run start
           npx wait-on http://localhost:3000
       - name: Run Cypress Tests against Electron
         run: npm run cy:run-electron
