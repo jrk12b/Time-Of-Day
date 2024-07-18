@@ -84,14 +84,13 @@
 		"react-scripts": "5.0.1",
 		"recharts": "^2.13.0-alpha.4",
 		"supertest": "^7.0.0",
-		"web-vitals": "^4.2.1"
-	},
-	"devDependencies": {
+		"web-vitals": "^4.2.1",
 		"cypress": "^13.13.1",
 		"eslint": "^8.57.0",
 		"eslint-plugin-cypress": "^3.3.0",
 		"playwright-webkit": "^1.45.2",
 		"start-server-and-test": "^2.0.4",
 		"wait-on": "^7.2.0"
-	}
+	},
+	"devDependencies": {}
 }
