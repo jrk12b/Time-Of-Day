@@ -43,6 +43,8 @@ jobs:
         with:
           files: ./coverage/*.json
           flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true # Fail the CI if there's an error uploading the coverage
 
   api-test:
     runs-on: ubuntu-latest
