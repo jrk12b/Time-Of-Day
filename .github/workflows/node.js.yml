@@ -63,7 +63,7 @@ jobs:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
-          time: '3m'
+          time: '2m'
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Dependencies
@@ -78,7 +78,7 @@ jobs:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
-          time: '3m'
+          time: '4m'
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Dependencies
@@ -93,7 +93,7 @@ jobs:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
-          time: '3m'
+          time: '6m'
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Dependencies
@@ -108,7 +108,7 @@ jobs:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
-          time: '3m'
+          time: '8m'
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Dependencies
