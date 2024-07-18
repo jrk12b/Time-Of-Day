@@ -54,7 +54,10 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Start App
-        run: npm run start-app
+        run: |
+          npm run start-server &
+          npm run start &
+          npx wait-on http://localhost:3000
       - name: Run Cypress Tests against Electron
         run: npm run cy:run-electron
       - name: Run Cypress Tests against Chrome
