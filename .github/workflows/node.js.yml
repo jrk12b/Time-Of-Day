@@ -30,6 +30,8 @@ jobs:
   security-scanning:
     runs-on: ubuntu-latest
     steps:
+      - name: Run Package Lock Only
+        run: npm i --package-lock-only
       - name: Run npm audit
         run: npm audit
       - name: Run CodeQL Analysis
