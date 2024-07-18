@@ -44,7 +44,7 @@ jobs:
         run: npm ci
       - name: Run api tests
         run: npm run api-test
-  cypress-run:
+  cypress-run-chrome:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     needs: [format-and-setup, jest-run, api-run]
@@ -53,15 +53,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: npm ci
-      - name: Start App
-        run: |
-          nohup npm run start-server & nohup npm run start
-          npx wait-on http://localhost:3000
-      - name: Run Cypress Tests against Electron
-        run: npm run cy:run-electron
       - name: Run Cypress Tests against Chrome
-        run: npm run cy:run-chrome
-      - name: Run Cypress Tests against firefox
-        run: npm run cy:un-firefox
-      - name: Run Cypress Tests against edge
-        run: npm run cy:run-edge
+        run: npm run cy:pipeline-run-chrome
