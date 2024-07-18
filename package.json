@@ -15,16 +15,12 @@
 		"start-server": "node ./backend/server.js",
 		"start-app": "npm run start-server & npm run start",
 		"cy:open": "cypress open",
+		"cy:serve-and-open": "npm run start-app & npm run cy:open",
 		"cy:run": "cypress run",
-		"cy:run-chrome": " cypress run --browser chrome",
+		"cy:run-chrome": "cypress run --browser chrome",
 		"cy:run-firefox": "cypress run --browser firefox",
 		"cy:run-edge": "cypress run --browser edge",
-		"cy:run-electron": "cypress run --browser electron",
-		"cy:serve-and-open": "npm run start-app & npm run cy:open",
-		"cy:pipeline-run-electron": "npm run start-app & npm run cy:run-electron",
-		"cy:pipeline-run-chrome": "npm run start-app & npm run cy:run-chrome",
-		"cy:pipeline-run-firefox": "npm run start-app & npm run cy:run-firefox",
-		"cy:pipeline-run-edge": "npm run start-app & npm run cy:run-edge"
+		"cy:run-electron": "cypress run --browser electron"
 	},
 	"repository": {
 		"type": "git",
