@@ -7,30 +7,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  format-and-setup:
+  setup-node:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
+      - run: npm ci
       - name: Run Format
         run: npm run format-check
 
-      - name: Install Dependencies
-        run: npm ci
-
-  unit-test:
+  unit-and-component-test:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [format-and-setup]
+    needs: [setup-node]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -43,14 +37,13 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/*.json
-          flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: true
 
   api-test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [format-and-setup]
+    needs: [setup-node]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -62,7 +55,7 @@ jobs:
   cypress-run-chrome:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [format-and-setup, unit-test, api-test]
+    needs: [setup-node, unit-and-component-test, api-test]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -74,7 +67,7 @@ jobs:
   cypress-run-safari-webkit:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [format-and-setup, unit-test, api-test]
+    needs: [setup-node, unit-and-component-test, api-test]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -92,7 +85,7 @@ jobs:
   cypress-run-firefox:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [format-and-setup, unit-test, api-test]
+    needs: [setup-node, unit-and-component-test, api-test]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -108,7 +101,7 @@ jobs:
   cypress-run-edge:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [format-and-setup, unit-test, api-test]
+    needs: [setup-node, unit-and-component-test, api-test]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -124,7 +117,7 @@ jobs:
   cypress-run-electron:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [format-and-setup, unit-test, api-test]
+    needs: [setup-node, unit-and-component-test, api-test]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
