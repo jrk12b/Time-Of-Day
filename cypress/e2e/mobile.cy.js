@@ -1,5 +1,4 @@
 import { testIds } from '../../src/testData/testIds';
-import { textContent } from '../../src/textContent';
 
 // mobile device sizes tested
 const devices = [

@@ -15,16 +15,18 @@
 		"start-server": "node ./backend/server.js",
 		"start-app": "npm run start-server & npm run start",
 		"cy:open": "cypress open",
-		"cy:serve-and-open": "npm run start-app & npm run cy:open",
+		"cy:open-and-serve": "npm run start-app & npm run cy:open",
 		"cy:run": "cypress run",
 		"cy:run-chrome": "cypress run --browser chrome",
 		"cy:run-firefox": "cypress run --browser firefox",
 		"cy:run-edge": "cypress run --browser edge",
 		"cy:run-electron": "cypress run --browser electron",
+		"cy:run-webkit": "cypress run --browser webkit",
 		"cy:pipeline-run-chrome": "npm run start-app & npm run cy:run-chrome",
 		"cy:pipeline-run-firefox": "npm run start-app & npm run cy:run-firefox",
 		"cy:pipeline-run-edge": "npm run start-app & npm run cy:run-edge",
-		"cy:pipeline-run-electron": "npm run start-app & npm run cy:run-electron"
+		"cy:pipeline-run-electron": "npm run start-app & npm run cy:run-electron",
+		"cy:pipeline-run-webkit": "npm run start-app & npm run cy:run-webkit"
 	},
 	"repository": {
 		"type": "git",
@@ -88,6 +90,7 @@
 		"cypress": "^13.13.1",
 		"eslint": "^8.57.0",
 		"eslint-plugin-cypress": "^3.3.0",
+		"playwright-webkit": "^1.45.2",
 		"start-server-and-test": "^2.0.4",
 		"wait-on": "^7.2.0"
 	}
