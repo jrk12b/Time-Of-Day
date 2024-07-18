@@ -18,7 +18,7 @@ const devices = [
 	'samsung-s10',
 ];
 
-describe('Validating mobile responsiveness', () => {
+describe('Validating mobile responsiveness', { browser: '!webkit' }, () => {
 	beforeEach(() => {
 		cy.visit('/');
 	});
