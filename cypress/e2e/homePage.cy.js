@@ -1,3 +1,4 @@
+/* eslint-disable cypress/unsafe-to-chain-command */
 import { testIds } from '../../src/testData/testIds';
 import { textContent } from '../../src/textContent';
 
@@ -30,16 +31,18 @@ describe('Testing Home Page Elements', () => {
 	});
 
 	it('Validate Details section is visible', () => {
-		cy.getByTestId(testIds.home.details).should('be.visible');
-		cy.getByTestId(testIds.home.details).contains(textContent.home.details);
+		cy.getByTestId(testIds.home.details).as('details');
+		cy.get('@details').scrollIntoView().should('be.visible');
+		cy.get('@details').scrollIntoView().contains(textContent.home.details);
 	});
 
 	it('Validate Instructions section is visible', () => {
-		cy.getByTestId(testIds.home.instructions).should('be.visible');
-		cy.getByTestId(testIds.home.instructions).contains(textContent.home.instructionsHeader);
-		cy.getByTestId(testIds.home.instructions).contains(textContent.home.instructions1);
-		cy.getByTestId(testIds.home.instructions).contains(textContent.home.instructions2);
-		cy.getByTestId(testIds.home.instructions).contains(textContent.home.instructions3);
-		cy.getByTestId(testIds.home.instructions).contains(textContent.home.instructions4);
+		cy.getByTestId(testIds.home.instructions).as('instructions');
+		cy.get('@instructions').scrollIntoView().should('be.visible');
+		cy.get('@instructions').scrollIntoView().contains(textContent.home.instructionsHeader);
+		cy.get('@instructions').scrollIntoView().contains(textContent.home.instructions1);
+		cy.get('@instructions').scrollIntoView().contains(textContent.home.instructions2);
+		cy.get('@instructions').scrollIntoView().contains(textContent.home.instructions3);
+		cy.get('@instructions').scrollIntoView().contains(textContent.home.instructions4);
 	});
 });
