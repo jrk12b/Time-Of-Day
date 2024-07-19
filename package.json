@@ -26,7 +26,8 @@
 		"cy:pipeline-run-firefox": "npm run start-app & npm run cy:run-firefox",
 		"cy:pipeline-run-edge": "npm run start-app & npm run cy:run-edge",
 		"cy:pipeline-run-electron": "npm run start-app & npm run cy:run-electron",
-		"cy:pipeline-run-webkit": "npm run start-app & npm run cy:run-webkit"
+		"cy:pipeline-run-webkit": "npm run start-app & npm run cy:run-webkit",
+		"k6:pipeline-run": "npm run start-app & k6 run 'src/tests/performance tests/k6Tests/load-test.js'"
 	},
 	"repository": {
 		"type": "git",

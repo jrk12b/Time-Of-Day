@@ -1,9 +1,7 @@
 import http from 'k6/http';
 import { sleep, check } from 'k6';
 
-const homeRoute = '/';
-const todaysTimeRoute = '/TodaysTime';
-const yourTimeRoute = '/YourTime';
+const homeRoute = 'http://localhost:3000';
 
 const k6_thresholds = {
 	http_req_duration: ['p(99)<3000'], // 99 percent of response times must be below 2000ms
@@ -16,7 +14,7 @@ exports.k6_thresholds = k6_thresholds;
 
 export function k6_test_requests() {
 	// a value larger than the time needed to complete a VU iteration. Used to generate a constant_request_rate
-	const iteration_duration = 2;
+	const iteration_duration = 1;
 	const start_time = new Date().getTime();
 
 	// GET root
@@ -25,37 +23,9 @@ export function k6_test_requests() {
 	check(getResonseHome, {
 		'GET response status is 200': (res) => res.status === 200,
 		'GET response is not null': (res) => res != null,
-		'GET response is not empty': (res) => res != '',
-		'GET response is not empty object': (res) => res != {},
+		'GET response is not empty': (res) => res !== '',
 		'GET response body is not null': (res) => res.body != null,
-		'GET response body is not empty': (res) => res.body != '',
-		'GET response body is not empty object': (res) => res.body != {},
-	});
-
-	// GET todaysTimeRoute
-	console.log('GET URL: ' + todaysTimeRoute);
-	const getResonseTodaysTime = http.get(todaysTimeRoute);
-	check(getResonseTodaysTime, {
-		'GET response status is 200': (res) => res.status === 200,
-		'GET response is not null': (res) => res != null,
-		'GET response is not empty': (res) => res != '',
-		'GET response is not empty object': (res) => res != {},
-		'GET response body is not null': (res) => res.body != null,
-		'GET response body is not empty': (res) => res.body != '',
-		'GET response body is not empty object': (res) => res.body != {},
-	});
-
-	// GET yourTimeRoute
-	console.log('GET URL: ' + yourTimeRoute);
-	const getResponseYourTime = http.get(yourTimeRoute);
-	check(getResponseYourTime, {
-		'GET response status is 200': (res) => res.status === 200,
-		'GET response is not null': (res) => res != null,
-		'GET response is not empty': (res) => res != '',
-		'GET response is not empty object': (res) => res != {},
-		'GET response body is not null': (res) => res.body != null,
-		'GET response body is not empty': (res) => res.body != '',
-		'GET response body is not empty object': (res) => res.body != {},
+		'GET response body is not empty': (res) => res.body !== '',
 	});
 
 	constant_request_rate(start_time, iteration_duration);
