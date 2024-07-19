@@ -4,6 +4,7 @@
 .pnp.js
 
 # testing
+coverage
 videos
 cypress/screenshots/
 

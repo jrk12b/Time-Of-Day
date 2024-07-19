@@ -1,5 +1,6 @@
 import { testIds } from '../../src/testData/testIds';
 import { textContent } from '../../src/textContent';
+import '@cypress-audit/lighthouse/commands';
 
 Cypress.Commands.add('getByTestId', (testId) => {
 	return cy.get(`[data-testid="${testId}"]`);
@@ -55,8 +56,8 @@ Cypress.Commands.add('validateHeaderNavMobile', () => {
 
 Cypress.Commands.add('addActivity', (activityName, hours) => {
 	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormName).should('be.visible');
-	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormName).clear().type(activityName);
-	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormHours).clear().type(hours);
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormName).type(activityName);
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormHours).type(hours);
 	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivitySaveButton).click();
 
 	cy.getByTestId(testIds.todaysTime.activityItem).should('be.visible');
@@ -70,4 +71,38 @@ Cypress.Commands.add('deleteActivity', (activityName, hours) => {
 		.as('createdActivity');
 	cy.get('@createdActivity').parents('div.yourTime').find('button.delete-document-button').click();
 	cy.contains('Document deleted successfully').should('be.visible');
+});
+
+Cypress.Commands.add('validateHomePageLoad', () => {
+	cy.getByTestId(testIds.app).should('be.visible');
+	cy.validateHeaderNav();
+	cy.getByTestId(testIds.home.welcomeBanner).should('be.visible');
+	cy.getByTestId(testIds.home.homeHeader).should('be.visible');
+	cy.getByTestId(testIds.home.motivation).should('be.visible');
+	cy.getByTestId(testIds.home.details).should('be.visible');
+	cy.getByTestId(testIds.home.instructions).should('be.visible');
+});
+
+Cypress.Commands.add('validateTodaysTimePageLoad', () => {
+	cy.getByTestId(testIds.app).should('be.visible');
+	cy.validateHeaderNav();
+	cy.getByTestId(testIds.todaysTime.todaysTime).should('be.visible');
+	cy.getByTestId(testIds.todaysTime.timeBudget).should('be.visible');
+	cy.getByTestId(testIds.todaysTime.remainingHours).should('be.visible');
+	cy.getByTestId(testIds.todaysTime.totalHours).should('be.visible');
+	cy.getByTestId(testIds.todaysTime.todaysTimeGraph).should('be.visible');
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormHeader).should('be.visible');
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityForm).should('be.visible');
+	cy.getByTestId(testIds.todaysTime.activitySubmit).should('be.visible');
+});
+
+Cypress.Commands.add('validateYourTimePageLoad', () => {
+	cy.getByTestId(testIds.app).should('be.visible');
+	cy.validateHeaderNav();
+	cy.getByTestId(testIds.yourTime.yourTime).should('be.visible');
+	cy.getByTestId(testIds.yourTime.yourTimeActivityList).should('be.visible');
+	cy.getByTestId(testIds.yourTime.yourTimeBarGraph).should('be.visible');
+	cy.getByTestId(testIds.yourTime.yourTimePieGraph).should('be.visible');
+	cy.getByTestId(testIds.yourTime.yourTimeComposedGraph).should('be.visible');
+	cy.getByTestId(testIds.yourTime.yourTimeLineGraph).should('be.visible');
 });
