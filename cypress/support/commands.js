@@ -56,8 +56,14 @@ Cypress.Commands.add('validateHeaderNavMobile', () => {
 
 Cypress.Commands.add('addActivity', (activityName, hours) => {
 	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormName).should('be.visible');
-	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormName).type(activityName);
-	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormHours).type(hours);
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormName).as('addActivityFormName');
+	cy.get('@addActivityFormName').clear();
+	cy.get('@addActivityFormName').type(activityName);
+	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivityFormHours).as(
+		'addActivityFormHours'
+	);
+	cy.get('@addActivityFormHours').clear();
+	cy.get('@addActivityFormHours').type(hours);
 	cy.getByTestId(testIds.todaysTime.addActivityForm.addActivitySaveButton).click();
 
 	cy.getByTestId(testIds.todaysTime.activityItem).should('be.visible');

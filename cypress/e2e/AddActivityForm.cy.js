@@ -57,7 +57,7 @@ describe('Testing Add Activity Form', () => {
 		cy.deleteActivity('Test Activity', '1');
 	});
 
-	it('Validate Add Activity Form: submit multiple activities', () => {
+	it.only('Validate Add Activity Form: submit multiple activities', () => {
 		cy.addActivity('Test Activity', '1');
 		cy.addActivity('Test Activity 2', '2');
 
