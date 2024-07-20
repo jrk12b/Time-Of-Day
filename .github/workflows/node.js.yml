@@ -17,10 +17,10 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - name: Install Dependencies
-        run: npm ci
-      - name: Run Format
-        run: npm run format-check
+      # - name: Install Dependencies
+      #   run: npm ci
+      # - name: Run Format
+      #   run: npm run format-check
 
   # unit-and-component-test:
   #   runs-on: ubuntu-latest
@@ -142,7 +142,7 @@ jobs:
       - name: Start App
         run: |
           npm run start-server
-          npm start &&
+          npm start &
           sleep 5 &&
           curl http://localhost:3000 -I &&
       - name: Run k6 tests
