@@ -132,24 +132,14 @@ jobs:
   #       run: npm run cy:pipeline-run-electron
 
   k6-run:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     needs: [setup-node]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: npm ci
-      - name: Start Backend Server
-        run: |
-          npm run start-server &
-          sleep 15s
-          curl http://localhost:8000 -I
-      - name: Start Localhost
-        run: |
-          npm run start &
-          sleep 15s
-          curl http://localhost:3000 -I
+      - name: Install k6
+        run: brew install k6
       - name: Run k6 tests
-        uses: grafana/k6-action@v0.2.0
-        with:
-          filename: src/tests/performance\ tests/k6Tests/baseline-test.js
+        run: k6 run 'src/tests/performance tests/k6Tests/load-test.js'
