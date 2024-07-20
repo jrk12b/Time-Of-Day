@@ -142,4 +142,4 @@ jobs:
       - name: Install k6
         run: brew install k6
       - name: Run k6 tests
-        run: k6:pipeline-run
+        run: npm run k6:pipeline-run
