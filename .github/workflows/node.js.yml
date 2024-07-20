@@ -152,4 +152,4 @@ jobs:
       - name: Run k6 tests
         uses: grafana/k6-action@v0.2.0
         with:
-          filename: k6/tests/baseline-test.js
+          filename: 'src/tests/performance tests/k6Tests/baseline-test.js'
