@@ -141,7 +141,8 @@ jobs:
         run: npm ci
       - name: Start App
         run: |
-          npm run start-app &&
+          npm run start-server &&
+          npm start &&
           sleep 5 &&
           curl http://localhost:3000 -I
       - name: Run k6 tests
