@@ -141,8 +141,8 @@ jobs:
         run: npm ci
       - name: Start App
         run: |
-          npm run start-server &
-          npm run start &
+          npm run start-app
+          sleep 5 &&
           curl http://localhost:3000 -I &&
       - name: Run k6 tests
         uses: grafana/k6-action@v0.2.0
