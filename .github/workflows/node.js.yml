@@ -142,7 +142,7 @@ jobs:
       - name: Start App
         run: |
           npm run start-app &
-          sleep 15 &&
+          sleep 15s &&
           curl http://localhost:3000 -I &&
       - name: Run k6 tests
         uses: grafana/k6-action@v0.2.0
