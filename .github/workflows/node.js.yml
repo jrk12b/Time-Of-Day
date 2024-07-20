@@ -141,8 +141,8 @@ jobs:
         run: npm ci
       - name: Start Backend Server
         run: |
-          npm run start-server &
-          sleep 15s &&
+          npm run start-server
+          sleep 15s &
           curl http://localhost:8000 -I &&
       # - name: Start App
       #   run: |
