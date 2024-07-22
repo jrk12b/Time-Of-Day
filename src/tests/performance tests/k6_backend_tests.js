@@ -1,7 +1,8 @@
 import http from 'k6/http';
 import { sleep, check } from 'k6';
 
-const homeRoute = 'http://localhost:3000';
+const activitiesRoute = 'http://localhost:8000/api/activities';
+const activitiesNamesRoute = 'http://localhost:8000/api/activities/names';
 
 const k6_thresholds = {
 	http_req_duration: ['p(99)<3000'], // 99 percent of response times must be below 2000ms
@@ -17,10 +18,23 @@ export function k6_test_requests() {
 	const iteration_duration = 1;
 	const start_time = new Date().getTime();
 
-	// GET root
-	console.log('GET URL: ' + homeRoute);
-	const getResonseHome = http.get(homeRoute);
-	check(getResonseHome, {
+	// GET activities
+	console.log(`GET URL: ${activitiesRoute}`);
+	const getResonseActivities = http.get(activitiesRoute);
+	console.log(`GET response status: ${getResonseActivities.status}`);
+	check(getResonseActivities, {
+		'GET response status is 200': (res) => res.status === 200,
+		'GET response is not null': (res) => res != null,
+		'GET response is not empty': (res) => res !== '',
+		'GET response body is not null': (res) => res.body != null,
+		'GET response body is not empty': (res) => res.body !== '',
+	});
+
+	// GET activities/names
+	console.log(`GET URL: ${activitiesNamesRoute}`);
+	const getResponseActivitiesNames = http.get(activitiesNamesRoute);
+	console.log(`GET response status: ${getResponseActivitiesNames.status}`);
+	check(getResponseActivitiesNames, {
 		'GET response status is 200': (res) => res.status === 200,
 		'GET response is not null': (res) => res != null,
 		'GET response is not empty': (res) => res !== '',

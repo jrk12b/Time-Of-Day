@@ -65,6 +65,8 @@ jobs:
         run: brew install k6
       - name: Run k6 tests
         run: npm run k6:pipeline-run
+      - name: Run k6 browser tests
+        run: npm run k6:pipeline-browser-run
 
   cypress-run-chrome:
     runs-on: ubuntu-latest

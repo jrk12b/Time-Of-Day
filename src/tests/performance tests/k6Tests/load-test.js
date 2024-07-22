@@ -4,7 +4,7 @@
 // For local debugging, example command:
 // k6 run load-test.js --summary-export="Test.json" --http-debug=full
 ////////////////////////////////////////////////////////////////////////////////////////////
-import { k6_test_requests, k6_thresholds } from '../k6_test_requests.js';
+import { k6_test_requests, k6_thresholds } from '../k6_backend_tests.js';
 
 export const options = {
 	stages: [
