@@ -76,12 +76,8 @@ jobs:
         run: npm ci
       - name: Install k6
         run: brew install k6
-      - name: Run k6 homePage tests
+      - name: Run k6 home tests
         run: npm run k6:pipeline-browser-home
-      - name: Run k6 todaysTime tests
-        run: npm run k6:pipeline-browser-todaystime
-      - name: Run k6 yourTime tests
-        run: npm run k6:pipeline-browser-yourTime
 
   performance-browser-test-todaysTime:
     runs-on: macos-latest
@@ -93,10 +89,8 @@ jobs:
         run: npm ci
       - name: Install k6
         run: brew install k6
-      - name: Run k6 todaysTime tests
+      - name: Run k6 todaystime tests
         run: npm run k6:pipeline-browser-todaystime
-      - name: Run k6 yourTime tests
-        run: npm run k6:pipeline-browser-yourTime
 
   performance-browser-test-yourTime:
     runs-on: macos-latest
@@ -108,8 +102,8 @@ jobs:
         run: npm ci
       - name: Install k6
         run: brew install k6
-      - name: Run k6 yourTime tests
-        run: npm run k6:pipeline-browser-yourTime
+      - name: Run k6 yourtime tests
+        run: npm run k6:pipeline-browser-yourtime
 
   cypress-run-chrome:
     runs-on: ubuntu-latest
