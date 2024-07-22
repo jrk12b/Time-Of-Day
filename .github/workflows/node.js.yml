@@ -53,7 +53,7 @@ jobs:
       - name: Run api tests
         run: npm run api-test
 
-  performance-run:
+  performance-backend-test:
     runs-on: macos-latest
     needs: [setup-node, unit-and-component-test, api-test]
     steps:
@@ -65,13 +65,34 @@ jobs:
         run: brew install k6
       - name: Run k6 tests
         run: npm run k6:pipeline-run
-      - name: Run k6 browser tests
-        run: npm run k6:pipeline-browser-run
+  performance-browser-test:
+    runs-on: macos-latest
+    needs: [setup-node, unit-and-component-test, api-test]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install k6
+        run: brew install k6
+      - name: Run k6 homePage tests
+        run: npm run k6:pipeline-browser-home
+      - name: Run k6 todaysTime tests
+        run: npm run k6:pipeline-browser-todaystime
+      - name: Run k6 yourTime tests
+        run: npm run k6:pipeline-browser-yourTime
 
   cypress-run-chrome:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [setup-node, unit-and-component-test, api-test, performance-run]
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-test,
+      ]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -83,7 +104,14 @@ jobs:
   cypress-run-safari-webkit:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [setup-node, unit-and-component-test, api-test, performance-run]
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-test,
+      ]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -101,7 +129,14 @@ jobs:
   cypress-run-firefox:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [setup-node, unit-and-component-test, api-test, performance-run]
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-test,
+      ]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -117,7 +152,14 @@ jobs:
   cypress-run-edge:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [setup-node, unit-and-component-test, api-test, performance-run]
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-test,
+      ]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -133,7 +175,14 @@ jobs:
   cypress-run-electron:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [setup-node, unit-and-component-test, api-test, performance-run]
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-test,
+      ]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
