@@ -36,16 +36,16 @@ export default async function () {
 	try {
 		await browserPage.goto(todaysTimePage);
 		check(browserPage, {
-			NavContainer: (p) => p.locator('[data-testid="nav-container"]').isVisible(),
-			HeaderNav: (p) => p.locator('[data-testid="header-nav"]').isVisible(),
-			TodaysTime: (p) => p.locator('[data-testid="todays-time"]').isVisible(),
-			TimeBudget: (p) => p.locator('[data-testid="time-budget"]').isVisible(),
-			RemainingHours: (p) => p.locator('[data-testid="remaining-hours"]').isVisible(),
-			TotalHours: (p) => p.locator('[data-testid="total-hours"]').isVisible(),
-			TodaysTimeGraph: (p) => p.locator('[data-testid="todays-time-graph"]').isVisible(),
-			AddActivityFormHeader: (p) =>
+			'Nav Container': (p) => p.locator('[data-testid="nav-container"]').isVisible(),
+			'Header Nav': (p) => p.locator('[data-testid="header-nav"]').isVisible(),
+			'Todays Time': (p) => p.locator('[data-testid="todays-time"]').isVisible(),
+			'Time Budget': (p) => p.locator('[data-testid="time-budget"]').isVisible(),
+			'Remaining Hours': (p) => p.locator('[data-testid="remaining-hours"]').isVisible(),
+			'Total Hours': (p) => p.locator('[data-testid="total-hours"]').isVisible(),
+			'TodaysTime Graph': (p) => p.locator('[data-testid="todays-time-graph"]').isVisible(),
+			'AddActivity FormHeader': (p) =>
 				p.locator('[data-testid="add-activity-form-header"]').isVisible(),
-			ActivitySubmit: (p) => p.locator('[data-testid="activity-submit"]').isVisible(),
+			'Activity Submit': (p) => p.locator('[data-testid="activity-submit"]').isVisible(),
 		});
 	} finally {
 		browserPage.close();

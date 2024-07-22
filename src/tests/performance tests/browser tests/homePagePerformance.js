@@ -36,12 +36,12 @@ export default async function () {
 	try {
 		await browserPage.goto(homePage);
 		check(browserPage, {
-			TimeOfDayHeader: (p) => p.locator('h1').textContent() === 'Time Of Day',
-			NavContainer: (p) => p.locator('[data-testid="nav-container"]').isVisible(),
-			HeaderNav: (p) => p.locator('[data-testid="header-nav"]').isVisible(),
+			'Time Of Day Header': (p) => p.locator('h1').textContent() === 'Time Of Day',
+			'Nav Container': (p) => p.locator('[data-testid="nav-container"]').isVisible(),
+			'Header Nav': (p) => p.locator('[data-testid="header-nav"]').isVisible(),
 			'Welcome Banner': (p) => p.locator('[data-testid="welcome-banner"]').isVisible(),
-			Motivation: (p) => p.locator('[data-testid="motivation"]').isVisible(),
-			Details: (p) => p.locator('[data-testid="details"]').isVisible(),
+			'Motivation Section': (p) => p.locator('[data-testid="motivation"]').isVisible(),
+			'Details Section': (p) => p.locator('[data-testid="details"]').isVisible(),
 		});
 	} finally {
 		browserPage.close();
