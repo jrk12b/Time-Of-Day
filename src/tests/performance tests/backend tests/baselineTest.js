@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 ////////////////////////////////////////////////////////////////////////////////////////////
 // Baseline tests simulate as little load as possible
 // This test simulates 1 user for 15 seconds, averaging ~16 requests.
