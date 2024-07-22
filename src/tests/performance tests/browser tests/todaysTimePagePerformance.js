@@ -16,15 +16,14 @@ const k6_thresholds = {
 export const options = {
 	scenarios: {
 		ui: {
-			executor: 'shared-iterations',
+			executor: 'constant-vus',
+			vus: 1,
+			duration: '5s',
 			options: {
 				browser: {
 					type: 'chromium',
 				},
 			},
-			vus: 1,
-			iterations: 2,
-			duration: '5s',
 		},
 	},
 	thresholds: k6_thresholds,
