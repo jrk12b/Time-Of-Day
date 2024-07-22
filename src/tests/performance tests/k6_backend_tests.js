@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import http from 'k6/http';
 import { sleep, check } from 'k6';
 
@@ -22,12 +23,31 @@ export function k6_test_requests() {
 	console.log(`GET URL: ${activitiesRoute}`);
 	const getResonseActivities = http.get(activitiesRoute);
 	console.log(`GET response status: ${getResonseActivities.status}`);
+
+	// validate structure of response
 	check(getResonseActivities, {
 		'GET response status is 200': (res) => res.status === 200,
 		'GET response is not null': (res) => res != null,
 		'GET response is not empty': (res) => res !== '',
 		'GET response body is not null': (res) => res.body != null,
 		'GET response body is not empty': (res) => res.body !== '',
+		'GET response body is an array': (r) => Array.isArray(JSON.parse(r.body)),
+		'Each item in array has _id, timestamp, and activities': (r) => {
+			const data = JSON.parse(r.body);
+			return data.every(
+				(item) =>
+					item.hasOwnProperty('_id') &&
+					item.hasOwnProperty('timestamp') &&
+					item.hasOwnProperty('activities') &&
+					Array.isArray(item.activities) &&
+					item.activities.every(
+						(activity) =>
+							activity.hasOwnProperty('name') &&
+							activity.hasOwnProperty('hour') &&
+							activity.hasOwnProperty('_id')
+					)
+			);
+		},
 	});
 
 	// GET activities/names
@@ -40,6 +60,7 @@ export function k6_test_requests() {
 		'GET response is not empty': (res) => res !== '',
 		'GET response body is not null': (res) => res.body != null,
 		'GET response body is not empty': (res) => res.body !== '',
+		'GET response body is an array': (r) => Array.isArray(JSON.parse(r.body)),
 	});
 
 	constant_request_rate(start_time, iteration_duration);
