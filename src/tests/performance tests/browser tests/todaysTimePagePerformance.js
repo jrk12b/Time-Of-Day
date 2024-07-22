@@ -24,6 +24,7 @@ export const options = {
 			},
 			vus: 1,
 			iterations: 2,
+			duration: '5s',
 		},
 	},
 	thresholds: k6_thresholds,
