@@ -65,7 +65,8 @@ jobs:
         run: brew install k6
       - name: Run k6 tests
         run: npm run k6:pipeline-backend-run
-  performance-browser-test:
+
+  performance-browser-test-home:
     runs-on: macos-latest
     needs: [setup-node, unit-and-component-test, api-test]
     steps:
@@ -82,6 +83,34 @@ jobs:
       - name: Run k6 yourTime tests
         run: npm run k6:pipeline-browser-yourTime
 
+  performance-browser-test-todaysTime:
+    runs-on: macos-latest
+    needs: [setup-node, unit-and-component-test, api-test]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install k6
+        run: brew install k6
+      - name: Run k6 todaysTime tests
+        run: npm run k6:pipeline-browser-todaystime
+      - name: Run k6 yourTime tests
+        run: npm run k6:pipeline-browser-yourTime
+
+  performance-browser-test-yourTime:
+    runs-on: macos-latest
+    needs: [setup-node, unit-and-component-test, api-test]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install k6
+        run: brew install k6
+      - name: Run k6 yourTime tests
+        run: npm run k6:pipeline-browser-yourTime
+
   cypress-run-chrome:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -91,7 +120,9 @@ jobs:
         unit-and-component-test,
         api-test,
         performance-backend-test,
-        performance-browser-test,
+        performance-browser-test-home,
+        performance-browser-test-todaysTime,
+        performance-browser-test-yourTime,
       ]
     steps:
       - name: Checkout Code
@@ -110,7 +141,9 @@ jobs:
         unit-and-component-test,
         api-test,
         performance-backend-test,
-        performance-browser-test,
+        performance-browser-test-home,
+        performance-browser-test-todaysTime,
+        performance-browser-test-yourTime,
       ]
     steps:
       - name: Quick Sleep/Delay
@@ -135,7 +168,9 @@ jobs:
         unit-and-component-test,
         api-test,
         performance-backend-test,
-        performance-browser-test,
+        performance-browser-test-home,
+        performance-browser-test-todaysTime,
+        performance-browser-test-yourTime,
       ]
     steps:
       - name: Quick Sleep/Delay
@@ -158,7 +193,9 @@ jobs:
         unit-and-component-test,
         api-test,
         performance-backend-test,
-        performance-browser-test,
+        performance-browser-test-home,
+        performance-browser-test-todaysTime,
+        performance-browser-test-yourTime,
       ]
     steps:
       - name: Quick Sleep/Delay
@@ -181,7 +218,9 @@ jobs:
         unit-and-component-test,
         api-test,
         performance-backend-test,
-        performance-browser-test,
+        performance-browser-test-home,
+        performance-browser-test-todaysTime,
+        performance-browser-test-yourTime,
       ]
     steps:
       - name: Quick Sleep/Delay
