@@ -32,7 +32,7 @@
 		"k6:pipeline-backend-run": "npm run start-server & npm run wait-backend && k6 run 'src/tests/performance tests/backend tests/baselineTest.js'",
 		"k6:pipeline-browser-home": "npm run start-app && k6 run 'src/tests/performance tests/browser tests/homePagePerformance.js'",
 		"k6:pipeline-browser-todaystime": "npm run start-app && k6 run 'src/tests/performance tests/browser tests/todaysTimePagePerformance.js'",
-		"k6:pipeline-browser-yourtime": "npm run start-app && k6 run 'src/tests/performance tests/browse tests/yourTimePagePerformance.js'"
+		"k6:pipeline-browser-yourtime": "npm run start-app && k6 run 'src/tests/performance tests/browser tests/yourTimePagePerformance.js'"
 	},
 	"repository": {
 		"type": "git",
