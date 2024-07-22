@@ -13,7 +13,9 @@
 		"eject": "react-scripts eject",
 		"api-test": "mocha \"src/tests/api tests/\"",
 		"start-server": "node ./backend/server.js",
-		"start-app": "npm run start-server & npm run start",
+		"wait-backend": "./node_modules/.bin/wait-port localhost:8000",
+		"wait-frontend": "./node_modules/.bin/wait-port localhost:3000",
+		"start-app": "npm run start-server & npm run wait-backend && npm run start & npm run wait-frontend",
 		"cy:open": "cypress open",
 		"cy:open-and-serve": "npm run start-app & npm run cy:open",
 		"cy:run": "cypress run",
@@ -27,10 +29,10 @@
 		"cy:pipeline-run-edge": "npm run start-app & npm run cy:run-edge",
 		"cy:pipeline-run-electron": "npm run start-app & npm run cy:run-electron",
 		"cy:pipeline-run-webkit": "npm run start-app & npm run cy:run-webkit",
-		"k6:pipeline-backend-run": "npm run start-server && k6 run 'src/tests/performance tests/backend tests/baselineTest.js'",
-		"k6:pipeline-browser-home": "npm run start-app && k6 run 'src/tests/performance tests/browser tests/homePagePerformance.js'",
-		"k6:pipeline-browser-todaystime": "npm run start-app && k6 run 'src/tests/performance tests/browser tests/todaysTimePagePerformance.js'",
-		"k6:pipeline-browser-yourtime": "npm run start-app && k6 run 'src/tests/performance tests/browse tests/yourTimePagePerformance.js'"
+		"k6:pipeline-backend-run": "npm run start-server & npm run wait-backend & npm run wait-frontend && k6 run 'src/tests/performance tests/backend tests/baselineTest.js'",
+		"k6:pipeline-browser-home": "npm run start-app & k6 run 'src/tests/performance tests/browser tests/homePagePerformance.js'",
+		"k6:pipeline-browser-todaystime": "npm run start-app & k6 run 'src/tests/performance tests/browser tests/todaysTimePagePerformance.js'",
+		"k6:pipeline-browser-yourtime": "npm run start-app & k6 run 'src/tests/performance tests/browse tests/yourTimePagePerformance.js'"
 	},
 	"repository": {
 		"type": "git",
@@ -97,6 +99,7 @@
 		"start-server-and-test": "^2.0.4",
 		"supertest": "^7.0.0",
 		"wait-on": "^7.2.0",
+		"wait-port": "^1.1.0",
 		"web-vitals": "^4.2.1"
 	}
 }
