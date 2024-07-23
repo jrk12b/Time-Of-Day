@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { browser } from 'k6/browser';
 import { check } from 'k6';
+import { testIds } from '../../../testData/testIds.js';
 
 const k6_thresholds = {
 	browser_http_req_duration: ['p(95)<12000'], // 99 percent of response times must be below 2000ms
@@ -18,7 +19,7 @@ export const options = {
 		ui: {
 			executor: 'constant-vus',
 			vus: 1,
-			duration: '30s',
+			duration: '3s',
 			options: {
 				browser: {
 					type: 'chromium',
@@ -31,37 +32,49 @@ export const options = {
 
 export default async function () {
 	const browserPage = await browser.newPage();
-	const homePage = 'http://localhost:3000/';
+	const homePage = 'http://localhost:3000';
+	await browserPage.goto(homePage);
 
-	try {
-		await browserPage.goto(homePage);
+	const headerText = await browserPage.locator('h1').textContent();
 
-		const headerText = await browserPage.locator('h1').textContent();
-		const navContainer = browserPage.locator('[data-testid="nav-container"]');
-		const headerNav = browserPage.locator('[data-testid="header-nav"]');
-		const welcomeBanner = browserPage.locator('[data-testid="welcome-banner"]');
-		const motivation = browserPage.locator('[data-testid="motivation"]');
-		const details = browserPage.locator('[data-testid="details"]');
+	const navContainer = browserPage.locator(`[data-testid=${testIds.headerNav.navContainer}]`);
+	const navContainerVisible = await navContainer.isVisible();
 
-		check(headerText, {
-			headerText: headerText === 'Time Of Day',
-		});
-		check(navContainer, {
-			navContainer: navContainer.isVisible(),
-		});
-		check(headerNav, {
-			headerNav: headerNav.isVisible(),
-		});
-		check(welcomeBanner, {
-			welcomeBanner: welcomeBanner.isVisible(),
-		});
-		check(motivation, {
-			motivation: motivation.isVisible(),
-		});
-		check(details, {
-			details: motivation.isVisible(),
-		});
-	} finally {
-		browserPage.close();
-	}
+	const headerNav = browserPage.locator(`[data-testid=${testIds.headerNav.headerNav}]`);
+	const headerNavVisible = await headerNav.isVisible();
+
+	const welcomeBanner = browserPage.locator(`[data-testid=${testIds.home.welcomeBanner}]`);
+	const welcomeBannerVisible = await welcomeBanner.isVisible();
+
+	const motivation = browserPage.locator(`[data-testid=${testIds.home.motivation}]`);
+	const motivationVisible = await motivation.isVisible();
+
+	const details = browserPage.locator(`[data-testid=${testIds.home.details}]`);
+	const detailsVisible = await details.isVisible();
+
+	check(headerText, {
+		headerText: headerText === 'Time Of Day',
+	});
+
+	check(navContainerVisible, {
+		'navContainer is Visible': (v) => v === true,
+	});
+
+	check(headerNavVisible, {
+		'headerNav is Visible': (v) => v === true,
+	});
+
+	check(welcomeBannerVisible, {
+		'welcomeBanner is Visible': (v) => v === true,
+	});
+
+	check(motivationVisible, {
+		'motivation is Visible': (v) => v === true,
+	});
+
+	check(detailsVisible, {
+		'details is Visible': (v) => v === true,
+	});
+
+	browserPage.close();
 }

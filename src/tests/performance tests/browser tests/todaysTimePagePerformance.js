@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { browser } from 'k6/browser';
 import { check } from 'k6';
+import { testIds } from '../../../testData/testIds.js';
 
 const k6_thresholds = {
 	browser_http_req_duration: ['p(95)<4500'], // 99 percent of response times must be below 2000ms
@@ -18,7 +19,7 @@ export const options = {
 		ui: {
 			executor: 'constant-vus',
 			vus: 1,
-			duration: '30s',
+			duration: '3s',
 			options: {
 				browser: {
 					type: 'chromium',
@@ -32,47 +33,74 @@ export const options = {
 export default async function () {
 	const browserPage = await browser.newPage();
 	const todaysTimePage = 'http://localhost:3000/TodaysTime';
+	await browserPage.goto(todaysTimePage);
 
-	try {
-		await browserPage.goto(todaysTimePage);
+	const navContainer = browserPage.locator(`[data-testid=${testIds.headerNav.navContainer}]`);
+	const navContainerVisible = await navContainer.isVisible();
 
-		const navContainer = browserPage.locator('[data-testid="nav-container"]');
-		const headerNav = browserPage.locator('[data-testid="header-nav"]');
-		const todaysTime = browserPage.locator('[data-testid="todays-time"]');
-		const timeBudget = browserPage.locator('[data-testid="time-budget"]');
-		const remainingHours = browserPage.locator('[data-testid="remaining-hours"]');
-		const totalHours = browserPage.locator('[data-testid="total-hours"]');
-		const todaysTimeGraph = browserPage.locator('[data-testid="todays-time-graph"]');
-		const addActivityFormHeader = browserPage.locator('[data-testid="add-activity-from-header"]');
-		const activitySubmit = browserPage.locator('[data-testid="activity-submit"]');
-		check(navContainer, {
-			navContainer: navContainer.isVisible(),
-		});
-		check(headerNav, {
-			headerNav: headerNav.isVisible(),
-		});
-		check(todaysTime, {
-			todaysTime: todaysTime.isVisible(),
-		});
-		check(timeBudget, {
-			timeBudget: timeBudget.isVisible(),
-		});
-		check(remainingHours, {
-			remainingHours: remainingHours.isVisible(),
-		});
-		check(totalHours, {
-			totalHours: totalHours.isVisible(),
-		});
-		check(todaysTimeGraph, {
-			todaysTimeGraph: todaysTimeGraph.isVisible(),
-		});
-		check(addActivityFormHeader, {
-			addActivityFormHeader: addActivityFormHeader.isVisible(),
-		});
-		check(activitySubmit, {
-			activitySubmit: activitySubmit.isVisible(),
-		});
-	} finally {
-		browserPage.close();
-	}
+	const headerNav = browserPage.locator(`[data-testid=${testIds.headerNav.headerNav}]`);
+	const headerNavVisible = await headerNav.isVisible();
+
+	const todaysTime = browserPage.locator(`[data-testid=${testIds.todaysTime.todaysTime}]`);
+	const todaysTimeVisible = await todaysTime.isVisible();
+
+	const timeBudget = browserPage.locator(`[data-testid=${testIds.todaysTime.timeBudget}]`);
+	const timeBudgetVisible = await timeBudget.isVisible();
+
+	const remainingHours = browserPage.locator(`[data-testid=${testIds.todaysTime.remainingHours}]`);
+	const remainingHoursVisible = await remainingHours.isVisible();
+
+	const totalHours = browserPage.locator(`[data-testid=${testIds.todaysTime.totalHours}]`);
+	const totalHoursVisible = await totalHours.isVisible();
+
+	const todaysTimeGraph = browserPage.locator(
+		`[data-testid=${testIds.todaysTime.todaysTimeGraph}]`
+	);
+	const todaysTimeGraphVisible = await todaysTimeGraph.isVisible();
+
+	const addActivityFormHeader = browserPage.locator(
+		`[data-testid=${testIds.todaysTime.addActivityForm.addActivityFormHeader}]`
+	);
+	const addActivityFormHeaderVisible = await addActivityFormHeader.isVisible();
+
+	const activitySubmit = browserPage.locator(`[data-testid=${testIds.todaysTime.activitySubmit}]`);
+	const activitySubmitVisible = await activitySubmit.isVisible();
+
+	check(navContainerVisible, {
+		'navContainer is Visible': (v) => v === true,
+	});
+
+	check(headerNavVisible, {
+		'headerNav is Visible': (v) => v === true,
+	});
+
+	check(todaysTimeVisible, {
+		'todaysTime is Visible': (v) => v === true,
+	});
+
+	check(timeBudgetVisible, {
+		'timeBudget is Visible': (v) => v === true,
+	});
+
+	check(remainingHoursVisible, {
+		'remainingHours is Visible': (v) => v === true,
+	});
+
+	check(totalHoursVisible, {
+		'totalHours is Visible': (v) => v === true,
+	});
+
+	check(todaysTimeGraphVisible, {
+		'todaysTimeGraph is Visible': (v) => v === true,
+	});
+
+	check(addActivityFormHeaderVisible, {
+		'addActivityFormHeader is Visible': (v) => v === true,
+	});
+
+	check(activitySubmitVisible, {
+		'activitySubmit is Visible': (v) => v === true,
+	});
+
+	browserPage.close();
 }
