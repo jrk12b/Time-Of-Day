@@ -19,7 +19,7 @@ export const options = {
 		ui: {
 			executor: 'constant-vus',
 			vus: 5,
-			duration: 's',
+			duration: '30s',
 			options: {
 				browser: {
 					type: 'chromium',
