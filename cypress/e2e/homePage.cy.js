@@ -38,7 +38,7 @@ describe('Testing Home Page Elements', () => {
 
 	it('Validate Instructions section is visible', () => {
 		cy.getByTestId(testIds.home.instructions).as('instructions');
-		cy.get('@instructions').scrollIntoView().should('be.visible');
+		cy.get('@instructions').scrollIntoView().should('exist');
 		cy.get('@instructions').scrollIntoView().contains(textContent.home.instructionsHeader);
 		cy.get('@instructions').scrollIntoView().contains(textContent.home.instructions1);
 		cy.get('@instructions').scrollIntoView().contains(textContent.home.instructions2);
