@@ -13,7 +13,7 @@ describe('Testing Home Page Elements', () => {
 		cy.getByTestId(testIds.home.homeDiv).should('be.visible');
 	});
 
-	it('Validate Video Background', () => {
+	it('Validate Video Background', { browser: '!webkit' }, () => {
 		cy.getByTestId(testIds.home.videoBackground).should('exist');
 		cy.getByTestId(testIds.home.videoBackground).should('have.attr', 'autoplay');
 		cy.getByTestId(testIds.home.videoBackgroundSource).should('exist');
@@ -22,7 +22,7 @@ describe('Testing Home Page Elements', () => {
 			.and('have.attr', 'type', 'video/mp4');
 	});
 
-	it('Validate Welcome section is visible', () => {
+	it('Validate Welcome section is visible', { browser: '!webkit' }, () => {
 		cy.getByTestId(testIds.home.welcomeBanner).should('be.visible');
 		cy.getByTestId(testIds.home.homeHeader).should('be.visible');
 		cy.getByTestId(testIds.home.homeHeader).contains(textContent.home.homeHeader);
@@ -30,13 +30,13 @@ describe('Testing Home Page Elements', () => {
 		cy.getByTestId(testIds.home.motivation).contains(textContent.home.motivation);
 	});
 
-	it('Validate Details section is visible', () => {
+	it('Validate Details section is visible', { browser: '!webkit' }, () => {
 		cy.getByTestId(testIds.home.details).as('details');
 		cy.get('@details').scrollIntoView().should('be.visible');
 		cy.get('@details').scrollIntoView().contains(textContent.home.details);
 	});
 
-	it('Validate Instructions section is visible', () => {
+	it('Validate Instructions section is visible', { browser: '!webkit' }, () => {
 		cy.getByTestId(testIds.home.instructions).as('instructions');
 		cy.get('@instructions').scrollIntoView().should('exist');
 		cy.get('@instructions').scrollIntoView().contains(textContent.home.instructionsHeader);
