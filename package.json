@@ -1,7 +1,6 @@
 {
 	"name": "time_of_day",
 	"version": "1.0.0",
-	"proxy": "http://localhost:8000",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -81,6 +80,7 @@
 		"eslint": "^8.57.0",
 		"eslint-plugin-cypress": "^3.3.0",
 		"express": "^4.19.2",
+		"http-proxy-middleware": "^3.0.0",
 		"jest": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
 		"mocha": "^10.6.0",

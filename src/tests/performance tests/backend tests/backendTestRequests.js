@@ -32,7 +32,7 @@ export function k6_test_requests() {
 		'GET response body is not null': (res) => res.body != null,
 		'GET response body is not empty': (res) => res.body !== '',
 		'GET response body is an array': (r) => Array.isArray(JSON.parse(r.body)),
-		'Each item in array has _id, timestamp, and activities': (r) => {
+		'GET response body: each item in array has _id, timestamp, and activities': (r) => {
 			const data = JSON.parse(r.body);
 			return data.every(
 				(item) =>
@@ -61,6 +61,69 @@ export function k6_test_requests() {
 		'GET response body is not null': (res) => res.body != null,
 		'GET response body is not empty': (res) => res.body !== '',
 		'GET response body is an array': (r) => Array.isArray(JSON.parse(r.body)),
+	});
+
+	// POST activities
+	const testPayload = {
+		timestamp: new Date().getTime(),
+		activities: [
+			{ name: 'mock_test1', hour: 1 },
+			{ name: 'mock_test2', hour: 2 },
+		],
+	};
+	console.log(`POST URL: ${activitiesRoute}`);
+	const postResponseActivities = http.post(activitiesRoute, testPayload);
+	console.log(`POST response status: ${postResponseActivities.status}`);
+	check(postResponseActivities, {
+		'POST response status is 201': (res) => res.status === 201,
+		'POST response is not null': (res) => res != null,
+		'POST response is not empty': (res) => res !== '',
+		'POST response body is not null': (res) => res.body != null,
+		'POST response body is not empty': (res) => res.body !== '',
+	});
+	const postResponseActivitiesBody = JSON.parse(postResponseActivities.body);
+	const postResponseActivitiesId = postResponseActivitiesBody._id;
+
+	// GET activities/:id
+	console.log(`GET URL: ${activitiesRoute}/${postResponseActivitiesId}`);
+	const getResponseActivity = http.get(`${activitiesRoute}/${postResponseActivitiesId}`);
+	console.log(`GET response status: ${getResponseActivity.status}`);
+	check(getResponseActivity, {
+		'GET response status is 200': (res) => res.status === 200,
+		'GET response is not null': (res) => res != null,
+		'GET response is not empty': (res) => res !== '',
+		'GET response body is not null': (res) => res.body != null,
+		'GET response body is not empty': (res) => res.body !== '',
+	});
+
+	// PUT activities/:id
+	const putActivityPayload = {
+		name: 'mock_test4',
+		hour: 4,
+	};
+	console.log(`PUT URL: ${activitiesRoute}/${postResponseActivitiesId}`);
+	const putResponseActivity = http.put(
+		`${activitiesRoute}/${postResponseActivitiesId}`,
+		putActivityPayload
+	);
+	check(putResponseActivity, {
+		'PUT response status is 200': (res) => res.status === 200,
+		'PUT response is not null': (res) => res != null,
+		'PUT response is not empty': (res) => res !== '',
+		'PUT response body is not null': (res) => res.body != null,
+		'PUT response body is not empty': (res) => res.body !== '',
+	});
+
+	// DELETE activities
+	console.log(`DELETE URL: ${activitiesRoute}/${postResponseActivitiesId}`);
+	const deleteResponseActivities = http.del(`${activitiesRoute}/${postResponseActivitiesId}`);
+	console.log(`DELETE response status: ${deleteResponseActivities.status}`);
+	check(deleteResponseActivities, {
+		'DELETE response status is 200': (res) => res.status === 200,
+		'DELETE response is not null': (res) => res != null,
+		'DELETE response is not empty': (res) => res !== '',
+		'DELETE response body is not null': (res) => res.body != null,
+		'DELETE response body is not empty': (res) => res.body !== '',
 	});
 
 	constant_request_rate(start_time, iteration_duration);

@@ -1,3 +1,5 @@
+/* eslint-disable jest/valid-expect */
+/* eslint-disable no-unused-expressions */
 import { app, server } from '../../../backend/server.js';
 import { expect } from 'chai';
 import moment from 'moment';
