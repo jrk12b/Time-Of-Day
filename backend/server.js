@@ -3,8 +3,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { PORT, MONGO_URI } = require('../src/config');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 
 const app = express();
+
+// Serve Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Middleware
 app.use(bodyParser.json());
@@ -30,6 +35,3 @@ const port = PORT || 8000;
 const server = app.listen(port, () => console.log(`Server running on port ${port}`));
 
 module.exports = { app, server };
-
-// lsof -i :8000
-// kill <PID>

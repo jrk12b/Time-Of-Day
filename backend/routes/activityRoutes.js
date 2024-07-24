@@ -3,7 +3,24 @@ const Activity = require('../models/activityModel');
 
 const router = express.Router();
 
-// API endpoint to GET all distinct activity names
+/**
+ * @swagger
+ * /activities/names:
+ *   get:
+ *     summary: Get all distinct activity names
+ *     description: Retrieve a list of all distinct activity names.
+ *     responses:
+ *       200:
+ *         description: A list of distinct activity names
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ *       500:
+ *         description: Server error
+ */
 router.get('/activities/names', async (req, res) => {
 	try {
 		// Get all distinct activity names
@@ -14,7 +31,31 @@ router.get('/activities/names', async (req, res) => {
 	}
 });
 
-// API endpoint to GET all activities
+/**
+ * @swagger
+ * /activities:
+ *   get:
+ *     summary: Get all activities
+ *     description: Retrieve a list of all activities.
+ *     responses:
+ *       200:
+ *         description: A list of activities
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   name:
+ *                     type: string
+ *                   hour:
+ *                     type: integer
+ *                   _id:
+ *                     type: string
+ *       500:
+ *         description: Server error
+ */
 router.get('/activities', async (req, res) => {
 	try {
 		// Find all the activities and return the json
@@ -25,7 +66,37 @@ router.get('/activities', async (req, res) => {
 	}
 });
 
-// API endpoint to GET a single activity via id
+/**
+ * @swagger
+ * /activities/{id}:
+ *   get:
+ *     summary: Get a single activity by ID
+ *     description: Retrieve an activity by its ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The requested activity
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 hour:
+ *                   type: integer
+ *                 _id:
+ *                   type: string
+ *       404:
+ *         description: Activity not found
+ *       500:
+ *         description: Server error
+ */
 router.get('/activities/:id', async (req, res) => {
 	// Try to find the activity by id and return the json
 	try {
@@ -39,7 +110,50 @@ router.get('/activities/:id', async (req, res) => {
 	}
 });
 
-// API endpoint to UPDATE a single activity via id
+/**
+ * @swagger
+ * /activities/{id}:
+ *   put:
+ *     summary: Update an activity by ID
+ *     description: Update the details of an activity by its ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               hour:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: The updated activity
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 hour:
+ *                   type: integer
+ *                 _id:
+ *                   type: string
+ *       400:
+ *         description: Invalid input
+ *       404:
+ *         description: Activity not found
+ *       500:
+ *         description: Server error
+ */
 router.put('/activities/:id', async (req, res) => {
 	// Try to find and update the activity. Return the json
 	try {
@@ -56,7 +170,33 @@ router.put('/activities/:id', async (req, res) => {
 	}
 });
 
-// API endpoint to DELETE a single activity via id
+/**
+ * @swagger
+ * /activities/{id}:
+ *   delete:
+ *     summary: Delete an activity by ID
+ *     description: Remove an activity from the database by its ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Success message
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Activity not found
+ *       500:
+ *         description: Server error
+ */
 router.delete('/activities/:id', async (req, res) => {
 	// Try to find and delete the activity by id. Return the json
 	try {
@@ -70,7 +210,56 @@ router.delete('/activities/:id', async (req, res) => {
 	}
 });
 
-// API endpoint to POST multiple activities
+/**
+ * @swagger
+ * /activities:
+ *   post:
+ *     summary: Create new activities
+ *     description: Add new activities to the database.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               activities:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                     hour:
+ *                       type: integer
+ *               timestamp:
+ *                 type: string
+ *                 format: date-time
+ *     responses:
+ *       201:
+ *         description: The created activity document
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 activities:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       name:
+ *                         type: string
+ *                       hour:
+ *                         type: integer
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *                 _id:
+ *                   type: string
+ *       500:
+ *         description: Error saving activities
+ */
 router.post('/activities', async (req, res) => {
 	const { activities, timestamp } = req.body;
 
@@ -84,8 +273,58 @@ router.post('/activities', async (req, res) => {
 	}
 });
 
-// API endpoint to UPDATE a single activity by ID within one document.
-// A document can contain many activities
+/**
+ * @swagger
+ * /activities/{docId}/activity/{activityId}:
+ *   put:
+ *     summary: Update a specific activity within a document
+ *     description: Update an activity within a document by its ID.
+ *     parameters:
+ *       - in: path
+ *         name: docId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: path
+ *         name: activityId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               hour:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: The updated document
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 activities:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       name:
+ *                         type: string
+ *                       hour:
+ *                         type: integer
+ *                 _id:
+ *                   type: string
+ *       404:
+ *         description: Document or activity not found
+ *       500:
+ *         description: Server error
+ */
 router.put('/activities/:docId/activity/:activityId', async (req, res) => {
 	const { docId, activityId } = req.params;
 	const { name, hour } = req.body;
@@ -115,8 +354,63 @@ router.put('/activities/:docId/activity/:activityId', async (req, res) => {
 	}
 });
 
-// API endpoint to DELETE a single activity by ID within one document.
-// A document can contain many activities
+/**
+ * @swagger
+ * /activities/{docId}/activity/{activityId}:
+ *   delete:
+ *     summary: Delete a specific activity within a document
+ *     description: Remove a specific activity by its ID from a document that contains multiple activities.
+ *     parameters:
+ *       - in: path
+ *         name: docId
+ *         required: true
+ *         description: The ID of the document that contains the activity.
+ *         schema:
+ *           type: string
+ *       - in: path
+ *         name: activityId
+ *         required: true
+ *         description: The ID of the activity to be deleted.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The updated document after removing the activity
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 activities:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       name:
+ *                         type: string
+ *                       hour:
+ *                         type: integer
+ *       404:
+ *         description: Document or activity not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ */
 router.delete('/activities/:docId/activity/:activityId', async (req, res) => {
 	const { docId, activityId } = req.params;
 	try {
