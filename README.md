@@ -12,31 +12,31 @@ Time Of Day is a powerful and intuitive app designed to help you manage and opti
 
 ## Tech Stack
 
-- Node.js - JavaScript runtime environment and engine.
-- React - JavaScript front-end library.
-- Express - Backend web application framework for building RESTful APIs.
-- MongoDB/Mongoose - No-SQL Database.
+- `Node.js` - JavaScript runtime environment and engine.
+- `React` - JavaScript front-end library.
+- `Express` - Backend web application framework for building RESTful APIs.
+- `MongoDB/Mongoose` - No-SQL Database.
 
 ## Testing Framework
 
 [QA Manifesto PDF](https://www.justinkurdila.com/_files/ugd/8fbca8_1d4d65417eb94e85a41e5016e15eb902.pdf)
 
-- Jest - Unit/Component Testing
+- `Jest` - Unit/Component Testing
   - `Time-Of-Day/src/tests/unit tests/`
   - `Time-Of-Day/src/tests/component tests/`
-- Mocha, Chai, and Supertest - Integration API Testing
+- `Mocha`, `Chai`, and `Supertest` - Integration API Testing
   - `Time-Of-Day/src/tests/api tests/`
-  - Mocha serves as the test runner, managing the execution of your test cases and suites.
-  - Chai provides the assertions to check the correctness of the responses and behavior.
-  - Supertest handles making the HTTP requests and receiving responses for your API tests.
-- K6 - Performance Testing
+  - `Mocha` serves as the test runner, managing the execution of your test cases and suites.
+  - `Chai` provides the assertions to check the correctness of the responses and behavior.
+  - `Supertest` handles making the HTTP requests and receiving responses for your API tests.
+- `K6` - Performance Testing
   - `Time-Of-Day/src/tests/performance tests/`
-- Cypress - UI System Testing
+- `Cypress` - UI System Testing
   - `Time-Of-Day/cypress/e2e/`
 
 ## Cypress Testing Details
 
-- Evaluating app ui and validating al functionality/behavior.
+- Evaluating app ui and validating all functionality/behavior.
 - All Cypress tests run in github actions against the following browsers:
   - Chrome
   - Firefox
@@ -48,21 +48,21 @@ Time Of Day is a powerful and intuitive app designed to help you manage and opti
 
 Four main types of performance tests:
 
-1. Backend API Performance (k6)
+1. Backend API Performance (`k6`)
    - Targeting API endpoints and excercising CRUD functionality.
    - Executing thousands of requests, simulating many concurrent virtual users.
    - Validating request duration, requests per second, failed/passing requests, and response data.
    - Thresholds set for each metric.
-2. Frontend Browser Performance (k6)
+2. Frontend Browser Performance (`k6`)
    - Evauluating app UI performance.
    - Executing thousands of requests and page loads, simulating many concurrent virtual users.
    - Validating browser request duration, requests per second, failed/passing requests, [browser metrics](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/#browser) FCP, LCP, FID, CLS, TTFB, and element/component loading.
    - Thresholds set for each metric.
-3. Frontend Browser Page loading (Cypress)
+3. Frontend Browser Page loading (`Cypress`)
    - Evauluating app UI performance.
    - Visiting each page, validating page load, and timing length of page load.
    - Thresholds set for acceptable length of time for page load.
-4. Google Lighthouse Performance (Cypress)
+4. Google Lighthouse Performance (`Cypress`)
    - Evauluating app UI performance.
    - Visiting each page and running [Google Lighthouse Performance Metrics](https://developer.chrome.com/docs/lighthouse/overview)
    - Thresholds set for each [metric](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring).
