@@ -6,7 +6,32 @@
 	"scripts": {
 		"format-check": "npx prettier --check .",
 		"format-write": "npx prettier --write .",
-		"test": "cd frontend && npm run test"
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
+		"eject": "react-scripts eject",
+		"api-test": "mocha \"src/tests/api tests/\"",
+		"start-server": "node ./backend/server.js",
+		"wait-backend": "./node_modules/.bin/wait-port localhost:8000",
+		"wait-frontend": "./node_modules/.bin/wait-port localhost:3000",
+		"start-app": "npm run start-server & npm run wait-backend && npm run start & npm run wait-frontend",
+		"cy:open": "cypress open",
+		"cy:open-and-serve": "npm run start-app & npm run cy:open",
+		"cy:run": "cypress run",
+		"cy:run-chrome": "cypress run --browser chrome",
+		"cy:run-firefox": "cypress run --browser firefox",
+		"cy:run-edge": "cypress run --browser edge",
+		"cy:run-electron": "cypress run --browser electron",
+		"cy:run-webkit": "cypress run --browser webkit",
+		"cy:pipeline-run-chrome": "npm run start-app & npm run cy:run-chrome",
+		"cy:pipeline-run-firefox": "npm run start-app & npm run cy:run-firefox",
+		"cy:pipeline-run-edge": "npm run start-app & npm run cy:run-edge",
+		"cy:pipeline-run-electron": "npm run start-app & npm run cy:run-electron",
+		"cy:pipeline-run-webkit": "npm run start-app & npm run cy:run-webkit",
+		"k6:pipeline-backend-run": "npm run start-server & npm run wait-backend && k6 run 'src/tests/performance tests/backend tests/loadTest.js'",
+		"k6:pipeline-browser-home": "npm run start-app && k6 run 'src/tests/performance tests/browser tests/homePagePerformance.js'",
+		"k6:pipeline-browser-todaystime": "npm run start-app && k6 run 'src/tests/performance tests/browser tests/todaysTimePagePerformance.js'",
+		"k6:pipeline-browser-yourtime": "npm run start-app && k6 run 'src/tests/performance tests/browser tests/yourTimePagePerformance.js'"
 	},
 	"repository": {
 		"type": "git",
@@ -14,15 +39,69 @@
 	},
 	"author": "Justin Kurdila",
 	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/jrk12b/Time-Of-Day/issues"
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest",
+			"eslint:recommended",
+			"plugin:cypress/recommended"
+		]
 	},
-	"homepage": "https://github.com/jrk12b/Time-Of-Dayn#readme",
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
 	"dependencies": {
+		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+		"@cypress-audit/lighthouse": "^1.4.2",
+		"@emotion/react": "^11.11.4",
+		"@emotion/styled": "^11.11.5",
+		"@mui/icons-material": "^5.16.0",
+		"@mui/material": "^5.16.0",
+		"@testing-library/jest-dom": "^6.4.6",
+		"@testing-library/react": "^16.0.0",
+		"@testing-library/user-event": "^14.5.2",
+		"axios": "^1.7.2",
 		"body-parser": "^1.20.2",
+		"bootstrap": "^5.3.3",
+		"chai": "^5.1.1",
 		"cors": "^2.8.5",
+		"cypress": "^13.13.1",
+		"cypress-audit": "^1.1.0",
+		"cypress-time-marks": "^1.6.0",
+		"eslint": "^8.57.0",
+		"eslint-plugin-cypress": "^3.3.0",
 		"express": "^4.19.2",
+		"http-proxy-middleware": "^3.0.0",
+		"jest": "^29.7.0",
+		"jest-environment-jsdom": "^29.7.0",
+		"mocha": "^10.6.0",
+		"moment": "^2.30.1",
 		"mongoose": "^8.4.5",
-		"prettier": "3.3.2"
+		"playwright-webkit": "^1.45.2",
+		"prettier": "3.3.3",
+		"react": "^18.3.1",
+		"react-autosuggest": "^10.1.0",
+		"react-dom": "^18.3.1",
+		"react-icons": "^5.2.1",
+		"react-responsive": "^10.0.0",
+		"react-router-dom": "^6.24.1",
+		"react-scripts": "5.0.1",
+		"recharts": "^2.13.0-alpha.4",
+		"start-server-and-test": "^2.0.4",
+		"supertest": "^7.0.0",
+		"swagger-jsdoc": "^6.2.8",
+		"swagger-ui-express": "^5.0.1",
+		"wait-on": "^7.2.0",
+		"wait-port": "^1.1.0",
+		"web-vitals": "^4.2.1"
 	}
 }

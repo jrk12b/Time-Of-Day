@@ -7,29 +7,223 @@ on:
   workflow_dispatch:
 
 jobs:
-  format-and-setup:
+  setup-node:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      - name: Run Format
-        run: npm run format-check
       - name: Install Dependencies
         run: npm ci
-  jest-run:
+      - name: Run Format
+        run: npm run format-check
+
+  unit-and-component-test:
     runs-on: ubuntu-latest
-    needs: [format-and-setup]
+    timeout-minutes: 20
+    needs: [setup-node]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Install Frontend Dependencies
-        run: cd frontend && npm ci
+      - name: Install Dependencies
+        run: npm ci
       - name: Run jest tests
-        run: npm run test
+        run: npm run test -- --coverage
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/*.json
+          name: codecov-umbrella
+          fail_ci_if_error: true
+
+  api-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [setup-node]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run api tests
+        run: npm run api-test
+
+  performance-backend-test:
+    runs-on: macos-latest
+    needs: [setup-node, unit-and-component-test, api-test]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install k6
+        run: brew install k6
+      - name: Run k6 tests
+        run: npm run k6:pipeline-backend-run
+
+  performance-browser-home:
+    runs-on: macos-latest
+    needs: [setup-node, unit-and-component-test, api-test]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install k6
+        run: brew install k6
+      - name: Run k6 home tests
+        run: npm run k6:pipeline-browser-home
+
+  performance-browser-todaysTime:
+    runs-on: macos-latest
+    needs: [setup-node, unit-and-component-test, api-test]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install k6
+        run: brew install k6
+      - name: Run k6 todaystime tests
+        run: npm run k6:pipeline-browser-todaystime
+
+  performance-browser-yourTime:
+    runs-on: macos-latest
+    needs: [setup-node, unit-and-component-test, api-test]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install k6
+        run: brew install k6
+      - name: Run k6 yourtime tests
+        run: npm run k6:pipeline-browser-yourtime
+
+  cypress-run-chrome:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-home,
+        performance-browser-todaysTime,
+        performance-browser-yourTime,
+      ]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Cypress Tests against Chrome
+        run: npm run cy:pipeline-run-chrome
+
+  cypress-run-safari-webkit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-home,
+        performance-browser-todaysTime,
+        performance-browser-yourTime,
+      ]
+    steps:
+      - name: Quick Sleep/Delay
+        uses: GuillaumeFalourd/wait-sleep-action@v1
+        with:
+          time: '2m'
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install webkit Dependencies
+        run: npx playwright install-deps webkit
+      - name: Run Cypress Tests against Safari-Webkit
+        run: npm run cy:pipeline-run-webkit
+
+  cypress-run-firefox:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-home,
+        performance-browser-todaysTime,
+        performance-browser-yourTime,
+      ]
+    steps:
+      - name: Quick Sleep/Delay
+        uses: GuillaumeFalourd/wait-sleep-action@v1
+        with:
+          time: '5m'
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Cypress Tests against Firefox
+        run: npm run cy:pipeline-run-firefox
+
+  cypress-run-edge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-home,
+        performance-browser-todaysTime,
+        performance-browser-yourTime,
+      ]
+    steps:
+      - name: Quick Sleep/Delay
+        uses: GuillaumeFalourd/wait-sleep-action@v1
+        with:
+          time: '7m'
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Cypress Tests against Edge
+        run: npm run cy:pipeline-run-edge
+
+  cypress-run-electron:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs:
+      [
+        setup-node,
+        unit-and-component-test,
+        api-test,
+        performance-backend-test,
+        performance-browser-home,
+        performance-browser-todaysTime,
+        performance-browser-yourTime,
+      ]
+    steps:
+      - name: Quick Sleep/Delay
+        uses: GuillaumeFalourd/wait-sleep-action@v1
+        with:
+          time: '9m'
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Cypress Tests against Electron
+        run: npm run cy:pipeline-run-electron

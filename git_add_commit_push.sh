@@ -1,4 +1,12 @@
 #!/bin/bash
+# Shell script which executes the following: 
+# 1. Navigate to root of the git repo
+# 2. run prettier code formatter
+# 3. Run git status
+# 4. Prompts user to enter a commit message
+# 5. Commits code changes with provided commit message
+# 6. Pushes commit to git
+
 # navigate to root of git repo
 cd "$(git rev-parse --show-toplevel)"
 
