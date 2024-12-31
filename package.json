@@ -96,6 +96,7 @@
 		"react-router-dom": "^6.24.1",
 		"react-scripts": "5.0.1",
 		"recharts": "^2.13.0-alpha.4",
+		"serve": "^14.2.4",
 		"start-server-and-test": "^2.0.4",
 		"supertest": "^7.0.0",
 		"swagger-jsdoc": "^6.2.8",
