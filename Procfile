@@ -1,2 +1,2 @@
-web: npm start
-backend: node ./backend/server.js
+web: node --optimize_for_size --max_old_space_size=920 --gc_interval=100 -r dotenv/config ./node_modules/.bin/npm start
+backend: node --optimize_for_size --max_old_space_size=460 --gc_interval=100 ./backend/server.js
