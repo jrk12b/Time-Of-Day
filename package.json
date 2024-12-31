@@ -7,7 +7,6 @@
 		"format-check": "npx prettier --check .",
 		"format-write": "npx prettier --write .",
 		"start": "react-scripts start",
-		"heroku-postbuild": "npm run build",
 		"build": "react-scripts build",
 		"test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
 		"eject": "react-scripts eject",
