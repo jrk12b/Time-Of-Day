@@ -5,6 +5,7 @@ const { HOST } = require('../config');
 // Fetches activity data from the backend API
 export const fetchActivities = async () => {
 	try {
+		console.log(`Host: ${HOST}`);
 		const response = await axios.get(`${HOST}/api/activities`);
 		return response.data;
 	} catch (error) {
