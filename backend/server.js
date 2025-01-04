@@ -31,7 +31,6 @@ const activityRoutes = require('./routes/activityRoutes');
 app.use('/api', activityRoutes);
 
 // Set the port
-const port = PORT || 8000;
-const server = app.listen(port, () => console.log(`Server running on port ${port}`));
+const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 module.exports = { app, server };
