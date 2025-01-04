@@ -1,5 +1,6 @@
 const swaggerJSDoc = require('swagger-jsdoc');
 const path = require('path');
+const { HOST } = require('../config');
 
 // Define the Swagger specification
 const options = {
@@ -13,7 +14,7 @@ const options = {
 		},
 		servers: [
 			{
-				url: 'http://localhost:8000',
+				url: HOST,
 				description: 'API server',
 			},
 		],
