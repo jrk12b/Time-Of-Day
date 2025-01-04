@@ -7,6 +7,8 @@ export const fetchActivities = async () => {
 	try {
 		console.log(`Host: ${HOST}`);
 		const response = await axios.get(`${HOST}/api/activities`);
+		console.log(`response: ${response}`);
+		console.log(`response.data: ${response.data}`);
 		return response.data;
 	} catch (error) {
 		console.error('Error fetching activities', error);
