@@ -2,9 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { PORT, MONGO_URI } = require('../src/config');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
+
+const PORT = 8000;
+const MONGO_URI =
+	process.env.MONGODB_URI ||
+	'mongodb+srv://justinkurdila:YMpla2q9VsVA49T5@cluster1.fdjjmus.mongodb.net/activities';
 
 const app = express();
 
