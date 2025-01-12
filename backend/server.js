@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
+const path = require('path');
 
 const { PORT, MONGODB_URI } = require('../config');
 console.log(`PORT: ${PORT}`);
@@ -31,6 +32,16 @@ db.once('open', () => {
 // Import the activity routes and use them
 const activityRoutes = require('./routes/activityRoutes');
 app.use('/api', activityRoutes);
+
+// Serve static files from the React app
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '../build')));
+
+	// All other routes should be handled by React's index.html
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname, '../build', 'index.html'));
+	});
+}
 
 // Set the port
 const server = app.listen(PORT, () => {
