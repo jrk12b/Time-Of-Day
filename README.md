@@ -115,3 +115,6 @@ All tests run in Github Actions as defined in `node.js.yml`
   - `k6:pipeline-browser-home`
   - `k6:pipeline-browser-todaystime`
   - `k6:pipeline-browser-yourtime`
+
+previous proc file:
+web: concurrently "serve -s build" "node ./backend/server.js"

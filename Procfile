@@ -1,1 +1,2 @@
-web: concurrently "serve -s build" "node ./backend/server.js"
+web: serve -s build 
+backend: node ./backend/server.js
