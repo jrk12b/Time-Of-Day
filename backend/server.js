@@ -32,9 +32,7 @@ app.use('/api', activityRoutes);
 
 // Set the port
 const server = app.listen(PORT, () => {
-	const host = server.address().address === '::' ? 'localhost' : server.address().address;
-	const protocol = 'https';
-	console.log(`Server running at ${protocol}://${host}:${PORT}/`);
+	console.log(`Server running on ${PORT}`);
 });
 
 module.exports = { app, server };
