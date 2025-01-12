@@ -5,7 +5,9 @@ const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 
-const { PORT, MONGO_URI } = require('../config');
+const { PORT, MONGODB_URI } = require('../config');
+console.log(`PORT: ${PORT}`);
+console.log(`MONGODB_URI: ${MONGODB_URI}`);
 const app = express();
 
 // Serve Swagger UI
@@ -16,7 +18,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect(MONGO_URI, {
+mongoose.connect(MONGODB_URI, {
 	ssl: true,
 });
 
