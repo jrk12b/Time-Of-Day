@@ -1,4 +1,3 @@
-// const PORT = process.env.PORT || 8000;
 const PORT = 8000;
 const HOST =
 	process.env.NODE_ENV === 'production'

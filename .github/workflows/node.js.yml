@@ -108,6 +108,7 @@ jobs:
   cypress-run-chrome:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    if: github.event_name == 'workflow_dispatch'
     needs:
       [
         setup-node,
@@ -129,6 +130,7 @@ jobs:
   cypress-run-safari-webkit:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    if: github.event_name == 'workflow_dispatch'
     needs:
       [
         setup-node,
@@ -156,6 +158,7 @@ jobs:
   cypress-run-firefox:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    if: github.event_name == 'workflow_dispatch'
     needs:
       [
         setup-node,
@@ -181,6 +184,7 @@ jobs:
   cypress-run-edge:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    if: github.event_name == 'workflow_dispatch'
     needs:
       [
         setup-node,
@@ -206,6 +210,7 @@ jobs:
   cypress-run-electron:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    if: github.event_name == 'workflow_dispatch'
     needs:
       [
         setup-node,
