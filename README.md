@@ -12,9 +12,11 @@ Time Of Day is a powerful and intuitive app designed to help you manage and opti
 
 ## Deployment and Hosting
 
-- Domain is purchased and managed on Wix (www.timeofdays.com) or https://time-of-day-950804297559.herokuapp.com/ temporarily.
-- Hosting Platform for deployment: Heroku. Deployments are done manually in Heroku UI.
-- DB is hosted in MongoDB.
+- Hosting Platform for deployment: Heroku. Deployments are done manually in Heroku UI. Deployment is controled through Procfile.
+- Frontend is deployed with heroku app "time-of-day" - https://time-of-day-950804297559.herokuapp.com/
+- Backend is deployed with heroku app "time-of-day-db" - https://time-of-day-db-cdee05bd35c4.herokuapp.com/api/activities
+- Domain is purchased and managed on Wix (www.timeofdays.com).
+- DB is hosted in MongoDB
 - Time of day can also be run locally (as described below).
 
 ## Tech Stack
@@ -115,6 +117,3 @@ All tests run in Github Actions as defined in `node.js.yml`
   - `k6:pipeline-browser-home`
   - `k6:pipeline-browser-todaystime`
   - `k6:pipeline-browser-yourtime`
-
-previous proc file:
-web: concurrently "serve -s build" "node ./backend/server.js"
