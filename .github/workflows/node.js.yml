@@ -109,16 +109,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     if: github.event_name == 'workflow_dispatch'
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -131,16 +121,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     if: github.event_name == 'workflow_dispatch'
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -159,16 +139,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     if: github.event_name == 'workflow_dispatch'
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -185,16 +155,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     if: github.event_name == 'workflow_dispatch'
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -211,16 +171,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     if: github.event_name == 'workflow_dispatch'
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
