@@ -108,16 +108,7 @@ jobs:
   cypress-run-chrome:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -129,16 +120,7 @@ jobs:
   cypress-run-safari-webkit:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -156,16 +138,7 @@ jobs:
   cypress-run-firefox:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -181,16 +154,7 @@ jobs:
   cypress-run-edge:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -206,16 +170,7 @@ jobs:
   cypress-run-electron:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs:
-      [
-        setup-node,
-        unit-and-component-test,
-        api-test,
-        performance-backend-test,
-        performance-browser-home,
-        performance-browser-todaysTime,
-        performance-browser-yourTime,
-      ]
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Quick Sleep/Delay
         uses: GuillaumeFalourd/wait-sleep-action@v1

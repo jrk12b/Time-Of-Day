@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+const { HOST } = require('../config');
 
 /**
  * Manages state and actions related to editing activities.
  * Handles displaying success and error messages stored in localStorage.
  */
-const useActivityActions = (port) => {
+const useActivityActions = () => {
 	const [editActivity, setEditActivity] = useState(null);
 	const [editName, setEditName] = useState('');
 	const [editHour, setEditHour] = useState('');
@@ -47,7 +48,7 @@ const useActivityActions = (port) => {
 	const handleUpdate = async (activityId, activityDocId) => {
 		try {
 			const response = await axios.put(
-				`http://localhost:${port}/api/activities/${activityDocId}/activity/${activityId}`,
+				`${HOST}/api/activities/${activityDocId}/activity/${activityId}`,
 				{
 					name: editName,
 					hour: editHour,
@@ -75,7 +76,7 @@ const useActivityActions = (port) => {
 	const handleDelete = async (activityId, activityDocId) => {
 		try {
 			const response = await axios.delete(
-				`http://localhost:${port}/api/activities/${activityDocId}/activity/${activityId}`
+				`${HOST}/api/activities/${activityDocId}/activity/${activityId}`
 			);
 			console.log('Activity deleted:', response.data);
 			localStorage.setItem('successMessage', 'Activity deleted successfully!');
@@ -94,9 +95,7 @@ const useActivityActions = (port) => {
 	 */
 	const handleDeleteDocument = async (activityDocId) => {
 		try {
-			const response = await axios.delete(
-				`http://localhost:${port}/api/activities/${activityDocId}`
-			);
+			const response = await axios.delete(`${HOST}/api/activities/${activityDocId}`);
 			console.log('Document deleted:', response.data);
 			localStorage.setItem('successMessage', 'Document deleted successfully!');
 		} catch (error) {

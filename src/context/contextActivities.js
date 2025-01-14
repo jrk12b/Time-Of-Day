@@ -1,11 +1,12 @@
 import React, { createContext, useReducer } from 'react';
 import axios from 'axios';
-const { PORT } = require('../config');
+const { HOST } = require('../config');
+console.log(`HOST: ${HOST}`);
 
 // Fetches activity data from the backend API
 export const fetchActivities = async () => {
 	try {
-		const response = await axios.get(`http://localhost:${PORT}/api/activities`);
+		const response = await axios.get(`${HOST}/api/activities`);
 		return response.data;
 	} catch (error) {
 		console.error('Error fetching activities', error);
@@ -16,7 +17,7 @@ export const fetchActivities = async () => {
 // Function to fetch existing activity names from the database
 export const fetchActivityNames = async () => {
 	try {
-		const response = await axios.get(`http://localhost:${PORT}/api/activities/names`);
+		const response = await axios.get(`${HOST}/api/activities/names`);
 		return response.data;
 	} catch (error) {
 		console.error('Error fetching activity names:', error);
@@ -84,7 +85,7 @@ export const AppProvider = (props) => {
 export const handleSubmitActivities = async (activities, setSuccessMessage) => {
 	try {
 		const timestamp = new Date();
-		await axios.post(`http://localhost:${PORT}/api/activities`, {
+		await axios.post(`${HOST}/api/activities`, {
 			activities,
 			timestamp,
 		});

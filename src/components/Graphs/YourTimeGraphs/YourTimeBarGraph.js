@@ -8,6 +8,7 @@ import { testIds } from '../../../testData/testIds';
 // This component that fetches activity data, transforms it, and displays it in a bar chart using Recharts.
 const YourTimeBarGraph = () => {
 	const { activities } = useFetchActivities();
+	console.log(`activities: ${activities}`);
 
 	// Use the imported transformation function
 	const data = useMemo(() => transformAndAggregateData(activities), [activities]);
