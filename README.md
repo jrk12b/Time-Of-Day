@@ -1,5 +1,7 @@
 # Time Of Day
 
+[![Time of Day](https://github.com/jrk12b/Time-Of-Day/actions/workflows/node.js.yml/badge.svg)](https://github.com/jrk12b/Time-Of-Day/actions/workflows/node.js.yml)
+
 Time Of Day is a powerful and intuitive app designed to help you manage and optimize your daily schedule. With Time Of Day, you can easily input your daily activities and track how many hours you spend on each task. The app then provides detailed charts and graphs, allowing you to visualize your time distribution over weeks or months. Whether you’re aiming to improve productivity, balance work and leisure, or simply gain insights into your daily routines, Time Of Day offers the tools you need to take control of your time. Start making every hour count with Time Of Day!
 
 - Today's Time:
@@ -13,9 +15,9 @@ Time Of Day is a powerful and intuitive app designed to help you manage and opti
 ## Deployment and Hosting
 
 - Hosting Platform for deployment: Heroku. Deployments are done manually in Heroku UI. Deployment is controled through Procfile.
-- Frontend is deployed with heroku app "time-of-day" - https://time-of-day-950804297559.herokuapp.com/
-- Backend is deployed with heroku app "time-of-day-db" - https://time-of-day-db-cdee05bd35c4.herokuapp.com/api/activities
-- Domain is purchased and managed on Wix (www.timeofdays.com).
+- Frontend is deployed with heroku app "time-of-day"
+- Backend is deployed with heroku app "time-of-day-db"
+- Domain is purchased and managed on Wix
 - DB is hosted in MongoDB
 - Time of day can also be run locally (as described below).
 
