@@ -44,6 +44,9 @@ if (frontend === 'true') {
 	const activityRoutes = require('./routes/activityRoutes');
 	app.use('/api', activityRoutes);
 
+	const habitRoutes = require('./routes/habitRoutes');
+	app.use('/api', habitRoutes);
+
 	// Set the port
 	const server = app.listen(PORT, () => {
 		console.log(`Server running on ${PORT}`);

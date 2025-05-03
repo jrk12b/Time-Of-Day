@@ -5,6 +5,7 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useMemo } from 'react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import { addHabit } from '../context/contextHabits';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const DailyHabitsPage = () => {
@@ -61,25 +62,27 @@ const DailyHabitsPage = () => {
 
 	const [rowData, setRowData] = useState(initialData);
 
-	const handleAddHabit = (e) => {
+	const handleAddHabit = async (e) => {
 		e.preventDefault();
-
 		if (!newHabit.trim()) return;
 
-		const dailyData = {};
-		days.forEach((day) => {
-			dailyData[day] = false;
-		});
+		try {
+			const savedHabit = await addHabit(newHabit, 20); // optional: add goal input later
 
-		const newHabitItem = {
-			habit: newHabit,
-			goal: '',
-			...dailyData,
-			achieved: 0,
-		};
+			// Add to grid or local state as needed
+			const dailyData = {};
+			days.forEach((day) => {
+				dailyData[day] = false;
+			});
 
-		setRowData([...rowData, newHabitItem]);
-		setNewHabit('');
+			setRowData([
+				...rowData,
+				{ habit: savedHabit.name, goal: savedHabit.goal, ...dailyData, achieved: 0 },
+			]);
+			setNewHabit('');
+		} catch (err) {
+			console.error('Failed to add habit:', err.message);
+		}
 	};
 
 	const colDefs = useMemo(() => {
@@ -120,6 +123,19 @@ const DailyHabitsPage = () => {
 		<div data-testid={testIds.yourTime.yourTime}>
 			<h1>Daily Habits</h1>
 			<br />
+			<form onSubmit={handleAddHabit} style={{ marginTop: '20px' }}>
+				<input
+					type="text"
+					value={newHabit}
+					onChange={(e) => setNewHabit(e.target.value)}
+					placeholder="New habit name"
+					style={{ marginRight: '10px', padding: '5px' }}
+				/>
+				<button type="submit" style={{ padding: '5px 10px' }}>
+					Add Habit
+				</button>
+			</form>
+			<br></br>
 			<div className="ag-theme-alpine" style={{ height: 500, width: '100%' }}>
 				<AgGridReact
 					rowData={rowData}
@@ -127,18 +143,6 @@ const DailyHabitsPage = () => {
 					domLayout="autoHeight"
 					defaultColDef={{ width: 100 }}
 				/>
-				<form onSubmit={handleAddHabit} style={{ marginTop: '20px' }}>
-					<input
-						type="text"
-						value={newHabit}
-						onChange={(e) => setNewHabit(e.target.value)}
-						placeholder="New habit name"
-						style={{ marginRight: '10px', padding: '5px' }}
-					/>
-					<button type="submit" style={{ padding: '5px 10px' }}>
-						Add Habit
-					</button>
-				</form>
 			</div>
 		</div>
 	);
