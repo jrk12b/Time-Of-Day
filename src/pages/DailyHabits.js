@@ -3,58 +3,67 @@ import '../css/YourTime.css';
 import { testIds } from '../testData/testIds';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
-import { ClientSideRowModelModule } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 const DailyHabitsPage = () => {
-	const [rowData, setRowData] = useState([
-		{
-			habit: 'Reading',
-			monday: true,
-			tuesday: true,
-			wednesday: true,
-			thursday: false,
-			friday: true,
-			saturday: false,
-			sunday: true,
-			goal: '21',
-		},
-		{
-			habit: 'Running',
-			monday: true,
-			tuesday: true,
-			wednesday: true,
-			thursday: false,
-			friday: true,
-			saturday: false,
-			sunday: true,
-			goal: '23',
-		},
-		{
-			habit: 'Guitar',
-			monday: true,
-			tuesday: true,
-			wednesday: true,
-			thursday: false,
-			friday: true,
-			saturday: false,
-			sunday: true,
-		},
-	]);
+	function countTrueValues(obj) {
+		let count = 0;
+		for (const key in obj) {
+			if (Object.prototype.hasOwnProperty.call(obj, key) && obj[key] === true) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	function getDaysOfCurrentMonth() {
+		const now = new Date();
+		const year = now.getFullYear();
+		const month = now.getMonth();
+
+		const days = [];
+		const totalDays = new Date(year, month + 1, 0).getDate();
+
+		for (let day = 1; day <= totalDays; day++) {
+			days.push(`${month + 1}/${day}`);
+		}
+
+		return days;
+	}
+
+	const baseData = [
+		{ habit: 'Reading', goal: '21' },
+		{ habit: 'Running', goal: '23' },
+		{ habit: 'Guitar' },
+	];
+
+	const days = getDaysOfCurrentMonth();
+
+	const initialData = baseData.map((item) => {
+		const dailyData = {};
+
+		// Fill each day of the current month with default value (false)
+		days.forEach((day) => {
+			dailyData[day] = false;
+		});
+
+		// Combine with habit and goal, then compute achieved
+		const fullItem = {
+			...item,
+			...dailyData,
+		};
+		fullItem.achieved = countTrueValues(fullItem);
+		return fullItem;
+	});
+
+	const [rowData, setRowData] = useState(initialData);
 
 	const handleCheckboxChange = (rowIndex, day) => {
 		const newData = [...rowData];
 		newData[rowIndex][day] = !newData[rowIndex][day];
 		setRowData(newData);
 	};
-
-	//   const handleCellValueChange = (params) => {
-	// 	const updatedData = [...rowData];
-	// 	updatedData[params.node.rowIndex] = {
-	// 	...updatedData[params.node.rowIndex],
-	//   [params.colDef.field]: params.newValue
-	// 	};
-	// 	setRowData(updatedData);
-	//   };
 
 	const createCheckboxCol = (field) => ({
 		field,
@@ -69,18 +78,15 @@ const DailyHabitsPage = () => {
 		},
 	});
 
-	const [colDefs] = useState([
-		{ field: 'habit', editable: true },
-		createCheckboxCol('monday'),
-		createCheckboxCol('tuesday'),
-		createCheckboxCol('wednesday'),
-		createCheckboxCol('thursday'),
-		createCheckboxCol('friday'),
-		createCheckboxCol('saturday'),
-		createCheckboxCol('sunday'),
-		{ field: 'goal', editable: true },
-		{ field: 'achieved' },
-	]);
+	const [colDefs] = useState([]);
+	colDefs.push({ field: 'habit', editable: true });
+
+	for (let i = 0; i < days.length; i++) {
+		let newDef = createCheckboxCol(days[i]);
+		colDefs.push(newDef);
+	}
+	colDefs.push({ field: 'goal', editable: true });
+	colDefs.push({ field: 'achieved' });
 
 	return (
 		<div data-testid={testIds.yourTime.yourTime}>
@@ -88,16 +94,10 @@ const DailyHabitsPage = () => {
 			<br />
 			<div className="ag-theme-alpine" style={{ height: 500, width: '100%' }}>
 				<AgGridReact
-					modules={[ClientSideRowModelModule]}
 					rowData={rowData}
 					columnDefs={colDefs}
 					domLayout="autoHeight"
-					// defaultColDef={{
-					//     editable: true, // Enable editing for all columns by default
-					//     sortable: true,
-					//     filter: true,
-					//   }}
-					// onCellValueChanged={handleCellValueChange}
+					defaultColDef={{ width: 100 }}
 				/>
 			</div>
 		</div>
