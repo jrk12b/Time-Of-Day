@@ -60,6 +60,7 @@
 		]
 	},
 	"dependencies": {
+		"@ag-grid-community/client-side-row-model": "^32.3.5",
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"@cypress-audit/lighthouse": "^1.4.2",
 		"@emotion/react": "^11.11.4",
@@ -69,6 +70,7 @@
 		"@testing-library/jest-dom": "^6.4.6",
 		"@testing-library/react": "^16.0.0",
 		"@testing-library/user-event": "^14.5.2",
+		"ag-grid-react": "^33.2.4",
 		"axios": "^1.7.2",
 		"body-parser": "^1.20.2",
 		"bootstrap": "^5.3.3",
