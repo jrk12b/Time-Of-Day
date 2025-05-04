@@ -35,6 +35,22 @@ export const updateHabitGoal = async (id, newGoal) => {
 	}
 };
 
+export const updateHabitProgress = async (id, date, value) => {
+	const response = await fetch(`${HOST}/api/habits/${id}/progress`, {
+		method: 'PATCH',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ date, value }),
+	});
+
+	if (!response.ok) {
+		throw new Error('Failed to update habit progress');
+	}
+
+	return response.json();
+};
+
 export async function updateHabitName(habitId, newName) {
 	try {
 		const response = await fetch(`${HOST}/api/habits/${habitId}`, {
@@ -50,3 +66,13 @@ export async function updateHabitName(habitId, newName) {
 		throw error;
 	}
 }
+
+export const deleteHabit = async (habitId) => {
+	console.log(habitId);
+	const response = await fetch(`${HOST}/api/habits/${habitId}`, {
+		method: 'DELETE',
+	});
+	if (!response.ok) {
+		throw new Error('Failed to delete habit');
+	}
+};

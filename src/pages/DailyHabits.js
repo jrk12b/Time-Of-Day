@@ -6,7 +6,14 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useMemo } from 'react';
 import { fetchHabits } from '../context/contextHabits';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { addHabit, updateHabitGoal, updateHabitName } from '../context/contextHabits';
+import {
+	addHabit,
+	updateHabitGoal,
+	updateHabitName,
+	updateHabitProgress,
+	deleteHabit,
+} from '../context/contextHabits';
+
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const DailyHabitsPage = () => {
@@ -47,7 +54,7 @@ const DailyHabitsPage = () => {
 				const processedHabits = habitsFromApi.map((habit) => {
 					const dailyData = {};
 					days.forEach((day) => {
-						dailyData[day] = false;
+						dailyData[day] = habit.progress?.[day] || false;
 					});
 					const fullHabit = {
 						id: habit._id,
@@ -63,7 +70,6 @@ const DailyHabitsPage = () => {
 				console.error('Failed to load habits:', err);
 			}
 		};
-
 		loadHabits();
 	}, [days]);
 
@@ -91,10 +97,19 @@ const DailyHabitsPage = () => {
 	};
 
 	const colDefs = useMemo(() => {
-		const handleCheckboxChange = (rowIndex, day) => {
+		const handleCheckboxChange = async (rowIndex, day) => {
 			const newData = [...rowData];
-			newData[rowIndex][day] = !newData[rowIndex][day];
+			const habit = newData[rowIndex];
+			const newValue = !habit[day];
+			habit[day] = newValue;
+			habit.achieved = countTrueValues(habit);
 			setRowData(newData);
+
+			try {
+				await updateHabitProgress(habit.id, day, newValue);
+			} catch (err) {
+				console.error('Failed to update habit progress:', err);
+			}
 		};
 
 		const createCheckboxCol = (field) => ({
@@ -125,6 +140,35 @@ const DailyHabitsPage = () => {
 		});
 
 		cols.push({ field: 'achieved' });
+
+		cols.push({
+			headerName: '',
+			field: 'delete',
+			width: 80,
+			cellRenderer: (params) => {
+				return (
+					<button
+						style={{
+							padding: '4px 8px',
+							backgroundColor: 'red',
+							color: 'white',
+							border: 'none',
+							borderRadius: '4px',
+						}}
+						onClick={async () => {
+							try {
+								await deleteHabit(params.data.id);
+								setRowData((prevData) => prevData.filter((habit) => habit.id !== params.data.id));
+							} catch (err) {
+								console.error('Failed to delete habit:', err);
+							}
+						}}
+					>
+						Delete
+					</button>
+				);
+			},
+		});
 
 		return cols;
 	}, [days, rowData]);

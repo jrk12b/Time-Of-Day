@@ -46,4 +46,32 @@ router.put('/habits/:id', async (req, res) => {
 	}
 });
 
+router.patch('/habits/:id/progress', async (req, res) => {
+	try {
+		const { date, value } = req.body;
+
+		const habit = await Habit.findById(req.params.id);
+		if (!habit) return res.status(404).send('Habit not found');
+
+		habit.progress.set(date, value);
+		await habit.save();
+
+		res.json(habit);
+	} catch (err) {
+		res.status(500).send(err);
+	}
+});
+
+router.delete('/habits/:id', async (req, res) => {
+	try {
+		const deletedHabit = await Habit.findByIdAndDelete(req.params.id);
+		if (!deletedHabit) {
+			return res.status(404).json({ message: 'Habit not found' });
+		}
+		res.json({ message: 'Habit deleted successfully' });
+	} catch (err) {
+		res.status(500).json({ message: err.message });
+	}
+});
+
 module.exports = router;
