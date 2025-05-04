@@ -179,50 +179,51 @@ const DailyHabitsPage = () => {
 		<div data-testid={testIds.yourTime.yourTime}>
 			<h1>Daily Habits</h1>
 			<br />
-			<form
-				name="dailyHabitsForm"
-				id="new-habit-form"
-				onSubmit={handleAddHabit}
-				style={{ marginTop: '20px' }}
-			>
-				<input
-					type="text"
-					id="new-habit-input"
-					name="NewHabitFormInput"
-					value={newHabit}
-					onChange={(e) => setNewHabit(e.target.value)}
-					placeholder="New habit name"
-					style={{ marginRight: '10px', padding: '5px' }}
-				/>
-				<button type="submit" style={{ padding: '5px 10px' }}>
-					Add Habit
-				</button>
-			</form>
 			<br></br>
 			<div className="ag-theme-alpine" style={{ height: 500, width: '100%' }}>
-				<div style={{ display: 'flex', justifyContent: 'center', gap: '10px', margin: '20px 0' }}>
-					<button
-						onClick={() => {
-							setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
-							if (currentMonth === 0) setCurrentYear((prev) => prev - 1);
-						}}
+				<div className="top-bar">
+					<form
+						name="dailyHabitsForm"
+						id="new-habit-form"
+						onSubmit={handleAddHabit}
+						className="habit-form"
 					>
-						← Previous
-					</button>
+						<input
+							type="text"
+							id="new-habit-input"
+							name="NewHabitFormInput"
+							value={newHabit}
+							onChange={(e) => setNewHabit(e.target.value)}
+							placeholder="New habit name"
+						/>
+						<button type="submit">Add Habit</button>
+					</form>
+					<div className="month-nav">
+						<button
+							className="month-buttons"
+							onClick={() => {
+								setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
+								if (currentMonth === 0) setCurrentYear((prev) => prev - 1);
+							}}
+						>
+							← Previous
+						</button>
 
-					<span>
-						{new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })}{' '}
-						{currentYear}
-					</span>
+						<span className="month-label">
+							{new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })}{' '}
+							{currentYear}
+						</span>
 
-					<button
-						onClick={() => {
-							setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
-							if (currentMonth === 11) setCurrentYear((prev) => prev + 1);
-						}}
-					>
-						Next →
-					</button>
+						<button
+							className="month-buttons"
+							onClick={() => {
+								setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
+								if (currentMonth === 11) setCurrentYear((prev) => prev + 1);
+							}}
+						>
+							Next →
+						</button>
+					</div>
 				</div>
 				<AgGridReact
 					rowData={rowData}
