@@ -19,23 +19,25 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 const DailyHabitsPage = () => {
 	const [newHabit, setNewHabit] = useState('');
 	const [rowData, setRowData] = useState([]);
+	const today = new Date();
+	const [currentMonth, setCurrentMonth] = useState(today.getMonth()); // 0-indexed
+	const [currentYear, setCurrentYear] = useState(today.getFullYear());
 
-	function getDaysOfCurrentMonth() {
-		const now = new Date();
-		const year = now.getFullYear();
-		const month = now.getMonth();
-
+	function getDaysOfCurrentMonth(year, month) {
 		const days = [];
-		const totalDays = new Date(year, month + 1, 0).getDate();
+		const totalDays = new Date(year, month + 1, 0).getDate(); // month is 0-indexed
 
 		for (let day = 1; day <= totalDays; day++) {
-			days.push(`${month + 1}/${day}`);
+			days.push(`${month + 1}/${day}`); // Format: MM/DD
 		}
 
 		return days;
 	}
 
-	const days = useMemo(() => getDaysOfCurrentMonth(), []);
+	const days = useMemo(
+		() => getDaysOfCurrentMonth(currentYear, currentMonth),
+		[currentYear, currentMonth]
+	);
 
 	const countTrueValues = (obj) => {
 		let count = 0;
@@ -198,6 +200,30 @@ const DailyHabitsPage = () => {
 			</form>
 			<br></br>
 			<div className="ag-theme-alpine" style={{ height: 500, width: '100%' }}>
+				<div style={{ display: 'flex', justifyContent: 'center', gap: '10px', margin: '20px 0' }}>
+					<button
+						onClick={() => {
+							setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
+							if (currentMonth === 0) setCurrentYear((prev) => prev - 1);
+						}}
+					>
+						← Previous
+					</button>
+
+					<span>
+						{new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })}{' '}
+						{currentYear}
+					</span>
+
+					<button
+						onClick={() => {
+							setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
+							if (currentMonth === 11) setCurrentYear((prev) => prev + 1);
+						}}
+					>
+						Next →
+					</button>
+				</div>
 				<AgGridReact
 					rowData={rowData}
 					columnDefs={colDefs}
