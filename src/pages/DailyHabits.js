@@ -82,7 +82,6 @@ const DailyHabitsPage = () => {
 		try {
 			const savedHabit = await addHabit(newHabit, 20);
 
-			// Add to grid or local state as needed
 			const dailyData = {};
 			days.forEach((day) => {
 				dailyData[day] = false;
@@ -90,7 +89,13 @@ const DailyHabitsPage = () => {
 
 			setRowData([
 				...rowData,
-				{ habit: savedHabit.name, goal: savedHabit.goal, ...dailyData, achieved: 0 },
+				{
+					id: savedHabit._id,
+					habit: savedHabit.name,
+					goal: savedHabit.goal,
+					...dailyData,
+					achieved: 0,
+				},
 			]);
 			setNewHabit('');
 		} catch (err) {
@@ -131,7 +136,7 @@ const DailyHabitsPage = () => {
 
 		const cols = [];
 
-		cols.push({ field: 'habit', editable: true });
+		cols.push({ field: 'habit', editable: true, width: 200 });
 
 		for (let i = 0; i < days.length; i++) {
 			cols.push(createCheckboxCol(days[i]));
@@ -247,10 +252,9 @@ const DailyHabitsPage = () => {
 					defaultColDef={{
 						width: 100,
 						editable: true,
+						resizable: true,
 					}}
 					onCellValueChanged={(params) => {
-						console.log('Cell changed:', params);
-
 						const habitId = params.data.id;
 
 						if (params.colDef.field === 'goal') {
