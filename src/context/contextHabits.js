@@ -76,3 +76,12 @@ export const deleteHabit = async (habitId) => {
 		throw new Error('Failed to delete habit');
 	}
 };
+
+export const updateHabitOrder = async (orderedHabits) => {
+	const response = await fetch(`${HOST}/api/habits/reorder`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ habits: orderedHabits }),
+	});
+	if (!response.ok) throw new Error('Failed to update habit order');
+};

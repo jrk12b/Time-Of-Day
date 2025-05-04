@@ -6,6 +6,7 @@ const habitSchema = new Schema({
 	goal: { type: Number, required: false },
 	createdAt: { type: Date, default: Date.now },
 	progress: { type: Map, of: Boolean, default: {} },
+	order: { type: Number, required: false, default: 0 },
 });
 
 module.exports = mongoose.model('Habits', habitSchema);

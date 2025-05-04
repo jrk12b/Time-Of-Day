@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.get('/habits', async (req, res) => {
 	try {
-		// Find all the habits and return the json
-		const habits = await Habit.find();
+		// Find all habits, sorted by the `order` field in ascending order
+		const habits = await Habit.find().sort({ order: 1 });
 		res.json(habits);
 	} catch (err) {
 		res.status(500).send(err);
@@ -71,6 +71,26 @@ router.delete('/habits/:id', async (req, res) => {
 		res.json({ message: 'Habit deleted successfully' });
 	} catch (err) {
 		res.status(500).json({ message: err.message });
+	}
+});
+
+router.post('/habits/reorder', async (req, res) => {
+	try {
+		const { habits } = req.body;
+
+		const bulkOps = habits.map(({ id, order }) => ({
+			updateOne: {
+				filter: { _id: id },
+				update: { order },
+			},
+		}));
+
+		await Habit.bulkWrite(bulkOps);
+
+		res.json({ message: 'Habit order updated successfully' });
+	} catch (err) {
+		console.error('Error updating habit order:', err);
+		res.status(500).json({ message: 'Failed to update habit order' });
 	}
 });
 

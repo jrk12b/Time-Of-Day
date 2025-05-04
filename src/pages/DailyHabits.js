@@ -4,7 +4,7 @@ import { testIds } from '../testData/testIds';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useMemo } from 'react';
-import { fetchHabits } from '../context/contextHabits';
+import { fetchHabits, updateHabitOrder } from '../context/contextHabits';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import {
 	addHabit,
@@ -49,24 +49,40 @@ const DailyHabitsPage = () => {
 		return count;
 	};
 
+	const handleRowDragEnd = async (event) => {
+		const newData = [];
+		const api = event.api;
+		api.forEachNodeAfterFilterAndSort((node, index) => {
+			newData.push({ id: node.data.id, order: index });
+		});
+
+		try {
+			await updateHabitOrder(newData);
+		} catch (err) {
+			console.error('Failed to update habit order:', err);
+		}
+	};
+
 	useEffect(() => {
 		const loadHabits = async () => {
 			try {
 				const habitsFromApi = await fetchHabits();
-				const processedHabits = habitsFromApi.map((habit) => {
-					const dailyData = {};
-					days.forEach((day) => {
-						dailyData[day] = habit.progress?.[day] || false;
+				const processedHabits = habitsFromApi
+					.sort((a, b) => a.order - b.order)
+					.map((habit) => {
+						const dailyData = {};
+						days.forEach((day) => {
+							dailyData[day] = habit.progress?.[day] || false;
+						});
+						const fullHabit = {
+							id: habit._id,
+							habit: habit.name,
+							goal: habit.goal || 20,
+							...dailyData,
+						};
+						fullHabit.achieved = countTrueValues(fullHabit);
+						return fullHabit;
 					});
-					const fullHabit = {
-						id: habit._id,
-						habit: habit.name,
-						goal: habit.goal || 20,
-						...dailyData,
-					};
-					fullHabit.achieved = countTrueValues(fullHabit);
-					return fullHabit;
-				});
 				setRowData(processedHabits);
 			} catch (err) {
 				console.error('Failed to load habits:', err);
@@ -135,6 +151,16 @@ const DailyHabitsPage = () => {
 		});
 
 		const cols = [];
+
+		cols.unshift({
+			headerName: '',
+			field: 'drag',
+			rowDrag: true,
+			width: 40,
+			sortable: false,
+			suppressMenu: true,
+			cellRenderer: 'agRowDragCellRenderer',
+		});
 
 		cols.push({ field: 'habit', editable: true, width: 200 });
 
@@ -249,6 +275,9 @@ const DailyHabitsPage = () => {
 					rowData={rowData}
 					columnDefs={colDefs}
 					domLayout="autoHeight"
+					rowDragManaged={true}
+					onRowDragEnd={handleRowDragEnd}
+					animateRows={true}
 					defaultColDef={{
 						width: 100,
 						editable: true,
