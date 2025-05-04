@@ -226,7 +226,10 @@ const DailyHabitsPage = () => {
 			<h1>Daily Habits</h1>
 			<br />
 			<br></br>
-			<div className="ag-theme-alpine" style={{ height: 500, width: '100%' }}>
+			<div
+				className="ag-theme-alpine"
+				style={{ height: 500, width: '100%', marginBottom: '18rem' }}
+			>
 				<div className="top-bar">
 					<form
 						name="dailyHabitsForm"
