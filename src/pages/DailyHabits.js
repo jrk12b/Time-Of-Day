@@ -120,6 +120,7 @@ const DailyHabitsPage = () => {
 				return (
 					<input
 						type="checkbox"
+						className="styled-checkbox"
 						name={`checkbox-${params.node.rowIndex}-${field}`}
 						checked={params.value}
 						onChange={() => handleCheckboxChange(params.node.rowIndex, field)}
@@ -141,7 +142,21 @@ const DailyHabitsPage = () => {
 			editable: true,
 		});
 
-		cols.push({ field: 'achieved' });
+		cols.push({
+			field: 'achieved',
+			cellStyle: (params) => {
+				const achieved = params.value;
+				const goal = params.data?.goal;
+
+				if (achieved >= goal) {
+					return { backgroundColor: '#d4edda' }; // light green
+				} else if (goal - achieved <= 5) {
+					return { backgroundColor: '#fff3cd' }; // light yellow
+				} else {
+					return { backgroundColor: '#f8d7da' }; // light red
+				}
+			},
+		});
 
 		cols.push({
 			headerName: '',

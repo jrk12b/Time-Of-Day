@@ -114,3 +114,42 @@ h1 {
 	font-size: 18px;
 	font-weight: 500;
 }
+
+/* Hide native checkbox and style a custom one */
+.styled-checkbox {
+	position: relative;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	appearance: none;
+	-webkit-appearance: none;
+	border: 2px solid #cbd5e1; /* slate-300 */
+	border-radius: 6px;
+	background-color: #f8fafc; /* slate-50 */
+	transition:
+		background-color 0.2s,
+		border-color 0.2s;
+}
+
+.styled-checkbox:checked {
+	background-color: #22c55e; /* green-500 */
+	border-color: #16a34a; /* green-600 */
+}
+
+.styled-checkbox::after {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 6px;
+	width: 4px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+
+.styled-checkbox:checked::after {
+	opacity: 1;
+}
