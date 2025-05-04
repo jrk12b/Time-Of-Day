@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/YourTime.css';
 import { testIds } from '../testData/testIds';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useMemo } from 'react';
+import { fetchHabits } from '../context/contextHabits';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { addHabit } from '../context/contextHabits';
+import { addHabit, updateHabitGoal, updateHabitName } from '../context/contextHabits';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const DailyHabitsPage = () => {
 	const [newHabit, setNewHabit] = useState('');
-	function countTrueValues(obj) {
-		let count = 0;
-		for (const key in obj) {
-			if (Object.prototype.hasOwnProperty.call(obj, key) && obj[key] === true) {
-				count++;
-			}
-		}
-		return count;
-	}
+	const [rowData, setRowData] = useState([]);
 
 	function getDaysOfCurrentMonth() {
 		const now = new Date();
@@ -35,39 +28,51 @@ const DailyHabitsPage = () => {
 		return days;
 	}
 
-	const baseData = [
-		{ habit: 'Reading', goal: '21' },
-		{ habit: 'Running', goal: '23' },
-		{ habit: 'Guitar' },
-	];
+	const days = useMemo(() => getDaysOfCurrentMonth(), []);
 
-	const days = getDaysOfCurrentMonth();
+	const countTrueValues = (obj) => {
+		let count = 0;
+		for (const key in obj) {
+			if (Object.prototype.hasOwnProperty.call(obj, key) && obj[key] === true) {
+				count++;
+			}
+		}
+		return count;
+	};
 
-	const initialData = baseData.map((item) => {
-		const dailyData = {};
-
-		// Fill each day of the current month with default value (false)
-		days.forEach((day) => {
-			dailyData[day] = false;
-		});
-
-		// Combine with habit and goal, then compute achieved
-		const fullItem = {
-			...item,
-			...dailyData,
+	useEffect(() => {
+		const loadHabits = async () => {
+			try {
+				const habitsFromApi = await fetchHabits();
+				const processedHabits = habitsFromApi.map((habit) => {
+					const dailyData = {};
+					days.forEach((day) => {
+						dailyData[day] = false;
+					});
+					const fullHabit = {
+						id: habit._id,
+						habit: habit.name,
+						goal: habit.goal || 20,
+						...dailyData,
+					};
+					fullHabit.achieved = countTrueValues(fullHabit);
+					return fullHabit;
+				});
+				setRowData(processedHabits);
+			} catch (err) {
+				console.error('Failed to load habits:', err);
+			}
 		};
-		fullItem.achieved = countTrueValues(fullItem);
-		return fullItem;
-	});
 
-	const [rowData, setRowData] = useState(initialData);
+		loadHabits();
+	}, [days]);
 
 	const handleAddHabit = async (e) => {
 		e.preventDefault();
 		if (!newHabit.trim()) return;
 
 		try {
-			const savedHabit = await addHabit(newHabit, 20); // optional: add goal input later
+			const savedHabit = await addHabit(newHabit, 20);
 
 			// Add to grid or local state as needed
 			const dailyData = {};
@@ -98,6 +103,7 @@ const DailyHabitsPage = () => {
 				return (
 					<input
 						type="checkbox"
+						name={`checkbox-${params.node.rowIndex}-${field}`}
 						checked={params.value}
 						onChange={() => handleCheckboxChange(params.node.rowIndex, field)}
 					/>
@@ -113,7 +119,11 @@ const DailyHabitsPage = () => {
 			cols.push(createCheckboxCol(days[i]));
 		}
 
-		cols.push({ field: 'goal', editable: true });
+		cols.push({
+			field: 'goal',
+			editable: true,
+		});
+
 		cols.push({ field: 'achieved' });
 
 		return cols;
@@ -123,9 +133,16 @@ const DailyHabitsPage = () => {
 		<div data-testid={testIds.yourTime.yourTime}>
 			<h1>Daily Habits</h1>
 			<br />
-			<form onSubmit={handleAddHabit} style={{ marginTop: '20px' }}>
+			<form
+				name="dailyHabitsForm"
+				id="new-habit-form"
+				onSubmit={handleAddHabit}
+				style={{ marginTop: '20px' }}
+			>
 				<input
 					type="text"
+					id="new-habit-input"
+					name="NewHabitFormInput"
 					value={newHabit}
 					onChange={(e) => setNewHabit(e.target.value)}
 					placeholder="New habit name"
@@ -141,7 +158,27 @@ const DailyHabitsPage = () => {
 					rowData={rowData}
 					columnDefs={colDefs}
 					domLayout="autoHeight"
-					defaultColDef={{ width: 100 }}
+					defaultColDef={{
+						width: 100,
+						editable: true,
+					}}
+					onCellValueChanged={(params) => {
+						console.log('Cell changed:', params);
+
+						const habitId = params.data.id;
+
+						if (params.colDef.field === 'goal') {
+							const newGoal = params.newValue;
+							updateHabitGoal(habitId, newGoal).catch((err) =>
+								console.error('Failed to update goal:', err)
+							);
+						} else if (params.colDef.field === 'habit') {
+							const newName = params.newValue;
+							updateHabitName(habitId, newName).catch((err) =>
+								console.error('Failed to update habit name:', err)
+							);
+						}
+					}}
 				/>
 			</div>
 		</div>
