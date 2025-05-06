@@ -6,6 +6,9 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useMemo } from 'react';
 import { fetchHabits, updateHabitOrder } from '../context/contextHabits';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import DailyHabitsBarGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsBarGraph';
+import DailyHabitsLineGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsLineGraph';
+import DailyHabitsComposedGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsComposedGraph';
 import {
 	addHabit,
 	updateHabitGoal,
@@ -302,6 +305,15 @@ const DailyHabitsPage = () => {
 						}
 					}}
 				/>
+			</div>
+			<div className="graph">
+				<DailyHabitsBarGraph />
+			</div>
+			<div className="graph">
+				<DailyHabitsLineGraph />
+			</div>
+			<div className="graph">
+				<DailyHabitsComposedGraph />
 			</div>
 		</div>
 	);
