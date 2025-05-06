@@ -18,20 +18,20 @@ const DailyHabitsBarGraph = () => {
 		habits.forEach((habit) => {
 			Object.entries(habit.progress).forEach(([dateStr, completed]) => {
 				if (completed) {
-					const [month] = dateStr.split('/');
-					const monthName = new Date(`2025-${month}-01`).toLocaleString('default', {
-						month: 'long',
-					});
+					const [year, month] = dateStr.split('-').map(Number);
+					const date = new Date(year, month - 1);
+					const monthName = date.toLocaleString('default', { month: 'long' });
+					const yearMonthKey = `${monthName} ${year}`;
 
-					if (!monthlyCounts[monthName]) {
-						monthlyCounts[monthName] = { month: monthName };
+					if (!monthlyCounts[yearMonthKey]) {
+						monthlyCounts[yearMonthKey] = { month: yearMonthKey };
 					}
 
-					if (!monthlyCounts[monthName][habit.name]) {
-						monthlyCounts[monthName][habit.name] = 0;
+					if (!monthlyCounts[yearMonthKey][habit.name]) {
+						monthlyCounts[yearMonthKey][habit.name] = 0;
 					}
 
-					monthlyCounts[monthName][habit.name] += 1;
+					monthlyCounts[yearMonthKey][habit.name] += 1;
 				}
 			});
 		});

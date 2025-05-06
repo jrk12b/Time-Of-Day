@@ -17,21 +17,26 @@ const DailyHabitsLineGraph = () => {
 		habits.forEach((habit) => {
 			Object.entries(habit.progress).forEach(([dateStr, completed]) => {
 				if (completed) {
-					const [month] = dateStr.split('/');
-					const monthName = new Date(`2025-${month}-01`).toLocaleString('default', {
-						month: 'long',
-					});
+					const [year, month] = dateStr.split('-').map(Number); // Parse year and month
+					const date = new Date(year, month - 1); // Get the correct month
+					const monthName = date.toLocaleString('default', { month: 'long' });
+					const yearMonthKey = `${monthName} ${year}`; // Create a key with month and year for uniqueness
 
-					if (!monthlyCounts[monthName]) {
-						monthlyCounts[monthName] = { month: monthName };
+					if (!monthlyCounts[yearMonthKey]) {
+						monthlyCounts[yearMonthKey] = { month: yearMonthKey };
 					}
 
-					if (!monthlyCounts[monthName][habit.name]) {
-						monthlyCounts[monthName][habit.name] = 0;
+					if (!monthlyCounts[yearMonthKey][habit.name]) {
+						monthlyCounts[yearMonthKey][habit.name] = 0;
 					}
 
-					monthlyCounts[monthName][habit.name] += 1;
+					monthlyCounts[yearMonthKey][habit.name] += 1;
 				}
+			});
+
+			// After processing progress, set goal line for every month
+			Object.keys(monthlyCounts).forEach((monthName) => {
+				monthlyCounts[monthName][`${habit.name}_goal`] = habit.goal;
 			});
 		});
 
