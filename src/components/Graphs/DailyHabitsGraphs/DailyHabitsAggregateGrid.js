@@ -6,6 +6,7 @@ import '../../../css/YourTime.css';
 
 const DailyHabitsAggregateGrid = () => {
 	const { habits } = useFetchHabits();
+	console.log(habits);
 	const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
 	const { rowData, colDefs } = useMemo(() => {
@@ -30,13 +31,13 @@ const DailyHabitsAggregateGrid = () => {
 			const monthlyCounts = {};
 
 			Object.entries(habit.progress).forEach(([dateStr, completed]) => {
-				const [month] = dateStr.split('/').map(Number);
-				const assumedYear = new Date(habit.createdAt).getFullYear();
-				if (assumedYear !== currentYear || !completed) return;
+				if (!completed) return;
 
-				const monthName = new Date(`${assumedYear}-${month}-01`).toLocaleString('default', {
-					month: 'long',
-				});
+				const [year, month] = dateStr.split('-').map(Number);
+				if (year !== currentYear) return;
+
+				const monthIndex = month - 1;
+				const monthName = months[monthIndex];
 
 				if (!monthlyCounts[monthName]) {
 					monthlyCounts[monthName] = 0;
@@ -48,7 +49,9 @@ const DailyHabitsAggregateGrid = () => {
 
 			months.forEach((monthName, index) => {
 				const count = monthlyCounts[monthName] || 0;
-				row[`${monthName} ${currentYear}`] = count >= habit.goal ? 'Met' : 'Missed';
+				const requiredCompletions = habit.goal;
+
+				row[`${monthName} ${currentYear}`] = count >= requiredCompletions ? 'Met' : 'Missed';
 			});
 
 			return row;

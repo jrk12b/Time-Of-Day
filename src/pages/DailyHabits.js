@@ -29,12 +29,13 @@ const DailyHabitsPage = () => {
 
 	function getDaysOfCurrentMonth(year, month) {
 		const days = [];
-		const totalDays = new Date(year, month + 1, 0).getDate(); // month is 0-indexed
+		const totalDays = new Date(year, month + 1, 0).getDate();
 
 		for (let day = 1; day <= totalDays; day++) {
-			days.push(`${month + 1}/${day}`); // Format: MM/DD
+			const paddedMonth = String(month + 1).padStart(2, '0');
+			const paddedDay = String(day).padStart(2, '0');
+			days.push(`${year}-${paddedMonth}-${paddedDay}`);
 		}
-
 		return days;
 	}
 
@@ -139,20 +140,25 @@ const DailyHabitsPage = () => {
 			}
 		};
 
-		const createCheckboxCol = (field) => ({
-			field,
-			cellRenderer: (params) => {
-				return (
-					<input
-						type="checkbox"
-						className="styled-checkbox"
-						name={`checkbox-${params.node.rowIndex}-${field}`}
-						checked={params.value}
-						onChange={() => handleCheckboxChange(params.node.rowIndex, field)}
-					/>
-				);
-			},
-		});
+		const createCheckboxCol = (field) => {
+			const shortDate = field.slice(5); // e.g., '2025-05-06' => '05-06'
+
+			return {
+				field,
+				headerName: shortDate,
+				cellRenderer: (params) => {
+					return (
+						<input
+							type="checkbox"
+							className="styled-checkbox"
+							name={`checkbox-${params.node.rowIndex}-${field}`}
+							checked={params.value}
+							onChange={() => handleCheckboxChange(params.node.rowIndex, field)}
+						/>
+					);
+				},
+			};
+		};
 
 		const cols = [];
 
