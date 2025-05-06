@@ -9,6 +9,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import DailyHabitsBarGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsBarGraph';
 import DailyHabitsLineGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsLineGraph';
 import DailyHabitsComposedGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsComposedGraph';
+import DailyHabitsAggregateGrid from '../components/Graphs/DailyHabitsGraphs/DailyHabitsAggregateGrid';
 import {
 	addHabit,
 	updateHabitGoal,
@@ -167,10 +168,6 @@ const DailyHabitsPage = () => {
 
 		cols.push({ field: 'habit', editable: true, width: 200 });
 
-		for (let i = 0; i < days.length; i++) {
-			cols.push(createCheckboxCol(days[i]));
-		}
-
 		cols.push({
 			field: 'goal',
 			editable: true,
@@ -191,6 +188,10 @@ const DailyHabitsPage = () => {
 				}
 			},
 		});
+
+		for (let i = 0; i < days.length; i++) {
+			cols.push(createCheckboxCol(days[i]));
+		}
 
 		cols.push({
 			headerName: '',
@@ -305,6 +306,9 @@ const DailyHabitsPage = () => {
 						}
 					}}
 				/>
+			</div>
+			<div className="graph">
+				<DailyHabitsAggregateGrid />
 			</div>
 			<div className="graph">
 				<DailyHabitsBarGraph />
