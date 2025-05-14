@@ -24,7 +24,7 @@ const DailyHabitsPage = () => {
 	const [newHabit, setNewHabit] = useState('');
 	const [rowData, setRowData] = useState([]);
 	const today = new Date();
-	const [currentMonth, setCurrentMonth] = useState(today.getMonth()); // 0-indexed
+	const [currentMonth, setCurrentMonth] = useState(today.getMonth());
 	const [currentYear, setCurrentYear] = useState(today.getFullYear());
 
 	function getDaysOfCurrentMonth(year, month) {
@@ -141,7 +141,7 @@ const DailyHabitsPage = () => {
 		};
 
 		const createCheckboxCol = (field) => {
-			const shortDate = field.slice(5); // e.g., '2025-05-06' => '05-06'
+			const shortDate = field.slice(5);
 
 			return {
 				field,
