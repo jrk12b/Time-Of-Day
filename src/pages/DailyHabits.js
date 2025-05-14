@@ -170,9 +170,10 @@ const DailyHabitsPage = () => {
 			sortable: false,
 			suppressMenu: true,
 			cellRenderer: 'agRowDragCellRenderer',
+			pinned: 'left',
 		});
 
-		cols.push({ field: 'habit', editable: true, width: 200 });
+		cols.push({ field: 'habit', editable: true, width: 200, pinned: 'left' });
 
 		cols.push({
 			field: 'goal',
