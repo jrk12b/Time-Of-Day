@@ -142,21 +142,30 @@ const DailyHabitsPage = () => {
 
 		const createCheckboxCol = (field) => {
 			const shortDate = field.slice(5);
+			const date = new Date(field);
+			const dayIndex = date.getDay();
 
 			return {
 				field,
 				headerName: shortDate,
-				cellRenderer: (params) => {
-					return (
-						<input
-							type="checkbox"
-							className="styled-checkbox"
-							name={`checkbox-${params.node.rowIndex}-${field}`}
-							checked={params.value}
-							onChange={() => handleCheckboxChange(params.node.rowIndex, field)}
-						/>
-					);
+				cellRenderer: (params) => (
+					<input
+						type="checkbox"
+						className="styled-checkbox"
+						name={`checkbox-${params.node.rowIndex}-${field}`}
+						checked={params.value}
+						onChange={() => handleCheckboxChange(params.node.rowIndex, field)}
+					/>
+				),
+				cellStyle: () => {
+					if (dayIndex === 0) {
+						return {
+							borderLeft: '2px solid black',
+						};
+					}
+					return {};
 				},
+				headerClass: dayIndex === 0 ? 'sunday-header' : '',
 			};
 		};
 
