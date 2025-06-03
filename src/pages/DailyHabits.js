@@ -140,14 +140,26 @@ const DailyHabitsPage = () => {
 			}
 		};
 
+		const workoutDays = {
+			0: 'L', // Sunday
+			1: 'C', // Monday
+			2: 'L', // Tuesday
+			3: 'C', // Wednesday
+			4: 'L', // Thursday
+			5: 'R', // Friday
+			6: 'C', // Saturday
+		};
+
 		const createCheckboxCol = (field) => {
 			const shortDate = field.slice(5);
 			const date = new Date(field);
 			const dayIndex = date.getDay();
+			const type = workoutDays[dayIndex];
 
 			return {
 				field,
-				headerName: shortDate,
+				headerName: `${shortDate} (${type})`,
+				width: 102,
 				cellRenderer: (params) => (
 					<input
 						type="checkbox"
