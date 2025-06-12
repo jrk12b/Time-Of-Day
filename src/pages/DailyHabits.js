@@ -141,13 +141,13 @@ const DailyHabitsPage = () => {
 		};
 
 		const workoutDays = {
-			0: 'L', // Sunday
-			1: 'C', // Monday
-			2: 'L', // Tuesday
-			3: 'C', // Wednesday
-			4: 'L', // Thursday
-			5: 'R', // Friday
-			6: 'C', // Saturday
+			0: 'L', // Monday
+			1: 'C', // Tueday
+			2: 'L', // Wednesday
+			3: 'C', // Thursday
+			4: 'R', // Friday
+			5: 'L', // Saturday
+			6: 'C', // Sunday
 		};
 
 		const createCheckboxCol = (field) => {
