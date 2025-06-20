@@ -10,6 +10,7 @@ import DailyHabitsBarGraph from '../components/Graphs/DailyHabitsGraphs/DailyHab
 import DailyHabitsLineGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsLineGraph';
 import DailyHabitsComposedGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsComposedGraph';
 import DailyHabitsAggregateGrid from '../components/Graphs/DailyHabitsGraphs/DailyHabitsAggregateGrid';
+import DailyHabitsHeatMap from '../components/Graphs/DailyHabitsGraphs/DailyHabitsHeatMap';
 import {
 	addHabit,
 	updateHabitGoal,
@@ -347,6 +348,9 @@ const DailyHabitsPage = () => {
 			</div>
 			<div className="graph">
 				<DailyHabitsComposedGraph />
+			</div>
+			<div className="graph">
+				<DailyHabitsHeatMap rowData={rowData} />
 			</div>
 		</div>
 	);
