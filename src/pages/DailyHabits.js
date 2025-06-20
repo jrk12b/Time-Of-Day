@@ -203,6 +203,7 @@ const DailyHabitsPage = () => {
 
 		cols.push({
 			field: 'achieved',
+			pinned: 'left',
 			cellStyle: (params) => {
 				const achieved = params.value;
 				const goal = params.data?.goal;

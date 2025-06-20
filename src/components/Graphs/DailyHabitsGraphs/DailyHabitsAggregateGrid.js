@@ -6,7 +6,6 @@ import '../../../css/YourTime.css';
 
 const DailyHabitsAggregateGrid = () => {
 	const { habits } = useFetchHabits();
-	console.log(habits);
 	const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
 	const { rowData, colDefs } = useMemo(() => {

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import useFetchHabits from '../../../hooks/useFetchHabits';
 import GraphColors from '../YourTimeGraphs/GraphColors';
@@ -7,6 +7,26 @@ import { testIds } from '../../../testData/testIds';
 // This component that fetches habit data, transforms it, and displays it in a Line chart using Recharts.
 const DailyHabitsLineGraph = () => {
 	const { habits } = useFetchHabits();
+
+	const [activeKeys, setActiveKeys] = useState({});
+
+	useEffect(() => {
+		if (habits.length > 0 && Object.keys(activeKeys).length === 0) {
+			const initial = {};
+			habits.forEach((h) => {
+				initial[h.name] = true;
+			});
+			setActiveKeys(initial);
+		}
+	}, [activeKeys, habits]);
+
+	const handleLegendClick = (e) => {
+		const clicked = e.dataKey;
+		setActiveKeys((prev) => ({
+			...prev,
+			[clicked]: !prev[clicked],
+		}));
+	};
 
 	// Use the imported transformation function
 	const data = useMemo(() => {
@@ -55,13 +75,14 @@ const DailyHabitsLineGraph = () => {
 				<XAxis dataKey="month" />
 				<YAxis />
 				<Tooltip />
-				<Legend />
+				<Legend onClick={handleLegendClick} />
 				{habits.map((habit, index) => (
 					<Line
 						key={habit.name}
 						type="monotone"
 						dataKey={habit.name}
 						stroke={GraphColors[index % GraphColors.length]}
+						hide={!activeKeys[habit.name]}
 					/>
 				))}
 			</LineChart>

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import useFetchHabits from '../../../hooks/useFetchHabits';
 import GraphColors from '../YourTimeGraphs/GraphColors';
@@ -7,6 +7,26 @@ import { testIds } from '../../../testData/testIds';
 // This component that fetches habit data, transforms it, and displays it in a Composed bar chart using Recharts.
 const DailyHabitsComposedGraph = () => {
 	const { habits } = useFetchHabits();
+
+	const [activeKeys, setActiveKeys] = useState({});
+
+	useEffect(() => {
+		if (habits.length > 0 && Object.keys(activeKeys).length === 0) {
+			const initialKeys = {};
+			habits.forEach((h) => {
+				initialKeys[h.name] = true;
+			});
+			setActiveKeys(initialKeys);
+		}
+	}, [activeKeys, habits]);
+
+	const handleLegendClick = (e) => {
+		const clicked = e.dataKey;
+		setActiveKeys((prev) => ({
+			...prev,
+			[clicked]: !prev[clicked],
+		}));
+	};
 
 	// Use the imported transformation function
 	const data = useMemo(() => {
@@ -55,7 +75,7 @@ const DailyHabitsComposedGraph = () => {
 				<XAxis dataKey="month" />
 				<YAxis />
 				<Tooltip />
-				<Legend />
+				<Legend onClick={handleLegendClick} />
 
 				{/* Add a Bar component for bars */}
 				{habits.map((habit, index) => (
@@ -64,6 +84,7 @@ const DailyHabitsComposedGraph = () => {
 						dataKey={habit.name}
 						fill={GraphColors[index % GraphColors.length]}
 						barSize={20}
+						hide={!activeKeys[habit.name]}
 					/>
 				))}
 
