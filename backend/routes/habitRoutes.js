@@ -94,4 +94,33 @@ router.post('/habits/reorder', async (req, res) => {
 	}
 });
 
+// GET monthly notes for a specific monthKey
+router.get('/habits/monthly-notes/:monthKey', async (req, res) => {
+	const { monthKey } = req.params;
+	try {
+		const habit = await Habit.findOne().sort({ createdAt: 1 });
+		if (!habit || !habit.monthlyNotes) return res.json({ notes: '' });
+		const notes = habit.monthlyNotes.get(monthKey) || '';
+		res.json({ notes });
+	} catch (err) {
+		res.status(500).json({ message: err.message });
+	}
+});
+
+// UPDATE monthly notes for a specific monthKey
+router.put('/habits/monthly-notes/:monthKey', async (req, res) => {
+	const { monthKey } = req.params;
+	const { notes } = req.body;
+	try {
+		const habit = await Habit.findOne().sort({ createdAt: 1 });
+		if (!habit) return res.status(404).json({ message: 'Habit not found' });
+
+		habit.monthlyNotes.set(monthKey, notes);
+		await habit.save();
+		res.json({ message: 'Notes updated' });
+	} catch (err) {
+		res.status(500).json({ message: err.message });
+	}
+});
+
 module.exports = router;

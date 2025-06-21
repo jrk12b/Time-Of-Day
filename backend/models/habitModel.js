@@ -7,6 +7,7 @@ const habitSchema = new Schema({
 	createdAt: { type: Date, default: Date.now },
 	progress: { type: Map, of: Boolean, default: {} },
 	order: { type: Number, required: false, default: 0 },
+	monthlyNotes: { type: Map, of: String, default: {} },
 });
 
 module.exports = mongoose.model('Habits', habitSchema);

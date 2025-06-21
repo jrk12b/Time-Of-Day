@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../css/YourTime.css';
 import { testIds } from '../testData/testIds';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useMemo } from 'react';
-import { fetchHabits, updateHabitOrder } from '../context/contextHabits';
+import { fetchHabits, updateHabitOrder, getMonthlyNotes, updateMonthlyNotes } from '../context/contextHabits';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import DailyHabitsBarGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsBarGraph';
 import DailyHabitsLineGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsLineGraph';
@@ -27,6 +27,7 @@ const DailyHabitsPage = () => {
 	const today = new Date();
 	const [currentMonth, setCurrentMonth] = useState(today.getMonth());
 	const [currentYear, setCurrentYear] = useState(today.getFullYear());
+	const [monthlyNotes, setMonthlyNotes] = useState('');
 
 	function getDaysOfCurrentMonth(year, month) {
 		const days = [];
@@ -96,6 +97,19 @@ const DailyHabitsPage = () => {
 		};
 		loadHabits();
 	}, [days]);
+
+	useEffect(() => {
+		const loadNotes = async () => {
+			try {
+				const key = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`;
+				const notes = await getMonthlyNotes(key);
+				setMonthlyNotes(notes || '');
+			} catch (err) {
+				console.error('Failed to load monthly notes:', err);
+			}
+		};
+		loadNotes();
+	}, [currentYear, currentMonth]);
 
 	const handleAddHabit = async (e) => {
 		e.preventDefault();
@@ -262,7 +276,7 @@ const DailyHabitsPage = () => {
 			<br></br>
 			<div
 				className="ag-theme-alpine"
-				style={{ height: 500, width: '100%', marginBottom: '18rem' }}
+				style={{ height: 500, width: '100%', marginBottom: '12rem' }}
 			>
 				<div className="top-bar">
 					<form
@@ -335,6 +349,23 @@ const DailyHabitsPage = () => {
 							);
 						}
 					}}
+				/>
+			</div>
+			<div style={ { padding: '2rem'  }}>
+				<h3>Notes for {new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })} {currentYear}</h3>
+				<textarea
+					style={{ width: '100%', height: '150px', fontSize: '1rem', padding: '1rem' }}
+					value={monthlyNotes}
+					onChange={(e) => setMonthlyNotes(e.target.value)}
+					onBlur={async () => {
+						try {
+							const key = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`;
+							await updateMonthlyNotes(key, monthlyNotes);
+						} catch (err) {
+							console.error('Failed to update monthly notes:', err);
+						}
+					}}
+					placeholder="Write your notes for this month..."
 				/>
 			</div>
 			<div className="graph">

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import TodaysTime from './pages/TodaysTimePage';
 import Home from './pages/HomePage';
