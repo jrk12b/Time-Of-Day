@@ -4,7 +4,12 @@ import { testIds } from '../testData/testIds';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useMemo } from 'react';
-import { fetchHabits, updateHabitOrder, getMonthlyNotes, updateMonthlyNotes } from '../context/contextHabits';
+import {
+	fetchHabits,
+	updateHabitOrder,
+	getMonthlyNotes,
+	updateMonthlyNotes,
+} from '../context/contextHabits';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import DailyHabitsBarGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsBarGraph';
 import DailyHabitsLineGraph from '../components/Graphs/DailyHabitsGraphs/DailyHabitsLineGraph';
@@ -351,8 +356,12 @@ const DailyHabitsPage = () => {
 					}}
 				/>
 			</div>
-			<div style={ { padding: '2rem'  }}>
-				<h3>Notes for {new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })} {currentYear}</h3>
+			<div style={{ padding: '2rem' }}>
+				<h3>
+					Notes for{' '}
+					{new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })}{' '}
+					{currentYear}
+				</h3>
 				<textarea
 					style={{ width: '100%', height: '150px', fontSize: '1rem', padding: '1rem' }}
 					value={monthlyNotes}

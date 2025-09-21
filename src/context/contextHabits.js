@@ -87,21 +87,21 @@ export const updateHabitOrder = async (orderedHabits) => {
 };
 
 export const getMonthlyNotes = async (monthKey) => {
-  try {
-    const response = await axios.get(`${HOST}/api/habits/monthly-notes/${monthKey}`);
-    return response.data.notes;
-  } catch (error) {
-    console.error('Error fetching monthly notes:', error);
-    throw error;
-  }
+	try {
+		const response = await axios.get(`${HOST}/api/habits/monthly-notes/${monthKey}`);
+		return response.data.notes;
+	} catch (error) {
+		console.error('Error fetching monthly notes:', error);
+		throw error;
+	}
 };
 
 export const updateMonthlyNotes = async (monthKey, notes) => {
-  try {
-    const response = await axios.put(`${HOST}/api/habits/monthly-notes/${monthKey}`, { notes });
-    return response.data;
-  } catch (error) {
-    console.error('Error updating monthly notes:', error);
-    throw error;
-  }
+	try {
+		const response = await axios.put(`${HOST}/api/habits/monthly-notes/${monthKey}`, { notes });
+		return response.data;
+	} catch (error) {
+		console.error('Error updating monthly notes:', error);
+		throw error;
+	}
 };
