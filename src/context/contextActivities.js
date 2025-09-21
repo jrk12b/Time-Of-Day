@@ -1,7 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import axios from 'axios';
 const { HOST } = require('../config');
-console.log(`HOST: ${HOST}`);
 
 // Fetches activity data from the backend API
 export const fetchActivities = async () => {

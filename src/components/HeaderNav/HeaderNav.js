@@ -56,6 +56,16 @@ const HeaderNav = () => {
 						Your Time
 					</NavLink>
 				</li>
+				<li>
+					<NavLink
+						data-testid={testIds.headerNav.dailHabitsNavLink}
+						to="/DailyHabits"
+						className={linkClassName}
+						onClick={closeMobileMenu}
+					>
+						Daily Habits
+					</NavLink>
+				</li>
 			</ul>
 		);
 	};
